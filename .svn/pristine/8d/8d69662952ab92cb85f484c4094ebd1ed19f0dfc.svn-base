@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{89F0F8DB-EEE5-452B-A304-8F752129B1EE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Hdc.Measuring.EsponTcpSrv</RootNamespace>
+    <AssemblyName>Hdc.Measuring.EsponTcpSrv</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EasyNetQ, Version=0.59.0.434, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\EasyNetQ.0.59.0.434\lib\net45\EasyNetQ.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RabbitMQ.Client, Version=3.6.2.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\RabbitMQ.Client.3.6.2\lib\net45\RabbitMQ.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SuperSocket.Common, Version=1.6.6.0, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\SuperSocket\SuperSocket.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SuperSocket.Facility, Version=1.6.6.0, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\SuperSocket\SuperSocket.Facility.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SuperSocket.SocketBase, Version=1.6.6.0, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\SuperSocket\SuperSocket.SocketBase.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SuperSocket.SocketEngine, Version=1.6.6.0, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\SuperSocket\SuperSocket.SocketEngine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Windows.Threading, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\Rx-XAML.2.2.5\lib\net45\System.Reactive.Windows.Threading.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommonTcpSrv\CommonTcpSrvInitializer.cs" />
+    <Compile Include="CommonTcpSrv\CommonTcpSrvSensorInPositionEventController.cs" />
+    <Compile Include="CommonTcpSrv\CommonTcpSrvSensorInPositonCommandController.cs" />
+    <Compile Include="CommonTcpSrv\CommonTcpSrvStationCompletedEventController.cs" />
+    <Compile Include="CommonTcpSrv\CommonTcpSrvWorkpieceInPositionCommandController.cs" />
+    <Compile Include="CommonTcpSrv\CommonTaskSchemas.cs" />
+    <Compile Include="CommonTcpSrv\CommonTaskSchema.cs" />
+    <Compile Include="EsponTcpSrvInitializer.cs" />
+    <Compile Include="EsponTcpSrvSensorInPositionEventController.cs" />
+    <Compile Include="EsponTcpSrvSensorInPositonCommandController.cs" />
+    <Compile Include="EsponTcpSrvStationCompletedCommandController.cs" />
+    <Compile Include="EsponTcpSrvStationCompletedEventController.cs" />
+    <Compile Include="EsponTcpSrvWorkpieceInPositionCommandController.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TcpTaskSchema.cs" />
+    <Compile Include="TcpTaskSchemas.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hdc.Measuring.EasyNetQ\Hdc.Measuring.EasyNetQ.csproj">
+      <Project>{FE0A7396-A691-42AC-9532-2B00B4ED9657}</Project>
+      <Name>Hdc.Measuring.EasyNetQ</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hdc.Measuring.Opc\Hdc.Measuring.Opc.csproj">
+      <Project>{1adf139e-6f4a-4543-8b23-5807b0babc31}</Project>
+      <Name>Hdc.Measuring.Opc</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Hdc.Measuring\Hdc.Measuring.csproj">
+      <Project>{42e6ec06-576c-4d5d-b05c-c15d6dbfe716}</Project>
+      <Name>Hdc.Measuring</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hdc.Mercury.Communication.OPC.Xi\Hdc.Mercury.Communication.OPC.Xi.csproj">
+      <Project>{d93ee329-68d8-48fe-873e-e632b12d5b03}</Project>
+      <Name>Hdc.Mercury.Communication.OPC.Xi</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Hdc.Mercury\Hdc.Mercury.csproj">
+      <Project>{d72f14a9-4848-4405-aa6e-99ebf8213609}</Project>
+      <Name>Hdc.Mercury</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Hdc.Mv.RobotVision.LocatingService\Hdc.Mv.RobotVision.LocatingService.csproj">
+      <Project>{6604befe-b5e6-4a24-9f50-174004dd4eb2}</Project>
+      <Name>Hdc.Mv.RobotVision.LocatingService</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Hdc.Toolkit.Prism\Hdc.Toolkit.Prism.csproj">
+      <Project>{ad8670c0-923c-4f6e-b38f-37c81fa163bc}</Project>
+      <Name>Hdc.Toolkit.Prism</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Hdc.Toolkit\Hdc.Toolkit.csproj">
+      <Project>{2aeabe20-5e8f-4310-a228-66bd3d434683}</Project>
+      <Name>Hdc.Toolkit</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

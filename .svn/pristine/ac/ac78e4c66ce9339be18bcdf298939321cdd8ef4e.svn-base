@@ -1,0 +1,77 @@
+﻿<MeasureSchema StationIndex="3" StationPositionOffset="11" xmlns="http://schemas.hdcrd.com/measure" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <MeasureSchema.Initializers>
+    <RcApiInitializer ProjectFileName="C:\EpsonRC70\projects\TestApi01\TestApi01.sprj"/>
+  </MeasureSchema.Initializers>  
+  
+  <MeasureSchema.WorkpieceInPositionEventController>
+    <InMemoryEventController EventName="WpcInPosition"/>
+  </MeasureSchema.WorkpieceInPositionEventController>
+  
+  <MeasureSchema.WorkpieceInPositionEventAckCommandController>
+    <RcApiCommandController VarName="WpcInPositionAck"  Value="1"/>
+  </MeasureSchema.WorkpieceInPositionEventAckCommandController>
+  
+  <MeasureSchema.SensorInPositionEventController>
+    <RcApiEventController EventNumber="2000"/>
+  </MeasureSchema.SensorInPositionEventController>
+  
+  <MeasureSchema.SensorInPositionEventAckCommandController>
+    <RcApiCommandController VarName="SensorInPositionAck"  Value="1"/>
+  </MeasureSchema.SensorInPositionEventAckCommandController>
+  
+  <MeasureSchema.AllPositionsCompletedEventController>
+    <RcApiEventController EventNumber="2001"/>
+  </MeasureSchema.AllPositionsCompletedEventController>
+  
+  <MeasureSchema.AllMeasuresCompletedCommandController>
+    <MockCommandController Message="AllMeasuresCompleted" />
+  </MeasureSchema.AllMeasuresCompletedCommandController>
+  
+  <MeasureSchema.WorkpieceTagService>
+    <MockWorkpieceTagService />
+  </MeasureSchema.WorkpieceTagService>
+  
+  
+  <MeasureSchema.MeasureDefinitions>
+    <MeasureDefinition DeviceName="Point-00" Index="0" PointIndex="0">
+      <MockMeasureDevice AutoMeasure="true"/>
+    </MeasureDefinition>
+    <MeasureDefinition DeviceName="Point-01" Index="1" PointIndex="1">
+      <MockMeasureDevice AutoMeasure="true"/>
+    </MeasureDefinition>
+    <MeasureDefinition DeviceName="Point-02" Index="2" PointIndex="2">
+      <MockMeasureDevice AutoMeasure="true"/>
+    </MeasureDefinition>
+    <MeasureDefinition DeviceName="Point-03" Index="3" PointIndex="3">
+      <MockMeasureDevice AutoMeasure="true"/>
+    </MeasureDefinition>
+    <MeasureDefinition DeviceName="Point-04" Index="4" PointIndex="4">
+      <MockMeasureDevice AutoMeasure="true"/>
+    </MeasureDefinition>
+    <MeasureDefinition DeviceName="Point-05" Index="5" PointIndex="5">
+      <MockMeasureDevice AutoMeasure="true"/>
+    </MeasureDefinition>
+    <MeasureDefinition DeviceName="Point-06" Index="6" PointIndex="6">
+      <MockMeasureDevice AutoMeasure="true"/>
+    </MeasureDefinition>
+    <MeasureDefinition DeviceName="Point-07" Index="7" PointIndex="7">
+      <MockMeasureDevice AutoMeasure="true"/>
+    </MeasureDefinition>
+    <MeasureDefinition DeviceName="Point-08" Index="8" PointIndex="8">
+      <MockMeasureDevice AutoMeasure="true"/>
+    </MeasureDefinition>
+    <MeasureDefinition DeviceName="Point-09" Index="9" PointIndex="9">
+      <MockMeasureDevice AutoMeasure="true"/>
+    </MeasureDefinition>
+    <MeasureDefinition DeviceName="Point-10" Index="10" PointIndex="10">
+      <MockMeasureDevice AutoMeasure="true"/>
+    </MeasureDefinition>
+    
+  </MeasureSchema.MeasureDefinitions>
+
+  <CalculateDefinition SipNo="28#" Description="SIM卡深度平均" Unit="mm" ExpectValue="1.17" FloatPosition="3" Name="SIM卡深度" SystemOffsetValue="-0.00" ToleranceMinus="-0.00" TolerancePlus="0.05" TuneEnabled="true">
+  	<GetMeasureOutputCalculateOperation DataIndex="1" OutputIndex="0" />
+  </CalculateDefinition>
+  
+</MeasureSchema>

@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B247F46B-1700-485C-825C-0001B186E0AC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vins.ML.Domain</RootNamespace>
+    <AssemblyName>Vins.ML.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EasyNetQ, Version=0.59.0.434, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\EasyNetQ.0.59.0.434\lib\net45\EasyNetQ.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NewId, Version=2.1.3.0, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\NewId.2.1.3\lib\net45\NewId.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Omu.ValueInjecter, Version=3.1.1.0, Culture=neutral, PublicKeyToken=c7694541b0ac80e4, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\valueinjecter.3.1.1.2\lib\net40\Omu.ValueInjecter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RabbitMQ.Client, Version=3.6.2.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\RabbitMQ.Client.3.6.2\lib\net45\RabbitMQ.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FileNameReference.cs" />
+    <Compile Include="LauncherEvents\ChangeMeasureSchemaCommandMqEvent.cs" />
+    <Compile Include="LauncherEvents\ChangeMeasureSchemaErrorMqEvent.cs" />
+    <Compile Include="LauncherEvents\LauncherWatchDogMqEvent.cs" />
+    <Compile Include="LauncherEvents\ChangeMeasureSchemaCompletedMqEvent.cs" />
+    <Compile Include="LauncherEvents\RestartComputerMqEvent.cs" />
+    <Compile Include="LauncherEvents\StartMeasureStationServiceMqEvent.cs" />
+    <Compile Include="LauncherEvents\StopMeasureStationServiceMqEvent.cs" />
+    <Compile Include="MeasureSchemaInfo.cs" />
+    <Compile Include="MqEvents\ForcePrintGoMqEvent.cs" />
+    <Compile Include="MqEvents\ForcePrintNgMqEvent.cs" />
+    <Compile Include="MqEvents\InitializeStationMonitorMqResponse.cs" />
+    <Compile Include="MqEvents\MeasureResultStoredMqEvent.cs" />
+    <Compile Include="MqEvents\InitializeStationMonitorMqRequest.cs" />
+    <Compile Include="MqEvents\ParameterValueChangedMqEvent.cs" />
+    <Compile Include="MqEvents\QueryAllWorkpieceResultsRequest.cs" />
+    <Compile Include="MqEvents\QueryAllWorkpieceResultsResponse.cs" />
+    <Compile Include="MqEvents\QueryFirstAndLastWorkpieceResultsRequest.cs" />
+    <Compile Include="MqEvents\QueryFirstAndLastWorkpieceResultsResponse.cs" />
+    <Compile Include="MqEvents\QueryFirstWorkpieceResultRequest.cs" />
+    <Compile Include="MqEvents\QueryFirstWorkpieceResultResponse.cs" />
+    <Compile Include="MqEvents\QueryLastWorkpieceResultRequest.cs" />
+    <Compile Include="MqEvents\QueryLastWorkpieceResultResponse.cs" />
+    <Compile Include="MqEvents\QueryOpcStationYieldRequest.cs" />
+    <Compile Include="MqEvents\QueryOpcStationYieldResponse.cs" />
+    <Compile Include="MqEvents\QueryPlcWorkDataCountRequest.cs" />
+    <Compile Include="MqEvents\QueryPlcWorkDataCountResponse.cs" />
+    <Compile Include="MqEvents\QueryTotalCountRequest.cs" />
+    <Compile Include="MqEvents\QueryTotalCountResponse.cs" />
+    <Compile Include="MqEvents\QueryWorkpieceResultsByBetweenRequest.cs" />
+    <Compile Include="MqEvents\QueryWorkpieceResultsByTakeLastRequest.cs" />
+    <Compile Include="MqEvents\QueryWorkpieceResultsByTakeLastResponse.cs" />
+    <Compile Include="MqEvents\QueryWorkpieceResultsByTakeRequest.cs" />
+    <Compile Include="MqEvents\QueryWorkpieceResultsByBetweenResponse.cs" />
+    <Compile Include="MqEvents\QueryWorkpieceResultsByTakeResponse.cs" />
+    <Compile Include="MqEvents\QueryWorkpieceResultMqRequest.cs" />
+    <Compile Include="MqEvents\QueryWorkpieceResultMqResponse.cs" />
+    <Compile Include="MqEvents\QueryTotalCountOfWorkpieceResultsRequest.cs" />
+    <Compile Include="MqEvents\QueryTotalCountOfWorkpieceResultsResponse.cs" />
+    <Compile Include="MqEvents\ReadParameterValuesMqRequest.cs" />
+    <Compile Include="MqEvents\ReadParameterValuesMqResponse.cs" />
+    <Compile Include="MqEvents\ResetJobCountRequest.cs" />
+    <Compile Include="MqEvents\ResetJobCountResponse.cs" />
+    <Compile Include="MqEvents\ResetTotalCountRequest.cs.cs" />
+    <Compile Include="MqEvents\ResetTotalCountResponse.cs" />
+    <Compile Include="MqEvents\RobotResetCommandMqRequest.cs" />
+    <Compile Include="MqEvents\RobotResetCompletedMqEvent.cs" />
+    <Compile Include="MqEvents\StationWatchdogMqEvent.cs" />
+    <Compile Include="MqEvents\TotalCountChangedMqEvent.cs" />
+    <Compile Include="ProcessStartConfig.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="LauncherEvents\ShutdownComputerMqEvent.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hdc.Measuring\Hdc.Measuring.csproj">
+      <Project>{42E6EC06-576C-4D5D-B05C-C15D6DBFE716}</Project>
+      <Name>Hdc.Measuring</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hdc.Mercury\Hdc.Mercury.csproj">
+      <Project>{D72F14A9-4848-4405-AA6E-99EBF8213609}</Project>
+      <Name>Hdc.Mercury</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hdc.Toolkit\Hdc.Toolkit.csproj">
+      <Project>{2AEABE20-5E8F-4310-A228-66BD3D434683}</Project>
+      <Name>Hdc.Toolkit</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,88 @@
+﻿<DeviceConfigSchema Author="{x:Null}" Version="{x:Null}" BuildNumber="0" DateTime="0001-01-01" Guid="00000000-0000-0000-0000-000000000000" xmlns="http://schemas.hdcrd.com/mercury" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <DeviceGroupConfig GlobalIndex="0" Index="0" Name="Machine">
+    <DeviceGroupConfig.DeviceConfigs>
+      <DeviceConfig Comment="{x:Null}" DataType="Int32" IsConversionEnabled="False" IsSimulated="False" Name="TotalCount" Tag="/QCPUQ.Production.TotalCount/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Int32" IsConversionEnabled="False" IsSimulated="False" Name="TotalRejectCount" Tag="/QCPUQ.Production.TotalRejectCount/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Int32" IsConversionEnabled="False" IsSimulated="False" Name="JobCount" Tag="/QCPUQ.Production.JobCount/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Int32" IsConversionEnabled="False" IsSimulated="False" Name="JobRejectCount" Tag="/QCPUQ.Production.JobRejectCount/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="ResetTotalCountCommand" Tag="/QCPUQ.Production.ResetTotalCountCommand/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="ResetJobCountCommand" Tag="/QCPUQ.Production.ResetJobCountCommand/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="UpdateWatchdogCommand" Tag="/QCPUQ.General.UpdateWatchdogCommand/" TagIndex="0" />
+      
+      <DeviceConfig Comment="{x:Null}" DataType="Int32" IsConversionEnabled="False" IsSimulated="False" Name="ProductionSpeed" Tag="/QCPUQ.Production.ProductionSpeed/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="UInt16Array" IsConversionEnabled="False" IsSimulated="False" Name="WorkpieceStatusArray" Tag="/QCPUQ.Production.WorkpieceStatusArray/" TagIndex="0" />
+      
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="StartCommand" Tag="/QCPUQ.Production.StartCommand/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="StopCommand" Tag="/QCPUQ.Production.StopCommand/" TagIndex="0" />
+      
+      
+      <DeviceConfig Comment="{x:Null}" DataType="UInt32" IsConversionEnabled="False" IsSimulated="False" Name="WorkpieceInPositionPlcEvent00" Tag="/QCPUQ.Production.WorkpieceInPositionPlcEvent00/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="UInt32" IsConversionEnabled="False" IsSimulated="False" Name="WorkpieceInPositionPlcEvent01" Tag="/QCPUQ.Production.WorkpieceInPositionPlcEvent01/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="UInt32" IsConversionEnabled="False" IsSimulated="False" Name="WorkpieceInPositionPlcEvent02" Tag="/QCPUQ.Production.WorkpieceInPositionPlcEvent02/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="UInt32" IsConversionEnabled="False" IsSimulated="False" Name="WorkpieceInPositionPlcEvent03" Tag="/QCPUQ.Production.WorkpieceInPositionPlcEvent03/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="UInt32" IsConversionEnabled="False" IsSimulated="False" Name="WorkpieceInPositionPlcEvent04" Tag="/QCPUQ.Production.WorkpieceInPositionPlcEvent04/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="UInt32" IsConversionEnabled="False" IsSimulated="False" Name="WorkpieceInPositionPlcEvent05" Tag="/QCPUQ.Production.WorkpieceInPositionPlcEvent05/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="UInt32" IsConversionEnabled="False" IsSimulated="False" Name="WorkpieceInPositionPlcEvent06" Tag="/QCPUQ.Production.WorkpieceInPositionPlcEvent06/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="UInt32" IsConversionEnabled="False" IsSimulated="False" Name="WorkpieceInPositionPlcEvent07" Tag="/QCPUQ.Production.WorkpieceInPositionPlcEvent07/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="UInt32" IsConversionEnabled="False" IsSimulated="False" Name="WorkpieceInPositionPlcEvent08" Tag="/QCPUQ.Production.WorkpieceInPositionPlcEvent08/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="UInt32" IsConversionEnabled="False" IsSimulated="False" Name="WorkpieceInPositionPlcEvent09" Tag="/QCPUQ.Production.WorkpieceInPositionPlcEvent09/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="UInt32" IsConversionEnabled="False" IsSimulated="False" Name="WorkpieceInPositionPlcEvent10" Tag="/QCPUQ.Production.WorkpieceInPositionPlcEvent10/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="UInt32" IsConversionEnabled="False" IsSimulated="False" Name="WorkpieceInPositionPlcEvent11" Tag="/QCPUQ.Production.WorkpieceInPositionPlcEvent11/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="UInt32" IsConversionEnabled="False" IsSimulated="False" Name="WorkpieceInPositionPlcEvent12" Tag="/QCPUQ.Production.WorkpieceInPositionPlcEvent12/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="UInt32" IsConversionEnabled="False" IsSimulated="False" Name="WorkpieceInPositionPlcEvent13" Tag="/QCPUQ.Production.WorkpieceInPositionPlcEvent13/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="UInt32" IsConversionEnabled="False" IsSimulated="False" Name="WorkpieceInPositionPlcEvent14" Tag="/QCPUQ.Production.WorkpieceInPositionPlcEvent14/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="UInt32" IsConversionEnabled="False" IsSimulated="False" Name="WorkpieceInPositionPlcEvent15" Tag="/QCPUQ.Production.WorkpieceInPositionPlcEvent15/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="UInt32" IsConversionEnabled="False" IsSimulated="False" Name="WorkpieceInPositionPlcEvent16" Tag="/QCPUQ.Production.WorkpieceInPositionPlcEvent16/" TagIndex="0" />
+      
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="AllMeasuresCompletedAppEvent00" Tag="/QCPUQ.Production.AllMeasuresCompletedAppEvent00/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="AllMeasuresCompletedAppEvent01" Tag="/QCPUQ.Production.AllMeasuresCompletedAppEvent01/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="AllMeasuresCompletedAppEvent02" Tag="/QCPUQ.Production.AllMeasuresCompletedAppEvent02/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="AllMeasuresCompletedAppEvent03" Tag="/QCPUQ.Production.AllMeasuresCompletedAppEvent03/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="AllMeasuresCompletedAppEvent04" Tag="/QCPUQ.Production.AllMeasuresCompletedAppEvent04/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="AllMeasuresCompletedAppEvent05" Tag="/QCPUQ.Production.AllMeasuresCompletedAppEvent05/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="AllMeasuresCompletedAppEvent06" Tag="/QCPUQ.Production.AllMeasuresCompletedAppEvent06/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="AllMeasuresCompletedAppEvent07" Tag="/QCPUQ.Production.AllMeasuresCompletedAppEvent07/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="AllMeasuresCompletedAppEvent08" Tag="/QCPUQ.Production.AllMeasuresCompletedAppEvent08/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="AllMeasuresCompletedAppEvent09" Tag="/QCPUQ.Production.AllMeasuresCompletedAppEvent09/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="AllMeasuresCompletedAppEvent10" Tag="/QCPUQ.Production.AllMeasuresCompletedAppEvent10/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="AllMeasuresCompletedAppEvent11" Tag="/QCPUQ.Production.AllMeasuresCompletedAppEvent11/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="AllMeasuresCompletedAppEvent12" Tag="/QCPUQ.Production.AllMeasuresCompletedAppEvent12/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="AllMeasuresCompletedAppEvent13" Tag="/QCPUQ.Production.AllMeasuresCompletedAppEvent13/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="AllMeasuresCompletedAppEvent14" Tag="/QCPUQ.Production.AllMeasuresCompletedAppEvent14/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="AllMeasuresCompletedAppEvent15" Tag="/QCPUQ.Production.AllMeasuresCompletedAppEvent15/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="AllMeasuresCompletedAppEvent16" Tag="/QCPUQ.Production.AllMeasuresCompletedAppEvent16/" TagIndex="0" />
+      
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6000" Tag="/QCPUQ.Alarms.Alarm_0000/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6001" Tag="/QCPUQ.Alarms.Alarm_0001/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6002" Tag="/QCPUQ.Alarms.Alarm_0002/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6003" Tag="/QCPUQ.Alarms.Alarm_0003/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6004" Tag="/QCPUQ.Alarms.Alarm_0004/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6005" Tag="/QCPUQ.Alarms.Alarm_0005/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6006" Tag="/QCPUQ.Alarms.Alarm_0006/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6007" Tag="/QCPUQ.Alarms.Alarm_0007/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6008" Tag="/QCPUQ.Alarms.Alarm_0008/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6009" Tag="/QCPUQ.Alarms.Alarm_0009/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6010" Tag="/QCPUQ.Alarms.Alarm_0010/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6011" Tag="/QCPUQ.Alarms.Alarm_0011/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6012" Tag="/QCPUQ.Alarms.Alarm_0012/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6013" Tag="/QCPUQ.Alarms.Alarm_0013/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6014" Tag="/QCPUQ.Alarms.Alarm_0014/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6015" Tag="/QCPUQ.Alarms.Alarm_0015/" TagIndex="0" />
+      
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6030" Tag="/QCPUQ.Alarms.Alarm_0030/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6031" Tag="/QCPUQ.Alarms.Alarm_0031/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6032" Tag="/QCPUQ.Alarms.Alarm_0032/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6033" Tag="/QCPUQ.Alarms.Alarm_0033/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6034" Tag="/QCPUQ.Alarms.Alarm_0034/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6035" Tag="/QCPUQ.Alarms.Alarm_0035/" TagIndex="0" />
+      
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6040" Tag="/QCPUQ.Alarms.Alarm_0040/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6041" Tag="/QCPUQ.Alarms.Alarm_0041/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6042" Tag="/QCPUQ.Alarms.Alarm_0042/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6043" Tag="/QCPUQ.Alarms.Alarm_0043/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6044" Tag="/QCPUQ.Alarms.Alarm_0044/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6045" Tag="/QCPUQ.Alarms.Alarm_0045/" TagIndex="0" />
+      <DeviceConfig Comment="{x:Null}" DataType="Boolean" IsConversionEnabled="False" IsSimulated="False" Name="Alarm_M6046" Tag="/QCPUQ.Alarms.Alarm_0046/" TagIndex="0" />
+    </DeviceGroupConfig.DeviceConfigs>
+  </DeviceGroupConfig>
+</DeviceConfigSchema>

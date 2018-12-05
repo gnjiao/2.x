@@ -1,0 +1,1 @@
+﻿<Config EasyNetQ_Host="127.0.0.1" EasyNetQ_Password="hdcrd.com" EasyNetQ_Username="hdc" xmlns="clr-namespace:Vins.ML.OpcService;assembly=MqTestClient" />

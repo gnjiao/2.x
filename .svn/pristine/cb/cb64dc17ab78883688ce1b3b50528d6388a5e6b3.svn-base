@@ -1,0 +1,1 @@
+﻿<Config EasyNetQ_Host="127.0.0.1" EasyNetQ_Password="hdc" EasyNetQ_Username="hdc" EasyNetQ_VirtualHost="vinsml" xmlns="clr-namespace:Vins.ML.OpcService;assembly=MqTestClient" />

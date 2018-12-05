@@ -1,0 +1,34 @@
+﻿<InspectionSchema xmlns="http://schemas.hdcrd.com/mv"
+                  Disabled="false">
+	<InspectionSchema.DataCodeSearchingDefinitions>
+		
+		
+		<DataCodeSearchingDefinition Name="QR1"
+								 StartX="81"
+								 StartY="12844"
+								 EndX="397"
+								 EndY="12844"
+								 ROIHalfWidth="162"
+								 Domain_SaveCacheImageEnabled="true"
+							
+								 >
+			
+		<!--	<EdgeSearchingDefinition.RelativeLine>
+				<Line X1="-2600"
+				      Y1="-4801"
+				      X2="-2550"
+				      Y2="-4801" />
+			</EdgeSearchingDefinition.RelativeLine> -->
+			
+				<QRDataCodeExtractor GenParamNamesOfModel="default_parameters" 
+				GenParamValuesOfModel="maximum_recognition"
+				GenParamNamesOfFind=""/>
+			
+		</DataCodeSearchingDefinition>
+		
+		
+	</InspectionSchema.DataCodeSearchingDefinitions>
+	
+	
+
+</InspectionSchema>

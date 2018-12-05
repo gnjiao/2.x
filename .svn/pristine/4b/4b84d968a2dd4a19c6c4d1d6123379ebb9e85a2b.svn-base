@@ -1,0 +1,370 @@
+﻿<UserControl x:Class="Vins.ML.MeasureLineManager.MaintainScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Vins.ML.MeasureLineManager"
+             xmlns:hdc="http://schemas.hdcrd.com/xaml"
+             mc:Ignorable="d"
+             d:DesignHeight="1000"
+             d:DesignWidth="1900"
+             x:Name="Root">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Hdc.Controls.Theming.Metro;component\Theme.xaml" />
+                <ResourceDictionary Source="/ParameterEntriesGroupStyle.xaml" />
+                <ResourceDictionary Source="/AlarmParameterEntryDataTemplate.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <DockPanel TextElement.FontSize="{DynamicResource {x:Static hdc:HdcFonts.FontSizeLargeKey}}"
+                   Margin="20">
+            <DockPanel DockPanel.Dock="Bottom">
+                <Button Width="{DynamicResource {x:Static hdc:HdcLayout.ButtonSideLengthLargeKey}}"
+                        Height="{DynamicResource {x:Static hdc:HdcLayout.ButtonSideLengthLargeKey}}"
+                        Margin="{DynamicResource {x:Static hdc:HdcLayout.MarginLargeKey}}"
+                        Style="{DynamicResource EllipseButtonStyle}"
+                        HorizontalContentAlignment="Stretch"
+                        VerticalContentAlignment="Stretch"
+                        x:Name="SwitchToMonitorScreenButton"
+                        Click="SwitchToMonitorScreenButton_OnClick"
+                        DockPanel.Dock="Right">
+                    <Border Background="{hdc:DrawingBrushExtension N030}" />
+                </Button>
+
+                <Grid Background="LightGray"
+                      Margin="{DynamicResource {x:Static hdc:HdcLayout.MarginLargeKey}}"
+                      Width="1000"
+                      Grid.Column="1" HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center"
+                                   Margin="16,4">下料机器人初始化:</TextBlock>
+                        <UniformGrid Rows="2">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center"
+                                           Margin="4,2"
+                                           Width="50"
+                                           >Host</TextBlock>
+                                <TextBox Width="160"
+                                         Margin="4,2"
+                                         IsReadOnly="True"
+                                         IsEnabled="False"
+                                         TextAlignment="Center"
+                                         TextWrapping="NoWrap"
+                                         VerticalContentAlignment="Center"
+                                         x:Name="HostOfDownloadRobotTextBox"
+                                         Text="{Binding Config.DownloadRobot_Host}"></TextBox>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center"
+                                           Margin="4,2"
+                                           Width="50">Port</TextBlock>
+                                <TextBox Width="160"
+                                         Margin="4,2"
+                                         IsReadOnly="True"
+                                         IsEnabled="False"
+                                         TextAlignment="Center"
+                                         TextWrapping="NoWrap"
+                                         VerticalContentAlignment="Center"
+                                         x:Name="PortOfDownloadRobotTextBox"
+                                         Text="{Binding Config.DownloadRobot_Port}"></TextBox>
+                            </StackPanel>
+                        </UniformGrid>
+                        <TextBlock VerticalAlignment="Center" Margin="8">OK盘序号</TextBlock>
+                        <TextBox Width="60"
+                                 Margin="8"
+                                 TextAlignment="Center"
+                                 TextWrapping="NoWrap"
+                                 VerticalContentAlignment="Center"
+                                 x:Name="IndexOfOkPlateOfDownloadRobotTextBox">1</TextBox>
+                        <TextBlock VerticalAlignment="Center"
+                                   Margin="8">NG盘序号</TextBlock>
+                        <TextBox Width="60"
+                                 Margin="8"
+                                 TextAlignment="Center" TextWrapping="NoWrap"
+                                 VerticalContentAlignment="Center"
+                                 x:Name="IndexOfNgPlateOfDownloadRobotTextBox">1</TextBox>
+                        <Button Width="120"
+                                Margin="8"
+                                VerticalContentAlignment="Center"
+                                x:Name="SendIndexOfPlateOfDownloadRobotButton"
+                                Click="SendIndexOfPlateOfDownloadRobotButton_OnClick">发送序号</Button>
+                    </StackPanel>
+                </Grid>
+            </DockPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0*"></ColumnDefinition>
+                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Border Background="LightGray"
+                        Margin="{DynamicResource {x:Static hdc:HdcLayout.MarginLargeKey}}"
+                        Grid.Column="1">
+                    <DockPanel>
+                        <TextBlock Text="工站运行状态"
+                                   DockPanel.Dock="Top"
+                                   FontSize="{DynamicResource {x:Static hdc:HdcFonts.FontSizeExtraLargeKey}}"
+                                   Margin="{DynamicResource {x:Static hdc:HdcLayout.MarginLargeKey}}" />
+                        <DockPanel  HorizontalAlignment="Center"
+                                    VerticalAlignment="Center">
+                            <StackPanel Orientation="Horizontal"
+                                        DockPanel.Dock="Top"
+                                        TextElement.FontSize="{DynamicResource {x:Static hdc:HdcFonts.FontSizeMediumKey}}">
+                                <TextBlock Text="序号"
+                                           TextAlignment="Center"
+                                           Margin="4"
+                                           Width="40"
+                                           Padding="2"></TextBlock>
+                                <TextBlock Text="启动器"
+                                           TextAlignment="Center"
+                                           Margin="4"
+                                           Width="80"
+                                           Padding="2"></TextBlock>
+                                <TextBlock Text="测量程序"
+                                           TextAlignment="Center"
+                                           Margin="4"
+                                           Width="80"
+                                           Padding="2"></TextBlock>
+                                <FrameworkElement Margin="4"
+                                                  Width="80"></FrameworkElement>
+                                <FrameworkElement Margin="16,4"
+                                                  Width="80"></FrameworkElement>
+                                <TextBlock Text="默认配置"
+                                           TextAlignment="Center"
+                                           Margin="4"
+                                           Width="80"
+                                           Padding="2"></TextBlock>
+                                <TextBlock Text="配置1"
+                                           TextAlignment="Center"
+                                           Margin="4"
+                                           Width="80"
+                                           Padding="2"></TextBlock>
+                                <TextBlock Text="配置2"
+                                           TextAlignment="Center"
+                                           Margin="4"
+                                           Width="80"
+                                           Padding="2"></TextBlock>
+                                <TextBlock Text="配置3"
+                                           TextAlignment="Center"
+                                           Margin="4"
+                                           Width="80"
+                                           Padding="2"></TextBlock>
+                                <TextBlock Text="配置4"
+                                           TextAlignment="Center"
+                                           Margin="4"
+                                           Width="80"
+                                           Padding="2"></TextBlock>
+                                <TextBlock Text="配置5"
+                                           TextAlignment="Center"
+                                           Margin="4"
+                                           Width="80"
+                                           Padding="2"></TextBlock>
+                                <TextBlock Text="配置6"
+                                           TextAlignment="Center"
+                                           Margin="4"
+                                           Width="80"
+                                           Padding="2"></TextBlock>
+                                <TextBlock Text="配置7"
+                                           TextAlignment="Center"
+                                           Margin="4"
+                                           Width="80"
+                                           Padding="2"></TextBlock>
+                                <TextBlock Text="配置8"
+                                           TextAlignment="Center"
+                                           Margin="4"
+                                           Width="80"
+                                           Padding="2"></TextBlock>
+                                <TextBlock Text="配置9"
+                                           TextAlignment="Center"
+                                           Margin="4"
+                                           Width="80"
+                                           Padding="2"></TextBlock>
+                                <TextBlock Text="配置10"
+                                           TextAlignment="Center"
+                                           Margin="4"
+                                           Width="80"
+                                           Padding="2"></TextBlock>
+                                <TextBlock Text="当前配置"
+                                           TextAlignment="Center"
+                                           Margin="4"
+                                           Width="80"
+                                           Padding="2"></TextBlock>
+                            </StackPanel>
+                            <ItemsControl ItemsSource="{Binding StationStatuses}"
+                                          TextElement.FontSize="{DynamicResource {x:Static hdc:HdcFonts.FontSizeMediumKey}}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding StationIndex}"
+                                                       TextAlignment="Right"
+                                                       Margin="4"
+                                                       Width="40"
+                                                       Padding="2"></TextBlock>
+                                            <TextBox Text="{Binding LauncherWatchdogTimeoutDescription}"
+                                                     x:Name="LauncherWatchdogTimeoutDescriptionTextBox"
+                                                     TextAlignment="Center"
+                                                     Margin="4"
+                                                     Width="80"
+                                                     Padding="2"
+                                                     IsReadOnly="True">
+                                            </TextBox>
+                                            <TextBox Text="{Binding StationWatchdogTimeoutDescription}"
+                                                     x:Name="StationWatchdogTimeoutDescriptionTextBox"
+                                                     TextAlignment="Center"
+                                                     Margin="4"
+                                                     Width="80"
+                                                     Padding="2"
+                                                     IsReadOnly="True">
+                                            </TextBox>
+                                            <Button Command="{Binding DataContext.StopMeasureStationServiceCommand, ElementName=Root}"
+                                                    CommandParameter="{Binding}"
+                                                    Margin="4"
+                                                    Width="80"
+                                                    Padding="2">停止</Button>
+                                            <TextBlock Text="启动配置:"
+                                                       TextAlignment="Center"
+                                                       Margin="16,4"
+                                                       Width="80"
+                                                       Padding="2"></TextBlock>
+                                            <Button Command="{Binding DataContext.StartMeasureStationServiceCommand, ElementName=Root}"
+                                                    CommandParameter="{Binding}"
+                                                    Margin="4"
+                                                    Width="80"
+                                                    Padding="2"
+                                                    Content="{Binding DataContext.ConfigName0, ElementName=Root}">
+                                            </Button>
+                                            <Button Command="{Binding DataContext.ChangeMeasureSchemaCommand1, ElementName=Root}"
+                                                    CommandParameter="{Binding}"
+                                                    Margin="4"
+                                                    Width="80"
+                                                    Padding="2"
+                                                    Content="{Binding DataContext.ConfigName1, ElementName=Root}"></Button>
+                                            <Button Command="{Binding DataContext.ChangeMeasureSchemaCommand2, ElementName=Root}"
+                                                    CommandParameter="{Binding}"
+                                                    Margin="4"
+                                                    Width="80"
+                                                    Padding="2"
+                                                    Content="{Binding DataContext.ConfigName2, ElementName=Root}"></Button>
+                                            <Button Command="{Binding DataContext.ChangeMeasureSchemaCommand3, ElementName=Root}"
+                                                    CommandParameter="{Binding}"
+                                                    Margin="4"
+                                                    Width="80"
+                                                    Padding="2"
+                                                    Content="{Binding DataContext.ConfigName3, ElementName=Root}"></Button>
+                                            <Button Command="{Binding DataContext.ChangeMeasureSchemaCommand4, ElementName=Root}"
+                                                    CommandParameter="{Binding}"
+                                                    Margin="4"
+                                                    Width="80"
+                                                    Padding="2"
+                                                    Content="{Binding DataContext.ConfigName4, ElementName=Root}"></Button>
+                                            <Button Command="{Binding DataContext.ChangeMeasureSchemaCommand5, ElementName=Root}"
+                                                    CommandParameter="{Binding}"
+                                                    Margin="4"
+                                                    Width="80"
+                                                    Padding="2"
+                                                    Content="{Binding DataContext.ConfigName5, ElementName=Root}"></Button>
+                                            <Button Command="{Binding DataContext.ChangeMeasureSchemaCommand6, ElementName=Root}"
+                                                    CommandParameter="{Binding}"
+                                                    Margin="4"
+                                                    Width="80"
+                                                    Padding="2"
+                                                    Content="{Binding DataContext.ConfigName6, ElementName=Root}"></Button>
+                                            <Button Command="{Binding DataContext.ChangeMeasureSchemaCommand7, ElementName=Root}"
+                                                    CommandParameter="{Binding}"
+                                                    Margin="4"
+                                                    Width="80"
+                                                    Padding="2"
+                                                    Content="{Binding DataContext.ConfigName7, ElementName=Root}"></Button>
+                                            <Button Command="{Binding DataContext.ChangeMeasureSchemaCommand8, ElementName=Root}"
+                                                    CommandParameter="{Binding}"
+                                                    Margin="4"
+                                                    Width="80"
+                                                    Padding="2"
+                                                    Content="{Binding DataContext.ConfigName8, ElementName=Root}"></Button>
+                                            <Button Command="{Binding DataContext.ChangeMeasureSchemaCommand9, ElementName=Root}"
+                                                    CommandParameter="{Binding}"
+                                                    Margin="4"
+                                                    Width="80"
+                                                    Padding="2"
+                                                    Content="{Binding DataContext.ConfigName9, ElementName=Root}"></Button>
+                                            <Button Command="{Binding DataContext.ChangeMeasureSchemaCommand10, ElementName=Root}"
+                                                    CommandParameter="{Binding}"
+                                                    Margin="4"
+                                                    Width="80"
+                                                    Padding="2"
+                                                    Content="{Binding DataContext.ConfigName10, ElementName=Root}"></Button>
+                                            <TextBox Text="{Binding CurrentConfigName}"
+                                                     Margin="4"
+                                                     TextAlignment="Center"
+                                                     Width="80"
+                                                     Padding="2"
+                                                     IsReadOnly="True">
+                                            </TextBox>
+                                            <Button Command="{Binding DataContext.ShutdownComputerCommand, ElementName=Root}"
+                                                    CommandParameter="{Binding}"
+                                                    Margin="4"
+                                                    Width="80"
+                                                    Padding="2">关机</Button>
+                                        </StackPanel>
+                                        <DataTemplate.Triggers>
+                                            <DataTrigger Binding="{Binding LauncherWatchdogTimeoutDescription}"
+                                                         Value="OK">
+                                                <Setter TargetName="LauncherWatchdogTimeoutDescriptionTextBox"
+                                                        Property="Foreground"
+                                                        Value="Black"></Setter>
+                                                <Setter TargetName="LauncherWatchdogTimeoutDescriptionTextBox"
+                                                        Property="Background"
+                                                        Value="LimeGreen"></Setter>
+                                                <Setter TargetName="LauncherWatchdogTimeoutDescriptionTextBox"
+                                                        Property="Text"
+                                                        Value="在线"></Setter>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding LauncherWatchdogTimeoutDescription}"
+                                                         Value="Offline">
+                                                <Setter TargetName="LauncherWatchdogTimeoutDescriptionTextBox"
+                                                        Property="Foreground"
+                                                        Value="White"></Setter>
+                                                <Setter TargetName="LauncherWatchdogTimeoutDescriptionTextBox"
+                                                        Property="Background"
+                                                        Value="OrangeRed"></Setter>
+                                                <Setter TargetName="LauncherWatchdogTimeoutDescriptionTextBox"
+                                                        Property="Text"
+                                                        Value="离线"></Setter>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding StationWatchdogTimeoutDescription}"
+                                                         Value="OK">
+                                                <Setter TargetName="StationWatchdogTimeoutDescriptionTextBox"
+                                                        Property="Foreground"
+                                                        Value="Black"></Setter>
+                                                <Setter TargetName="StationWatchdogTimeoutDescriptionTextBox"
+                                                        Property="Background"
+                                                        Value="LimeGreen"></Setter>
+                                                <Setter TargetName="StationWatchdogTimeoutDescriptionTextBox"
+                                                        Property="Text"
+                                                        Value="在线"></Setter>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding StationWatchdogTimeoutDescription}"
+                                                         Value="Offline">
+                                                <Setter TargetName="StationWatchdogTimeoutDescriptionTextBox"
+                                                        Property="Foreground"
+                                                        Value="White"></Setter>
+                                                <Setter TargetName="StationWatchdogTimeoutDescriptionTextBox"
+                                                        Property="Background"
+                                                        Value="OrangeRed"></Setter>
+                                                <Setter TargetName="StationWatchdogTimeoutDescriptionTextBox"
+                                                        Property="Text"
+                                                        Value="离线"></Setter>
+                                            </DataTrigger>
+                                        </DataTemplate.Triggers>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </DockPanel>
+                    </DockPanel>
+                </Border>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</UserControl>

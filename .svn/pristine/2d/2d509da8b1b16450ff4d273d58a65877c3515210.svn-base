@@ -1,0 +1,62 @@
+- install CommCam 2.6.0: 
+  - SetupE2vCLSoftware_Win64_x64_Version 2.6.0.exe
+  - all next...
+- install Silicon Software 5.4.2: RuntimeSetup_v5.4.2_Win64.exe
+  - all next but: check "Always run COMWrapperAutorun at system start"
+
+- Open CommCam
+  - ask "Automatic camera port detecion is active", click "Yes"
+  - Choose port: select "Auto detection", click "Ok"
+  - option: if no camera, click "Update cameras list"
+  - expand: Silicon Software -> board0_port0 -> EXLIIXA...
+    - double click
+    - if prompt "Error reading node: TriggerTooSlow", click "OK". ignoal it.
+  - Change parameters
+    - Image Format Control
+      - Output Mode: Medium 4 Outpus 8bits => Base 2 Outputs 8 Bits
+      - Sensor Mode: 2S => 4S
+  - Acquisition Control
+    - Synchronisation Mode: One Exernal Line Trigger with Exposure Time Externally Controlled
+  - User Set Control
+    - User Set Selector: Default => User Set 1
+    - User Set Save: Double Click "Done"
+
+
+- Open MicroDisplay
+  - I want to "Load Applet"
+    - Camera Interface£º Base
+    - Color Type: Gray
+    - Camera Type: Line
+    - Double click "DualLineGray16.dll"
+    - Close window
+  - Tools -> Settings ->
+    - Acquisition timeout: 10s => 1000000s
+    - Maximum DMA Buffer Size (MB): 1024 => 2048
+  - Parameter
+    - Generator
+      - Width: 1024 => 8192
+    - ROI(old version names Display)
+      - Width: 1024 => 8192
+      - Height: 1024 => 14000
+      - YOffset: 0 => 2000
+    - CameraLink
+      - Input Format: 8 Bit Single Tap => 8 Bit Dual Tap
+    - Sensor Readout Corection 
+      - Readout mode: SMODE_UNCHANGED => SMODE_TAB2_0
+    - Line Trgger:
+      - Mode: GrabberControlled => ExternTrigger
+      - Line Trigger Input -> Source A: Input 0 // pin 11
+      - Line Trigger Input -> Downscale: 1 => 3
+    - Image Trigger
+      - Mode: FreeRun => Trigger
+      - Image Trigger Input -> Source: Input 1 // pin 12
+    - (just comment, dont modify) Digital I/0 -> Digital Output: 0 => 1
+
+
+
+
+
+
+//
+X pixel width: 13.6um
+Y Optial... : 1um on AB, 4um on A, downscale = 3, Y pixel height=4*3=12um

@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{07632E1B-A1F1-4004-9DD9-91723DD7C251}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MeasureSchemaTool</RootNamespace>
+    <AssemblyName>MeasureSchemaTool</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MeasureDeviceType.cs" />
+    <Compile Include="MeasureSchemaFactory.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hdc.Measuring.ADLink\Hdc.Measuring.ADLink.csproj">
+      <Project>{4D5C35C9-6C0B-45D2-AF7B-E33C72053E24}</Project>
+      <Name>Hdc.Measuring.ADLink</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hdc.Measuring.Keyence\Hdc.Measuring.Keyence.csproj">
+      <Project>{35D71BEA-FAC7-4157-B2EF-1D51E614D277}</Project>
+      <Name>Hdc.Measuring.Keyence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hdc.Measuring.Opc\Hdc.Measuring.Opc.csproj">
+      <Project>{1ADF139E-6F4A-4543-8B23-5807B0BABC31}</Project>
+      <Name>Hdc.Measuring.Opc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hdc.Measuring.VinsML\Hdc.Measuring.VinsML.csproj">
+      <Project>{CE3190D1-222A-4890-9AC4-E6589120D8D5}</Project>
+      <Name>Hdc.Measuring.VinsML</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hdc.Measuring\Hdc.Measuring.csproj">
+      <Project>{42E6EC06-576C-4D5D-B05C-C15D6DBFE716}</Project>
+      <Name>Hdc.Measuring</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hdc.Toolkit\Hdc.Toolkit.csproj">
+      <Project>{2AEABE20-5E8F-4310-A228-66BD3D434683}</Project>
+      <Name>Hdc.Toolkit</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

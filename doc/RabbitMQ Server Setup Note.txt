@@ -1,0 +1,22 @@
+
+Install: Erlang 18.3 (otp_win64_18.3.exe)
+Install: rabbitmq-server-3.6.1.exe   
+  - ATTENTION: 3.6.0 is not support. 
+  - 3.6.1, or 3.6.x above are ok.
+  - after install will prompt windows firewall warning, must "allow"
+
+browse: C:\Program Files\RabbitMQ Server\rabbitmq_server-3.6.1\
+right click dir "sbin" with hold the shift key : Open command window here
+
+type below to config:
+------------------------------------------------
+rabbitmqctl add_vhost vinsml
+rabbitmqctl add_user hdc hdc
+rabbitmqctl set_permissions -p vinsml hdc ".*" ".*" ".*"
+
+
+
+type below to confirm config is successful:
+------------------------------------------------
+rabbitmqctl list_users
+rabbitmqctl list_vhosts

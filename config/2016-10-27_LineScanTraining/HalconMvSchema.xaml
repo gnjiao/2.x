@@ -1,0 +1,29 @@
+﻿<HalconMvSchema xmlns="http://schemas.hdcrd.com/mv"
+                xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <HalconMvSchema.FrameGrabberSchemas>
+    <HalconFrameGrabberSchema Index="0">
+      <HalconFrameGrabberSchema.Inspector>
+          <!--
+          <SimHalconInspector Index="0" Name="Inspect0"/> -->
+          <HalconInspectionSchemaInspector Index="0"
+                                         Name="Inspect0"
+                                         InspectionSchemaDir="InspectionSchemas"
+                                         MaxDefectCount="10000"/>
+      </HalconFrameGrabberSchema.Inspector>
+    </HalconFrameGrabberSchema>
+    <HalconFrameGrabberSchema Index="1">
+      <HalconFrameGrabberSchema.Inspector>
+          <!-- 
+          <SimHalconInspector Index="1" Name="Inspect1"/> -->
+          <HalconInspectionSchemaInspector Index="1"
+                                         Name="Inspect1"
+                                         InspectionSchemaDir="InspectionSchema_Backward"
+                                         MaxDefectCount="10000"/>
+      </HalconFrameGrabberSchema.Inspector>
+    </HalconFrameGrabberSchema>
+  </HalconMvSchema.FrameGrabberSchemas>
+  <HalconMvSchema.InspectorInitializers>
+    <ActiveComputerDeviceInspectorInitializer/>
+  </HalconMvSchema.InspectorInitializers>
+</HalconMvSchema>

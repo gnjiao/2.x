@@ -1,0 +1,14 @@
+{
+  "LedPulseWidth": 200,
+  "MaxLedPulseWidth": 5000,
+  "Freq": 10,
+  "IsExternalPulsingEnabled": false,
+  "IpAddress": null,
+  "ZCalibrationFile": "C:\\Users\\Administrator\\Desktop\\z-calibration_xrd60361063.dat",
+  "XCalibrationFile": "C:\\Users\\Administrator\\Desktop\\x-calibration-lci-1200.dat",
+  "UiWindowHeight": 3,
+  "AveragePixelWidth": 0.0054999999999998991,
+  "AveragePixelHeight": -0.0054890590231321916,
+  "IsAgcEnabled": false,
+  "AgcTargetIntensity": 80.0
+}

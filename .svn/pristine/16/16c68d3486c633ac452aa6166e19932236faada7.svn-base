@@ -1,0 +1,1630 @@
+                   
+ChangeLog
+
+	************************************
+	*                                  *
+	*    Legend:                       *
+	*                                  *
+	*    * -> Security Fix             *
+	*    # -> Bug Fix                  *
+	*    + -> Addition                 *
+	*    ^ -> Changed                  *
+	*    - -> Removed                  *
+	*    ! -> Note                     *
+	*                                  *
+	************************************
+
+============================================================================
+Vins.ML 2.x
+============================================================================
+2018-11-07, Haofu Zhu
+^ QRDataCodeExtractor
+  ! QR code type can be modified in InspectionSchema config file.
+
+============================================================================
+2018-10-31, LordBuddha
+
+# GetValueFromMaxMinusMinCalculateOperation.cs
+  ! Now you can set the correct range of results in measureschema.xaml by setting MinValue and MaxValue.
+
+# PointOfEdgeAndRadialLineResult.cs
+# PointOfEdgeAndRadialLineInspector.cs
+# InspectionController.cs
+  ! Now the finded points will automactally displayed in SampleApp.
+
+# DistanceBetweenPointAndLineResult.cs
+# DistanceBetweenPointAndLineInspector.cs
+  ! Fix the bugs to make this algorithm work correctly.
+
+# GenCircleFromAreaCenterRegionProcessor.cs
+  ! Fix the bug the software will breakdown when the input region is empty.
+
+============================================================================
+2018-10-24, LordBuddha
+
+# EdgeSearchingOfRegionPointsDefinition.cs
+  ! Now the line will always displayed in SampleApp.
+
+# EdgeSearchingOfRegionPointsInspector.cs
+# EdgeSearchingOfRegionPointsResult.cs
+# InspectionController.cs
+  ! Fix the bugs that the lines of EdgeSearchingOfRegionPoints will not displayed correctly in SampleApp.
+
+============================================================================
+2018-10-22, Haofu Zhu
+
++ DistanceBetweenPointAndLineDefinition.cs
+  ! Algorithm: Calculate the distance(straightness) from a point to an arbitrary line or a fitted line
++ DistanceBetweenPointAndLineResult.cs
++ DistanceBetweenPointAndLineInspector.cs
+ ^ InspectionSchema.cs
+ ^ InspectionSchemaExtensions.cs
+ ^ InspectionResult.cs
+ ^ InspectionController.cs
+ ^ InspectorEx.cs
+
+============================================================================
+2018-09-25, Haofu Zhu
+
++ CircleXld.cs
+
++ EdgeSearchingOfRegionPointsDefinition.cs
+  ! Algorithm of least square method to fit a line 
++ EdgeSearchingOfRegionPointsResult.cs
++ EdgeSearchingOfRegionPointsInspector.cs
+ ^ InspectionSchema.cs
+ ^ InspectionSchemaExtensions.cs
+ ^ InspectionResult.cs
+ ^ InspectionController.cs
+ ^ InspectorEx.cs
+ 
++ MeanCurvatureFlowImageFilter.cs
+  ! Halcon operator：mean_curvature_flow
+
++ FitCircleContourXldProcessor.cs
+  ! Halcon operator：fit_circle_contour_xld
+
+^ HRegionExtensions.cs
+  ! A bug that causes software to crash when a region is empty
+
+^ HXLDContExtensions.cs
+  ! Use Xld to fit a circle
+^ XldSearchingResult.cs
+^ XldInspector.cs
+
++ RegionTargetResult.cs
+  ! Result output：regional center of gravity coordinates
+
+^ DistanceBetweenTwoPointsInspector.cs
+  ! The output is no longer limited to absolute value;It has positive and negative direction
+^ DistanceBetweenTwoPointsDefinition.cs
+
+^ GetTwoPointsWithCircleCoordinateExtactor.cs
+  ! Angle correction and new coordinate center position judgment and correction are added for the second coordinates
+
+^ GetTwoPointsWithRegionsAndLinesCoordinateExtactor.cs
+  ! A bug that causes software to crash when a region is empty
+
+^ GetTwoPointsWithRegionsCoordinateExtactor.cs
+  ! Angle correction and new coordinate center position judgment and correction are added for the second coordinates
+
+^ SelectBestXldExtractor.cs
+^ StructuredXldExtractor.cs
+^ UnionCotangentialContoursXldProcessor.cs
+^ AggregateSelectShapeXldProcessor.cs
+^ SelectShapeXldProcessor.cs
+  ! Fixed a bug in the XLD algorithm that caused the SampleApp and Halcon results to be inconsistent
+
+============================================================================
+2018-04-09, op
+
++ Project for JuTeng
++ Project for new LineScan
++ Halcon MesaureDevice For SmartRay
+^ LineManager UI
+
+   ^ Hdc.Measuring
+   ^ Hdc.Measuring.Epson
+   ^ Hdc.Measuring.EsponTcpSrv	
+   ^ Hdc.Measuring.Halcon
+   ^ Vins.ML.MeasureLineManager
+   ^ Vins.ML.OpcService
+
+============================================================================
+2018-01-02, op
+
++ Project for B167
+   + MultipleQueueSchedulingInitializer
+   + SynchronizeSensorInPosition Events,Commands
+
+============================================================================
+2017-11-14, Haofu Zhu
+
+^ StepCalculateOperationBetweenMaxAndMinCalculateOperation 
+   ! change name：MaxCalculateOperationMinusMinCalculateOperation
+ + MaxCalculateOperation2 
+    ! Calculate maximum value even though calculation is 999.999
+ + MinCalculateOperation2 
+    !Calculate  minimum value even though Calculation is 999.999
+============================================================================
+2017-11-09, Haofu Zhu
+
++ StepCalculateOperationBetweenMaxAndMinCalculateOperation 
+   ! Calculate between the maximum and minimum values even though Calculation is 999.999
+
+============================================================================
+2017-11-09, op
+
+^ Glass project for BYD
+  ^ Hdc.Measuring.FocalSpec
+^ LineManager for Sum JobCount, TotalCount
+============================================================================
+2017-09-22, op
+
++ Automatic count statistics function
+  ^Vins.ML.OpcService
+  ^Vins.ML.MeasureLineManager
+============================================================================
+2017-09-15, op
+
++ Glass project for BYD
+   + Hdc.Measuring.QueueScheduling 
+   + Vins.ML.OpcService.DXP
+   + Hdc.Measuring.FocalSpec
+
+- ABUTestClient
+============================================================================
+2017-08-21, Haofu Zhu
+
++ GetSmallestDeviationMeasureOutputCalculationOperation2  => Get the nearest standard value
+
+============================================================================
+2017-08-16, op
+
+-Variable.msbuild
+  -Don't Copy DeviceConfigs.xaml
+============================================================================
+2017-08-15, op
+
+^ ABU Project
+  ^EsponTcpSrvInitializer.cs
+  +EsponTcpSrv opc content
+============================================================================
+2017-08-07, op
+
+^ EsponTcpSrvInitializer  
+
+============================================================================
+2017-07-26, op
+
+^ ICommandController 
+  + add param MeasureEvent
+  ^ void Command(MeasureEvent measureEvent);
+
+============================================================================
+2017-07-26, op
+
++ ABU Measure Project
+  + Hdc.Measuring.EsponTcpSrv.dll
+  + ABUTestClient.exe
+
+============================================================================
+2017-07-13, op
+
+#CalculateResult.cs
+  ^ IsNG2,IsOver20um Rounding 0.0055 => 0.005
+
+============================================================================
+2017-07-12, Wayne
+
+# OCR char has Quotation Marks. 
+  ^ SingleSvmOcrDataCodeExtractor
+
+============================================================================
+2017-07-12, op
+
+^GodexLablePrintMeasureDevice 
+	+PrintClass print IsNG2Upper and IsNG2Lower label
+
+============================================================================
+2017-07-11, op
+
++ support CalculateLevel
+     ^ CalculateResult.cs add GetLevelName() function
+     ^ CalculateDefinition.cs add Collection<CalculateLevel> CalculateLevels
+     ^ CalculateResultsDataTemplateLite.xaml add LevelName view
+^ GetFixtureDataCodeStationResultProcessor
+     + FixtureEnable and FixtureDataCode
+
+============================================================================
+2017-07-11, Wayne
+
++ OCR DataCodeExtractor
+  + SingleSvmOcrDataCodeExtractor.cs
+
++ RegionToBinImageFilter
++ SimpleSelectShapeRegionProcessor
+
+# DataCodeSearchingDefinitions not update the RelativeCoordinates
+  ^ InspectionController.cs
+
+============================================================================
+2017-07-05, Yx
+
++ support 3D calculate
+     + StepFromGrayValueInspector.cs
+     + FitSurfaceFirstOrderDatumPlaneCreator.cs
+
+============================================================================
+2017-07-05, op
+
++ support calculate Distance Between Two Points
+     + DistanceBetweenTwoPointsResult.cs
+     + DistanceBetweenTwoPointsInspector.cs
+     + DistanceBetweenTwoPointsDefinition.cs
+^ Hdc.Mv.Inspection.Halcon.SampleApp
+     + LineIndicators_DistanceBetweenTwoPointsResults
+
+============================================================================
+
+2017-07-02, Rein
+
++ support calculate step value from gray value
+    + StepFromGrayValueResult.cs
+    + IStepFromGrayValueInspector.cs
+    + StepFromGrayValueDefinition.cs
+    + StepFromGrayValueInspector.cs
+    ^ InspectionSchema
+    ^ InspectionResult
+    ^ InspectionController
+    + DefinitionBase.ZScaleInMillimeter
+
+============================================================================
+2017-07-02, Rein
+
+^ change IDatumPlaneCreator
+  + FitSurfaceFirstOrderDatumPlaneCreator
+  ^ InspectionController
+
+============================================================================
+2017-06-30, Rein
+
++ support Datum Plane for 2.5D image
+  + IDatumPlaneCreator.cs
+  + InspectionSchema.DatumPlaneRegions
+  + InspectionSchema.ZScaleInMillimeter
+  + RegionSearchingDefinition.ZOffsetInMillimeter
+  + InspectionResult.DatumPlaneRegions
+  + InspectionController.CreateDatumPlane()
+
+^ simplify InspectionController: remove fluent methods
+  ^ InspectionController
+  ^ HalconInspectionSchemaInspector
+
+============================================================================
+2017-06-30, Rein
+
+^ HalconImageCalibrator2 :
+add NewImageWidth  and NewImageHeight 
+
+============================================================================
+2017-06-19, Rein
+^ ImageToWorldPlaneUsingRobotHalconImageCalibrator
+^ GetImageFromCacheHFramegrabberProvider
+^ CameraHalconInspectorMeasureDevice
++ MeasureStationService Bootstrapper : Assembly.LoadFile(_assemblyDirectoryPath + "\\Hdc.Mv.Halcon.dll");
+============================================================================
+2017-06-16, Rein
+
++ support Run report offline
+  + Use first xaml file to change tolerence and offset
+  + StationResult.IsAbnormal
+  + WorkpieceResult.IsAbnormal
+  ^ ReportMethods
+
+# SendIndexesOfPlateOfDownloadRobot
+  client must delay some time to close the connection. Thread.Sleep(500);
+
+# Overwrite CalculateResult.Definition from the first CalculateResult of StationResult when running report
+# HalconCameraInitializer cannot load in ImageMeasuringTool
+
+============================================================================
+2017-06-16, Rein
+
+^ SendIndexesOfPlateOfDownloadRobot()
+
+============================================================================
+2017-06-16, Rein
+
++ add UI to initialize download robot
+  ^ Vins.ML.MeasureLineManager.MainViewModel
+    + SendIndexesOfPlateOfDownloadRobot()
+  ^ MaintainScreen.xaml MaintainScreen.xaml.cs
+  + Config.DownloadRobot_Host
+  + Config.DownloadRobot_Port
+
++ RegionTargetResult.HorizontalWidthInWorld
++ RegionTargetResult.VerticalHeightInWorld
++ SwitchProgramForLJGMeasureTrigger.OnlyOnce
+
+^ AsyncTcpClient.cs move to Hdc.Toolkit
+
+============================================================================
+2017-06-11, Rein
+
++ CameraHalconInspectorMeasureDevice support add image to the cache at HalconCameraInitializer
+  ^ CameraHalconInspectorMeasureDevice
+  ^ IHFramegrabberProvider
+    ^ InitializerHFramegrabberProvider
+    + GetImageFromCacheHFramegrabberProvider
+    + HFramegrabberProvider
+  ^ HalconCameraInitializer
+
++ Vins.ML.MeasureStationService will prompt in console when DeserializeFromXamlFile has error
+  ^ Vins.ML.MeasureStationService.Bootstrapper.cs
+  
++ support Affine from Robot to CalibPlate
+  + ImageToWorldPlaneUsingRobotHalconImageCalibrator
+
+============================================================================
+2017-06-07, op
+
+^ XyRcApiInitializer: if (Singleton != null) return;
+============================================================================
+2017-06-06, op
+
+^ Jump Origin_UsePointInRobot_PointIndex or OriginSpelPoint
+^ Spel PowerHigh
++ RobotMoveType = Pass then robotPoint.DisableSensorInPositionEvent = true
+============================================================================
+2017-06-03, Rein
+
++ RobotPoint.RobotMoveType
+^ cleanup RobotPoint
+
+============================================================================
+2017-06-03, Rein
+
++ RobotPoint support scan using SmartRay
+  + RobotPoint.Timeout
+  + RobotPoint.DisableSensorInPositionEvent
+  + RobotPoint.UseMove
+  ^ XyRcApiInitializer
+
++ RobotPoint support changing Speed and Accel before or after the Measurement.
+  + RobotPoint.SpeedBefore
+  + RobotPoint.SpeedAfter
+  + RobotPoint.AccelBefore
+  + RobotPoint.AccelAfter
+  ^ XyRcApiInitializer
+
+============================================================================
+2017-05-26, Rein
+
+# robotPoint X,Y,Z,U does not update from robot when UsePointInRobot_Enabled = true
+  ^ XyRcApiInitializer.cs
+
+============================================================================
+2017-05-24, Rein
+
++ support use points in robot in 
+  ^ RobotPoint
+  ^ XyRcApiInitializer 
+
+# MeasureStationService.Bootstrapper: Assembly.LoadFile(_assemblyDirectoryPath + "\\Hdc.Mv.dll");
+
+============================================================================
+2017-05-22, Rein
+
++ Hdc.Mv.RobotVision.Epson
+
+============================================================================
+2017-05-20, Rein
+
++ CameraHalconInspectorMeasureDevice support multi-Inspectors
+    + CameraHalconInspectorMeasureDevice.Inspectors
+    + GenericMeasureDataMapEntry.InspectionResultIndex
+    ^ SampleApp.MainWindow.xaml / .cs
+    + MainWindow.xaml.Partial.cs
+
+============================================================================
+2017-05-19, Rein
+
+- IMeasureResultsProcessor
+  - MeasureSchema.MeasureResultsProcessor
+  - LJGGetDataStorageProcessor
+
++ DefinitionBase.ColorName
++ StatisticsExtensions.CheckIsLimitedValue()
++ GetLimitedValueCalculationOperation
+
+============================================================================
+2017-05-17, Rein
+
+^ StepCalculateOperation
+  + AddConstantValue
+  + OffsetValue
+
+^ GetSmallestDeviationMeasureOutputCalculationOperation
+  + DeviationOverToleranceAbsLimited
+
+============================================================================
+2017-05-14, Rein
+
++ SampleApp support open file use different InspectionSchemas from sub dir
+
+# fix ImageMeasuringTool crash problem
+  ^ LoadFromFilesMeasureService: camera.Dispose();
+
+^ some ImageFilter inhert ImageFilterBase
+
+============================================================================
+2017-05-14, Rein
+
+# Manager support change ConfigName for 0 - 10 configs
+  ^ src\Vins.ML.MeasureLineManager\MainViewModel.cs
+  ^ src\Vins.ML.MeasureLineManager\Config.cs
+  ^ src\Vins.ML.MeasureLineManager\MaintainScreen.xaml
+
+============================================================================
+2017-05-14, Rein
+
+# LJGInitializer.TransferProgramToController()
+
+============================================================================
+2017-05-13, Rein
+
++ LJ-G initializor support load program file in 
+  + LJGInitializer.TransferProgramToController()
+  + LJGInitializer.ProgramFile
+
++ MeasureLineManager support config stations count
+  + Config.StationsCount
+
++ GetFirstNormalValueCalculationOperation
+^ ICalculateOperation.Calculate(IList<MeasureResult> measureResults, CalculateDefinition definition);
++ CalculateResult.IsAbnormal
++ CalculateDefinition.AbnormalValueLimitUpper and AbnormalValueLimitLower
+
+^ rename property names
+  - ExpectValue => StandardValue
+  - TolerancePlus => ToleranceUpper
+  - ToleranceMinus => ToleranceLower
+
+============================================================================
+2017-05-12, Rein
+
++ ImageType.cs
++ HdcMvEx.ToHalconString(this ImageType imageType)
++ SobelDirImageFilter.cs
++ ConvertImageTypeImageFilter.cs
+
+============================================================================
+2017-05-11, Rein
+
++ support ReferencePoints
+    + src\Hdc.Mv.Halcon\Inspection\PointDefinition.cs
+    + InspectionSchema.ReferencePointDefinitions
+    ^ InspectionSchemaExtensions
+    + Hdc.Mv.Inspection.Ex.UpdateRelativeCoordinate(this Point relativePoint)
+    + Hdc.Mv.Inspection.Ex.UpdateRelativeCoordinate(this PointDefinition def)
+    + InspectionResult.ReferencePointDefinitions
+    ^ InspectionController
+
++ support LineDefinition use reference points
+    ^ LineDefinition.cs
+    + InspectionController.CalculateReferenceLineDefinitionsFromReferences()
+
++ support RadialLineDefinition use reference points
+    ^ RadialLineDefinition.cs
+    ^ Hdc.Mv.Inspection.Ex.UpdateRelativeCoordinate(this RadialLineDefinition def,
+    + InspectionController.CalculateReferenceRadialLineDefinitionsFromReferences()
+
++ support Intersection Point Of TwoShapes
+    + src\Hdc.Mv.Halcon\Inspection\IntersectionPointOfTwoShapesResult.cs
+    + src\Hdc.Mv.Halcon\Inspection\ShapeType.cs
+    + src\Hdc.Mv.Halcon\Inspection\IntersectionPointOfTwoShapesDefinition.cs
+    + src\Hdc.Mv.Halcon\Inspection.Inspectors\IntersectionPointOfTwoShapesInspector.cs
+    + InspectionSchema.IntersectionPointOfTwoShapesDefinitions
+    + InspectionResult.IntersectionPointOfTwoShapesResults
+    + InspectionController.CalculateIntersectionPointOfTwoShapes()
+    + Hdc.Mv.Inspection.CalculateIntersectionPointOfTwoShapesEx()
+    ^ PointOfXldAndRadialLineInspector
+
++ doc\螺纹检测机开机步骤.txt
++ doc\螺纹检测机开机步骤.pdf
++ doc\螺纹检测机开机步骤.png
+
+============================================================================
+2017-05-09, Rein, changes from Vins.SH
+
+# CircleSearchingResult: CenterX, CenterY return 0.0 when Circle is null.
+^ OmronZw2MeasureDevice: GetMeasurementValue 3 times
++ XyRcApiInitializer: support Fine()
+  + J1MaxErr to J4MaxErr
++ StepCalculateWithZOperation
++ MeasureCycleForOmronMeasureTrigger.cs
+
+============================================================================
+2017-05-09, Rein
+
++ support fit ellipse in spoke
+  + pts_to_best_circle_using_ellipse.cs
+  + Ellipse.cs
+  ^ HDevelopExport.SpokeCircle()
+  ^ SpokeCircleFindingBlock
+    + EllipseMode, EllipseAlgorithm
+  ^ SpokeCircleExtractor
+    + EllipseMode, EllipseAlgorithm
+
++ EdgesImageImageFilter.cs
++ GrayDilationShapeFilter.cs
++ GenContourRegionXldXldExtractor.cs
++ FitEllipseContourXldProcessor.cs
++ HRegionExtensions.GenContourRegionXld()
++ HXLDContExtensions.FitEllipseContourXld()
+
+^ XldSearchingResult
+  + FitEllipseContourXld_Radius1
+  + FitEllipseContourXld_Radius2
+  + FitEllipseContourXld_RadiusMin
+  + FitEllipseContourXld_RadiusMax
+  + FitEllipseContourXld_DiameterMin
+  + FitEllipseContourXld_DiameterMinInWorld
+  + FitEllipseContourXld_DiameterMax
+  + FitEllipseContourXld_DiameterMaxInWorld
+
+# XamlReportStationResultProcessor.cs
+
+^ change window title: 
+  ^ src\MqTestClient\MainWindow.xaml
+  ^ src\Vins.ML.MeasureLineManager\MainWindow.xaml
+
+============================================================================
+2017-05-07, Rein
+
++ support multiply InMemoryCalculationOperations
+  ^ VinsMLMeasureService.cs, MeasureResult.Index will be set from 99, 100, 101 ...
++ XamlReportStationResultProcessor create dir names today
+^ fix doc\RabbitMQ Server Setup Note.txt
+
+============================================================================
+2017-05-06, Rein
+
+# LkMeasureDevice not assgin MeasureEvent
+
+============================================================================
+2017-04-17, Rein
+
++ CalculateDefinition support StationIndex
+  + CalculateDefinition.StationIndex
+  + CalculateDefinition.IsStationIndexEnabled
+  ^ XySetVarFromMeasureOutputUsingRcApiMeasureTrigger
+  + RobotPointSchema.StationIndex
+  ^ VinsMLMeasureService.CalculateResults()
+
++ MeasureCycleForOmronMeasureTrigger
+  + OmronZw2MeasureDevice.DsComm
+
++ IRobotService.OpenRobotManager()
+
++ support change UniformGridColumns and Rows of MonitorScreen
+  ^ Vins.ML.MeasureLineManager.Config
+    + MonitorScreen_UniformGridRows
+    + MonitorScreen_UniformGridColumns
+  ^ MonitorScreen.xaml
+  ^ MainViewModel.Init(): default is Row 2 & Column 5
+
+
+============================================================================
+2017-04-12, Rein
+
++ support XyRcApiInitializer
+  + MeasureSchema.WorkpieceInPositionCommandController2
+  + MeasureSchema.StationCompletedCommandController2
+  + XyRcApiSensorInPositionCommandController.cs
+  + RobotPointSchema.cs
+  + XyRcApiStationCompletedEventController.cs
+  + XyRcApiSensorInPositionEventController.cs
+  + XyRcApiWorkpieceInPositionCommandController.cs
+  ^ VinsMLMeasureService
+
+============================================================================
+2017-04-12, Rein
+
+^ CircleSearchingResult
+  + CircleSearchingResult.CenterX
+  + CircleSearchingResult.CenterY
+
+^ AffineXYMeasureTrigger: send targetOriInBase to robot instead of offset
+^ RcRobotService: change hand on go()
+
+============================================================================
+2017-04-11, Rein
+
++ Support AffineXY and send to Epson Robot
+  + SetVarFromMeasureOutputUsingRcApiMeasureTrigger.cs
+  + AffineXYMeasureTrigger.cs
+  ^ IMeasureTrigger and implements
+  ^ VinsMLMeasureService
+
+============================================================================
+2017-04-11, Rein
+
++ RcRobotService.cs
+^ MainWindow.xaml.cs
+
+============================================================================
+2017-03-13, Rein
+
+# PointOfXldAndRadialLineInspector
+  IntersectionLineContourXld => IntersectionSegmentContourXld
+  
+============================================================================
+2017-03-12, Rein
+
++ GrayDilationShapeImageFilter
+^ rename some ImageFilter
+
+============================================================================
+2017-03-05, Rein
+
+^ MeasureLineDataService ExportXaml using Zip
+    ^ Bootstrapper.ExportXaml()
+    + XamlSerializationExtensions.SerializeToXamlFileOfZip()
+    + XamlSerializationExtensions.DeserializeFromXamlFileOfZip()
+    + XamlSerializationExtensions.DeserializeFromXamlFileWithCheckIfZipped()
+    + Config.XamlExportMaxDays
+^ ImageMeasuringTool can load zip of xamls
+^ XamlReportStationResultProcessor zip xamls, and create folder for each day
+
+============================================================================
+2017-03-04, Rein
+
+^ IsNG2 fill Gold, IsOver20um fill Red
+    ^ReportScreen.xaml
+    ^MonitorScreen.xaml
+    ^CalculateResultsDataTemplateLite.xaml
+    ^StationResultDataTemplate.xaml
+    ^CalculateResultDataTemplateNano.xaml
+    ^CalculateResultsDataTemplate.xaml
+
+# show 0.021 problem
+  ^ CalculateResult
+
+============================================================================
+2017-03-04, Rein
+
+^ fix some names
+  + CalculateDefinition.StandardValue
+  + CalculateDefinition.ToleranceUpper
+  + CalculateDefinition.ToleranceLower
+  - obsolete: ExpectValue, TolerancePlus, ToleranceMinus
+
+============================================================================
+2017-03-04, Rein
+
++ support export workpieceResult into xamls
+  + GodexLablePrintMeasureDevice.DataServiceExportXamlEnabled
+  + QueryWorkpieceResultMqRequest.ExportXamlEnabled
+  + Vins.ML.MeasureLineDataService.Bootstrapper.ExportXaml()
+
++ some query functions
+  + IMeasureResultRepository.QueryTotalCountOfWorkpieceResults
+  + IMeasureResultRepository.QueryLastWorkpieceResult
+  + IMeasureResultRepository.QueryFirstWorkpieceResult
+  ^ SiaqodbRepository
+  + GetWorkpieceResultsByTakeLast
+
+^ WpcReport show NGAndUnder20um count & percent
+^ several UI changes
+
+# E2v8kInitializer
+# CalculateResult: avoid NG for 0.020
+
+============================================================================
+2017-03-03, Rein
+
++ E2v8kInitializer
+
+============================================================================
+2017-03-03, Rein
+
++ print LineName on label
+  ^ GodexLablePrintMeasureDevice
+
+============================================================================
+2017-03-03, Haofu Zhu
+
+#   ProcessStartConfig Index ="1" -> Cfg1
+^  Vins.ML.MeasureStationLanucher - Bootstrapper.cs
+
+============================================================================
+2017-03-02, Rein
+
++ Manage start multi .exe
+  + Launcher: config multi .exe paths
+  + Launcher: launch multi .exe paths
+
+  + LineManager start multi .exe
+  + LineManager stop all .exe processes
+  + LineManger show config name of online station
+
+  + MeasureService watchdog upload config name
+
+============================================================================
+2017-03-02, Rein
+
++ Offset for IsNG, IsNG2, IsOver20um
+  ^ CalculateDefinition
+  ^ CalculateResult
+
+^ MeasureStationService.Bootstrapper
+  + delete OCL*.temp files from Silicon
+  + do some trace
+
+# detect WpcResult that does not have enough stationCounts in RunInInWorkpieceStatisticButton
+^ ReportMethods
+  + OK&Under20um: count & percent
+  + Over20um: count & percent
+
+# IsNG does not show Gold Color 
+  ^ ReportScreen.xaml
+  ^ MonitorScreen.xaml
+
+# DB will lock when delete old results
+  ^ SiaqodbRepository: delete old results per 20 stationResults
+  ^ SiaqodbRepository: DB size 1024MB => 500MB
+  ^ MeasureLineDataService: MaxStationResultsCount default value set to 20000
+
+============================================================================
+2017-03-01, Rein
+
+^ IntersectionCoordinateExtactor
+  + UseInputCoordAngle, support both methods from InputCoord or Line2
+
+============================================================================
+2017-03-01, Rein
+
+^ CalculateResult.cs
+  ^ IsNG2 +-0.01 =>+-0.005
+^ SampleApp.MainWindow
+  ^ Show(): LineIndicators_CoordinateExtractors_IntersectionCoordinateExtactors
+
+============================================================================
+2017-02-09, Rein
+
+# RadialLineDefinition does not correct angle. Emergency bug.
+
+============================================================================
+2017-02-09, Rein
+
++ HighpassImageFilter
++ cleanup ImageFilters
++ delete OCL*.tmp files in current dir
+
+============================================================================
+2017-02-09, Rein
+
++ display IntersectionCoordinateExtactor
+  + InspectionResult.InspectionSchema
+  + InspectionResult.Coordinates
+  + IntersectionCoordinateExtactor: process result, include: PrimaryLine, SecondaryLine, Intersection
+  + InspectionController.Coordinates
+  ^ HalconInspectionSchemaInspector
+  + SampleApp.MainWindow.Show_InspectionSchema_CoordinateExtractors()
+
+============================================================================
+2017-02-08, Rein
+
++ support Coordinate using Intersection of 2 lines
+  + HdcMvEx.IntersectionWith(this Line, Line)
+  + IntersectionCoordinateExtactor.cs
+  + LineInCoordinateExtractor.cs
+  + ILineInCoordinateExtractor.cs
+
++ ICoordinateExtactor support 2 level
+  + ICoordinateExtactor.CoordinateName
+  ^ InspectionController
+
+============================================================================
+2017-02-07, Rein
+
++ ReportMethods support OkPercent, AbnormalPercent, and so on.
+  + StatisticsExtensions.GetAbnormalValuesCount
+  ^ ReportMethods
+
+# StructuredXldExtractor
+# InspectionSchemaDir cannot have other files, except .xaml files.
+  ^ InspectionSchemaExtensions.cs
+
+============================================================================
+2017-02-05, Rein
+
+# GodexLablePrintMeasureDevice.StationsCount must be set and larger than 0, or throw exception.
+
+============================================================================
+2017-02-04, Rein
+
+^ replace hdvp of rake & spoke to .cs
+  + src\Hdc.Mv.Halcon\Exports\rake.cs
+  + src\Hdc.Mv.Halcon\Exports\pts_to_best_line.cs
+  + src\Hdc.Mv.Halcon\Exports\pts_to_best_circle.cs
+  + src\Hdc.Mv.Halcon\Exports\spoke.cs
+  ^ does not copy *.hdvp to working dir
+
+============================================================================
+2017-01-25, Rein
+
+# fix sample app display bug:
+    cannot show both Edge and XLD
+
+============================================================================
+2017-01-23, Rein
+
+^ GodexLablePrintMeasureDevice.cs: little text change
+^ HalconViewer use difference LineHalconViewerSeries for each Indicators
+
+============================================================================
+2017-01-22, Rein
+
++ HoughCirclesRegionProcessor
+
+# delete StationResults will cause miss stationResult
+  + PublishMqEventStationResultProcessor.Expires = 10000
+  + GodexLablePrintMeasureDevice.PrinterStationsCountNotEquals
+  + GodexLablePrintMeasureDevice.StationsCount
+
++ support print level B
+  + CalculateResult.IsOver20um
+  + StationResult.IsOver20um
+  + WorkpieceResult.IsOver20um
+  + WorkpieceResult.IsLevelB
+  ^ GodexLablePrintMeasureDevice.PrintHead()
+
+============================================================================
+2017-01-17, Rein
+
++ SelectBestXldExtractor.cs
++ GenContoursSkeletonXldExtractor.cs
+
+============================================================================
+2017-01-17, Rein
+
++ UnionCocircularContoursXldProcessor.cs
++ SegmentContoursXldProcessor.cs
++ SelectShapeXldForHXLDContProcessor.cs
+
+============================================================================
+2017-01-16, Rein
+
++ UnionAdjacentContoursXldProcessor.cs
+
+# DistanceBetweenPointsOfXldAndRadialLineInspector.cs
+# PointOfXldAndRadialLineInspector.cs
+# src\Hdc.Mv.Inspection.Halcon.SampleApp\MainWindow.xaml.cs
+
+============================================================================
+2017-01-14, Rein
+
++ DistanceBetweenPointsOfXldAndRadialLineInspector
+    + InspectionSchema.DistanceBetweenPointsOfXldAndRadialLineDefinitions
+    + DistanceBetweenPointsOfXldAndRadialLineResult.cs
+    + DistanceBetweenPointsOfXldAndRadialLineDefinition.cs
+    ^ InspectionController
+    ^ Hdc.Mv.Inspection.Halcon.SampleApp\MainWindow.xaml
+
++ LinesGaussXldExtractor.cs
++ GetDistanceBetweenTwoPointsCalculationOperation.cs
+
+- InspectionSchema.CoordinateOriginOffsetPointInCoordinateExtractor
+- InspectionSchema.CoordinateOriginOffsetPointInCoordinateExtractor2
+
+============================================================================
+2017-01-04, Rein
+
++ support PaperMode.PlainPaperLabel
+  + Config.Printer_PaperMode
+  + PaperMode.cs
+
+============================================================================
+2016-12-10, Rein
+
++ support Multi-Coordinates in InspectionSchema
+  + ICoordinateExtactor.cs
+  + BaselineCoordinateExtactor.cs
+  + InspectionSchema.CoordinateExtactors
+  ^ InspectionController
+  + DefinitionBase.CoordinateName
+
++ CircleExtractorPointInCoordinateExtractor.cs
+
+============================================================================
+2016-12-05, Rein
+
+# PointOfXldAndRadialLineInspector
++ GetBorderBetweenErosionCirclesRegionProcessor
++ IReferencePlane, ReferencePlaneBase, LeastSquaresReferencePlane
+
+============================================================================
+2016-12-05, Rein
+
++ support get step from Flat
+  + FlatnessErrorCalculateOperationPlus
+  + FlatnessErrorOfA.CalculateFlatFunction
+  ^ MeasureOutputReference
+  + FlatFunction
+  ^ VinsMLMeasureService
+
++ GetMeasureOutputCalculateOperation.Offset
+
+============================================================================
+2016-12-04, Rein
+
++ support Config.MaxStationResultsCount
+    ^ Vins.ML.MeasureLineDataService.Bootstrapper
+# fix build: Vins.ML.MeasureStationLanucher32.csproj
+
+============================================================================
+2016-12-04, Rein
+
++ support FixtureCorrection
+  + FixtureCorrectionDefinition.cs
+  + CalculateDefinition.FixtureCorrectionDefinitions
+  ^ Hdc.Measuring.Ex.MergeWorkpieceResults
+  + CalculateResult.FixtureCorrectionValue
+
+============================================================================
+2016-12-04, Rein
+
+# OmronZw2MeasureDevice
+
+============================================================================
+2016-12-02, Rein
+
++ OmronZw2MeasureDevice.cs
+  + lib\Omron.ZW2.DisplacementSensorSDK\DSComm.dll
+
+# SampleApp.MainWindow lines not refresh
+
+============================================================================
+2016-12-04, Rein
+
+^ support Dual-RegionCenter origin
+    ^ RelativeCoordinate.CoordinateVectorAngle {set;}
+    + InspectionSchema.CoordinateOriginOffsetPointInCoordinateExtractor2
+    ^ InspectionSchemaExtensions
+    ^ InspectionController
+
+============================================================================
+2016-12-04, Rein
+
++ support EPSON connectionNumber
+    ^ RcApiService
+    ^ RcApiInitializer
++ support LJGInitializer for Ethernet connection
+    + LJGInitializer
+    + LJGMeasureDevice
++ Vins.ML.MeasureStationLanucher32.csproj
+
+============================================================================
+2016-11-30, Rein
+
++ project: ReportsMergeTool
++ Workpiece report support All in one sheet
+    ^ ReportMethods
++ Workpiece report support OverTolerenceCount
+    + CalculateResult.IsNG2Upper
+    + CalculateResult.IsNG2Lower
+    ^ ReportMethods
+
+============================================================================
+2016-11-23, Rein
+
+^ PolarTransRegionExtractor: derive from RegionExtractorBase
+^ RegionToBinFilter: ContentProperty("RegionExtractor")
+
+# GetSmallestDeviationMeasureOutputCalculationOperation: return -999.999 when value is null
+
+============================================================================
+2016-11-22, Rein
+
+^ PointOfXldAndRadialLineResult
+    + ActualOriginX, ActualOriginY, RelativeOriginX, RelativeOriginY
+    ^ PointOfXldAndRadialLineInspector
+    ^ SampleApp.MainWindow.ShowMeasurementInfosList
+^ PointOfXldAndRadialLineDefinition
+    + StandardValue
+^ DefinitionBase
+    + GroupName
+
+# XldInspector: check if XldExtractor==null
+
+============================================================================
+2016-11-21, Rein
+
++ InnerCircleOfRegionCircleExtractor.cs
++ InspectionSchema.CoordinateType_RegionCenter_Direction.Center
+^ PointOfXldAndRadialLineInspector
+
+# SmallestRectangle2RegionProcessor
+
+============================================================================
+2016-11-20, Rein
+
++ support PointOfXldAndRadialLineDefinitions 
+  + InspectionSchema.PointOfXldAndRadialLineDefinitions
+  + RadialLineDefinition.StartVector
+  + RadialLineDefinition.EndVector
+  + InspectionResult.PointOfXldAndRadialLineResults
+  + InspectionController.CalculatePointOfXldAndRadialLine
+  ^ MainWindow.Show_PointOfXldAndRadialLineResults
+  + PointOfXldAndRadialLineDefinition.cs
+  + PointOfXldAndRadialLineResult.cs
+  + PointOfXldAndRadialLineInspector.cs
+
++ SmoothContoursXldProcessor.cs
++ SelectShapeXldEntry.cs
++ SelectShapeXldProcessor.cs
+
+# CompositeXldProcessor: XLD cannot Clone()
+
+============================================================================
+2016-11-20, Rein
+
++ support display RegionSearchingResult of CoordinateRegions
++ support InspectionSchema.CoordinateType_RegionCenter_Direction
+
+============================================================================
+2016-11-20, Rein
+
++ CoordinateRegions support
+  + InspectionSchema.CoordinateRegions
+  + RegionSearchingInspector.cs
+  + RegionSearchingDefinition.cs
+  + RegionSearchingResult.cs
+  + RelativeCoordinateFactory.CreateCoordinateUsingPointAndAngle
+  ^ InspectionController support CoordinateType.RegionCenter
+  + InspectorEx.cs
+  + InspectorFactory.cs
+
+============================================================================
+2016-11-20, Rein
+
++ Support offset origin to a point from IPointInCoordinateExtractor
+  + InspectionSchema.CoordinateOriginOffsetPointInCoordinateExtractor
+  + IPointInCoordinateExtractor.cs
+  + RegionCenterPointInCoordinateExtractor.cs
+  ^ InspectionSchemaExtensions.Merge()
+  ^ InspectionController
+
+^ GetHoughCircleRegionProcessor: add default values
+
+============================================================================
+2016-11-19, Rein
+
+^ fix CoordinateOriginOffset support
+  + RelativeCoordinateEx.ChangeOriginOffsetUsingRelative()
+  + InspectionSchema.CoordinateOriginOffsetUnitType
+  ^ InspectionController
+
++ support UnitType
+  + src\Hdc.Mv\UnitType.cs
+  + Hdc.Mv.Ex.GetPixelValue()
+  + Hdc.Mv.Ex.GetLineInPixel()
+  + Hdc.Mv.Ex.GetPointInPixel()
+
++ InspectionSchema support ReferenceLineDefinitions
+  + LineDefinition.cs
+  + Hdc.Mv.Inspection.Ex.UpdateRelativeCoordinate(this ReferenceLineDefinition def
+  + InspectionResult.ReferenceLineDefinitions
+  ^ InspectionController.Inspect()
+  + ODM.Inspectors.Halcon.SampleApp.MainWindow.Show_ReferenceLines()
+
++ InspectionSchema support ReferenceRadialLineDefinitions
+  + RadialLineDefinition.cs
+  + Hdc.Mv.Inspection.Ex.UpdateRelativeCoordinate(this RadialLineDefinition def
+  + InspectionResult.ReferenceRadialLineDefinitions
+  ^ InspectionController.Inspect()
+  + ODM.Inspectors.Halcon.SampleApp.MainWindow.Show_ReferenceRadialLineDefinitions()
+
++ src\Hdc.Mv.Halcon\Inspection\InspectionDefinitionBase.cs
+# AggregateSelectShapeXldProcessor: if (values.Length == 0) return xld;
++ ODM.Inspectors.Halcon.SampleApp.MainWindow
+
+============================================================================
+2016-11-18, Rein
+
++ XLD support
+  + InspectionSchema.XldSearchingDefinitions
+  + Hdc.Mv.Inspection.Ex.UpdateRelativeCoordinate(XldSearchingDefinition)
+  + InspectionResult.XldSearchingResults
+  + InspectionController.SearchXlds
+  + InspectorEx.SearchXlds
+  + HalconViewerSeries.GetDisplayXLD
+  + SampleApp.MainWindow.XldIndicators
+  + SampleApp.MainWindow.Show_XldSearchingResults()
+  ^ SampleApp.MainWindow.Xaml: XldHalconViewerSeries
+
+  + src\Hdc.Mv.Halcon\AggregateType.cs
+  + src\Hdc.Mv.Halcon\HXLDExtensions.cs
+  + src\Hdc.Mv.Halcon\Inspection\XldSearchingDefinition.cs
+  + src\Hdc.Mv.Halcon\Inspection\XldSearchingResult.cs
+  + src\Hdc.Mv.Halcon\Inspection.Inspectors\XldInspector.cs
+  + src\Hdc.Mv.Halcon\Inspection.Inspectors\IXldInspector.cs
+  + src\Hdc.Mv.Halcon\Inspection.RegionExtractors\GenRegionContourXldRegionExtractor.cs
+  + src\Hdc.Mv.Halcon\Inspection.RegionProcessors\AggregateSelectShapeRegionProcessor.cs
+  + src\Hdc.Mv.Halcon\Inspection.RegionProcessors\Custom\IntersectionOfDilationCircleAndShapeTransRegionProcessor.cs
+  + src\Hdc.Mv.Halcon\Inspection.XldExtractors\IXldExtractor.cs
+  + src\Hdc.Mv.Halcon\Inspection.XldExtractors\XLDExtractorBase.cs
+  + src\Hdc.Mv.Halcon\Inspection.XldExtractors\StructuredXldExtractor.cs
+  + src\Hdc.Mv.Halcon\Inspection.XldExtractors\EdgesSubPixXldExtractor.cs
+  + src\Hdc.Mv.Halcon\Inspection.XldProcessors\AggregateSelectShapeXldProcessor.cs
+  + src\Hdc.Mv.Halcon\Inspection.XldProcessors\CompositeXldProcessor.cs
+  + src\Hdc.Mv.Halcon\Inspection.XldProcessors\IXldProcessor.cs
+  + src\Hdc.Mv.Halcon.Controls\XLDHalconViewerSeries.cs
+  + src\Hdc.Mv.Inspection.Halcon.SampleApp\XldIndicatorViewModel.cs
+
+^ ShapeFeature: add ContLength
+
+============================================================================
+2016-11-17, Rein
+
+# LoadFromFilesMeasureService
++ CameraHalconInspectorMeasureDevice.HFramegrabber
+^ VinsMLMeasureService: print CalculateResult with SipNo, FinalValue
+
+============================================================================
+2016-11-17, Rein
+
+# RelativeCoordinateFactory: if (angle > 90) angle -= 180;
++ PaintRegionImageFilter.cs
++ GenCircleFromAreaCenterRegionProcessor.cs
+
+============================================================================
+2016-11-15, Rein
+
+^ CameraHalconInspectorMeasureDevice
+  - ICamera Camera
+  ^ SetFramegrabberParamMeasureTrigger
+
+# RelativeCoordinateFactory.CreateCoordinateUsingSingleLine()
+            if (angle < -90) angle += 180;
+            if (angle > -90) angle -= 180;
+
+============================================================================
+2016-11-15, Rein
+
+^ GodexLablePrintMeasureDevice
++ ForcePrintNgMqEvent.cs
++ ForcePrintGoMqEvent.cs
+
+============================================================================
+2016-11-15, Rein
+
++ RelativeCoordinateFactory.CreateCoordinateUsingSingleLine
+
+============================================================================
+2016-11-15, Rein
+
++ HalconInspectionSchemaInspector.UpdateInspectionSchemaFromDir()
+^ ReportMethods many changes
+^ SiaqodbRepository AddIgnore: StationResult.MeasureResults
+^ OpcService::Bootstrapper
+^ CalculateResultsDataTemplateLite: display SipNo not DisplayIndex
+
+# WorkpieceDataCode & FixtureDataCode is IsNullOrEmpty
+# FilterAbnormalValues
+
+============================================================================
+2016-11-14, Rein
+
+# memory leak
+  ^ HalconInspectionSchemaInspector
+  ^ InspectionController
+
+============================================================================
+2016-11-13, Rein
+
++ Fixture Statistic
+  + StatisticsExtensions.FilterAbnormalValue()
+  + StatisticsExtensions.CheckIfEmpty()
+  + ReportMethods.CreateWorksheetByWpcWithColumnOffset
+
+============================================================================
+2016-11-11, Rein
+
+# CircleSearchingResult.Diameter: prevent throw exception when circle is null
+# MeanFilter: prevent throw exception when MaskWidth/MaskHeight smaller than ImageWidth/ImageHeight
+^ HalconImageCalibrator2: 
+  + support ImageCacheSaveToFile
+  # cropImage must follow calibrateImage
+^ CameraHalconInspectorMeasureDevice: use GrabImage instead of GrabImageAsync. This is a temporaray change. It will be revert.
+
+============================================================================
+2016-11-06, Rein
+
++ Hdc.Measuring.Ex.MergeWorkpieceResults()
++ IMeasureResultRepository.QueryWorkpieceResultsByTakeLast()
++ QueryWorkpieceResultsByTakeLastRequest / QueryWorkpieceResultsByTakeLastResponse.cs
+
+============================================================================
+2016-11-05, Rein
+
++ GodexLablePrintMeasureDevice support LabelsPerCut, PrintingMode, StopPositionSetting
+  ^ Hdc.Measuring.GoDEX.GodexLablePrintMeasureDevice
+  ^ Hdc.Measuring.SampleGenerator
+
++ src\Hdc.Measuring.GoDEX\GodexPrinter.cs 
++ src\Hdc.Measuring.GoDEX\EZioApi.cs
+- lib\EZioApiWrapper
+
+============================================================================
+2016-11-01, Rein
+
+^ StationResult
+    HolderDataCode => FixtureDataCode
+
+- GetDataCodeStationResultProcessor.cs
+  + GetFixtureDataCodeStationResultProcessor.cs
+  + GetWorkpieceDataCodeStationResultProcessor.cs
+
+============================================================================
+2016-11-01, Rein
+
++ support GetDataCode from MeasureResult
+  + GetDataCodeStationResultProcessor.cs
+  ^ StationResult
+    + WorkpieceDataCode
+    + HolderDataCode
+  ^ GenericMeasureDataMapEntry
+      support double & string at same time
+
+^ VinsMLMeasureService
+    StationResultProcessor just use stationResult directly, not DeepClone
+
+^ GetMeasureOutputCalculateOperation
+  ^ DataIndex => MeasureResultIndex 
+  ^ OutputIndex => MeasureOutputIndex
+
+============================================================================
+2016-10-30, Rein
+
++ DataCodeSearchingDefinition
+^ InspectionSchema
+  + DataCodeSearchingDefinitions
+
++ DataCodeSearchingResult
+^ InspectionResult
+  + DataCodeSearchingResults
+
++ DataCodeSearchingInspector: IDataCodeSearchingInspector
+ + QRDataCodeExtrctor: IDataCodeExtrctor
+
+^ Hdc.Mv.Inspection.Ex.UpdateRelativeCoordinate(this DataCodeSearchingDefinition def, IRelativeCoordinate relativeCoordinate)
+^ Hdc.Mv.Inspection.Ex.UpdateRelativeCoordinate(this IEnumerable<DataCodeSearchingDefinition> defs, IRelativeCoordinate relativeCoordinate)
+
+^ InspectionController
+
+============================================================================
+2016-10-24, Rein
+
+^ changes from 2016-10-23 maoyue
+
+============================================================================
+2016-10-23, Rein
+
++ SimMeasureDevice.cs
++ SimCalculateOperation.cs
+
+============================================================================
+2016-10-23, Rein
+
+# SetFramegrabberParamMeasureTrigger
+    support halconDevice.HFramegrabberProvider
+
+============================================================================
+2016-09-16, Rein
+
++ FlatnessErrorCalculateOperation2.cs
++ MeasureOutputReference.cs
+
++ Hdc.Measuring.OmronZW.csproj
+  + OmronZwGetDataFromTcpServerMeasureDevice.cs
+  + AsyncTcpClient.cs
+
+^ MeasureOutput
+  + MeasureEvent
+^ FlatnessErrorOfA
+
+============================================================================
+2016-09-11, Rein
+
++ support ChangeMeasureSchema
+  ^ Vins.ML.MeasureLineManager
+  ^ Vins.ML.MeasureStationLanucher
+
+============================================================================
+2016-09-17, Rein
+
++ Vins.ML.Infrastructure.EF
++ IMeasureResultRepository.MaxStationResultsCount
++ Vins.ML.MeasureLineDataService: Config.RepositoryType
+
+^ SiaqodbRepository.StoreStationResult()
+  remove results that over MaxStationResultsCount
+
+============================================================================
+2016-09-07, Rein
+
++ Vins.ML.Infrastructure.csproj
++ Vins.ML.Infrastructure.Siaqodb.csproj
++ Vins.ML.Infrastructure.NDatabase.csproj
++ Vins.ML.Infrastructure.Tests.csproj
+
++ SiaqodbRepository.cs
++ NDatabaseRepository.cs
+
+============================================================================
+2016-08-19, Rein
+
++ MaxCalculateOperation
++ MinCalculateOperation
++ FlatnessErrorOfACalculationOperation
++ CountCalculateOperation
+
+^ config\H1533\11(C04)_LJG_Vertical\MeasureSchema.xaml
+^ LJGGetDataStorageMeasureDevice
+  - support AlternativePointsStrings for multi flatness
+
+============================================================================
+2016-08-19, Rein
+
+^ MeasureStationLanucher
+  - support Kill other process
+  - support rename service name from config, and deploy multi-instance in one pc
+    - ConfigProvider.Config.TopShelf_ServiceName
+
+^ NDatabaseRepository
+  - create new db file when StationResult count > 10000
+
+^ HalconImageCalibrator
+  - when ImageToWorldPlane exception, GenImageConst new image
+
+^ FindHoleHalfCircleRegion.cs
+^ FindHoleHalfCircleRegion.hdvp
+^ config\H1533\09(C02)_HIK\MeasureSchema.xaml
+
+============================================================================
+2016-08-10, Rein
+
+^ LJGGetDataStorageMeasureDevice
+^ config\H1533\11(C04)_LJG_Vertical\MeasureSchema.xaml
+
+============================================================================
+2016-08-09, Rein
+
++ LJGStartStorageCommandController.cs
++ LJGGetDataStorageMeasureDevice.cs
++ FlatnessErrorOfA.cs
++ ComposeCommandController.cs
+
+============================================================================
+2016-08-08, Rein
+
+! changes from MaoYue's mail at 2016-08-05
+
+============================================================================
+2016-07-16, Rein
+
+! merge from BR-PaXi53
+  - upgrade PaXi from 4.4 to 5.3
+
+============================================================================
+2016-07-11, Rein
+
+^ NDatabaseRepository.cs add index for WorkpieceTag
+
+============================================================================
+2016-07-01, Rein
+
+GodexLablePrintMeasureDevice
+- PrintPassedCommandController
+- PrintCompletedCommandController
+- PrintErrorCommandController
+
+============================================================================
+2016-06-30, Rein
+
++ Vins.ML.MeasureStationLanucher
+
+============================================================================
+2016-06-23, Rein
+
+# EasyNetQ performance bug: 
+  ^  _bus.PublishAsync(mqEvent, x => x.WithExpires(5000));
+
+============================================================================
+2016-06-21, Rein
+
++ Hdc.Measuring.Minitab
++ Vins.ML.MinitabSupport
+
+============================================================================
+2016-06-21, Rein
+
+^ reports for Minitab
+
+============================================================================
+2016-06-20, Rein
+
+^ merge BatchReportTool to Vins.ML.ImageMeasuringTool
+^ upgrade MSBuildTasks.1.5.0.196
+
+- Obsolete: CsvReportStationResultProcessor.cs
+
+============================================================================
+2016-06-12, Rein
+
+^ XamlReportStationResultProcessor
+^ FindHoleHalfCircleRegion
+
+# VinsMLMeasureService _measureEnabled
+
+============================================================================
+2016-06-11, Rein
+
+^ upgrade: RabbitMQ.Client.3.6.2.nupkg
+^ upgrade: EasyNetQ.0.59.0.434.nupkg
+
+============================================================================
+2016-06-11, Rein
+
++ FindHoleHalfCircleRegionExtractor.cs
+
+============================================================================
+2016-06-02, Rein
+
++ SetFramegrabberParamMeasureTrigger.cs
++ HFramegrabberEx.cs
++ GetDistanceBetweenLineAndCircleCalculateOperation.cs
++ GetDistanceBetweenTwoCircleCalculationOperation.cs
+
+============================================================================
+2016-05-26, Rein
+
+^ some MeasureSchemas
+
+============================================================================
+2016-05-26, Rein
+
++ AggregationCalculationOperationPlus.cs
+^ config\H1533\SliderTest\MeasureSchema.xaml
+
+# src\Hdc.Measuring\Calculating\FlatnessErrorOf6PointsCalculateOperation.cs
+# src\Hdc.Measuring\Calculating\FlatnessErrorOf8PointsCalculateOperation.cs
+# src\Hdc.Measuring\Calculating\FlatnessErrorOf9PointsCalculateOperation.cs
+
+============================================================================
+2016-05-24, Rein
+
++ ICalculationOperationPlus.cs
++ SliderPositionTestCalculateOperation.cs
+
+^ MeasureSchema
+^ MeasureOutput.Name
+^ VinsMLMeasureService
+^ CalculateDefinition.ReferenceMeasureOutputName
+
+============================================================================
+2016-05-21, Rein
+
++ GeneralMqEventTrigger
++ 08(C01)_E2V
+
+============================================================================
+2016-05-17, Rein
+
+^ AD7230Initializer
+  + ADLinkOutputEntry.cs
+
+============================================================================
+2016-05-16, Rein
+
+^ Debug: Vins.ML.MeasureLineManager
+^ Debug: Vins.ML.MeasureLineDataService
+
+============================================================================
+2016-05-15, Rein
+
++ A03-02-LJG, A04-03-LK, Debug
+
+============================================================================
+2016-05-10, Rein
+
++ Vins.ML.MeasureStationService32
+
+============================================================================
+2016-05-07, Rein
+
+^ HalconCamera.cs
+
+============================================================================
+2016-05-06, Rein
+
+! S11-LJG, debug
+
+============================================================================
+2016-05-06, Rein
+
+! S09-LJG, debug
+
+============================================================================
+2016-05-05, Rein
+
++ LJG support
+  + SwitchProgramForLJGMeasureTrigger.cs
+  + LJGMeasureDevice.cs
+
+============================================================================
+2016-05-01, Rein
+
++ project: Hdc.Measuring.Reporting
++ IStationResultProcessor
+^ VinsMLMeasureService
+
+============================================================================
+2016-04-29, Rein
+
+! debug: OpcService
+! debug: Vins.ML.MeasureStationTest
+
+============================================================================
+2016-04-28, Rein
+
++ OpcWorkpieceInPositionEventController.cs
+
+============================================================================
+2016-04-27, Rein
+
++ EasyNetQEx: support CreateBus WaitForConnnected
+^ rename Payload to EventPayload
+^ IMeasureDevice.Measure(MeasureRequestInfo info): MeasureResult
+
+============================================================================
+2016-04-24, Rein
+
++ project: Hdc.Measuring.GoDex
+
+============================================================================
+2016-04-24, Rein
+
++ project: MqTestClient
+
+============================================================================
+2016-04-24, Rein
+
+^ Debug: Vins.ML.MeasureStationTest for RC70 using "Mock\MeasureSchema.xaml"
+
+============================================================================
+2016-04-23, Rein
+
+^ EventController, CommandController
+
+============================================================================
+2016-04-23, Rein
+
+! splite Hdc.Mersuring.VinsML into separate assemblies
++ project: Vins.ML.MeasureStationTest\App.config
++ MockMeasureDevice.cs
++ MockWorkpieceTagService.cs
++ MockCommandSignalController.cs
+
+============================================================================
+2016-04-17, Rein
+
++ Spilit Hdc.Measuring.VinsML into separate Assemblies
++ Hdc.Measuring.Epson
+^ upgrade libs
+
+============================================================================

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.1" halcon_version="12.0.2">
+<procedure name="main">
+<interface/>
+<body>
+<l>dev_set_draw ('margin')</l>
+<c></c>
+<c></c>
+<l>read_image (Image, 'E:/2016-05_ML/Photos/White/C2-09/temp place/2016-06-10/problem pics/right/00 (34).tif')</l>
+<c></c>
+<l>import 'FindHoleHalfCircleRegion.hdvp'</l>
+<c></c>
+<l>gen_rectangle2 (Rectangle, 765, 1050, 0, 235, 180)</l>
+<l>change_domain (Image, Rectangle, ImageNew)</l>
+<l>crop_domain (ImageNew, ImagePart)</l>
+<c></c>
+<c></c>
+<l>FindHoleHalfCircleRegion (ImagePart, OutputRegion, 'false',175, 250, 15, 8000, 108, 30, 7)</l>
+<c></c>
+<c></c>
+<c></c>
+<c></c>
+<c></c>
+<c></c>
+<c></c>
+<c></c>
+<c></c>
+<c></c>
+<c></c>
+<c></c>
+</body>
+<docu id="main">
+<parameters/>
+</docu>
+</procedure>
+</hdevelop>

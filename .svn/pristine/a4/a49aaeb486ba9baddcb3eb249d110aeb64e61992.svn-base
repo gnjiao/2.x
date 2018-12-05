@@ -1,0 +1,72 @@
+﻿<StationResult MessageId="{x:Null}" StationDescription="{x:Null}" Id="0" MeasureDateTime="2016-10-27T21:36:57.3217782+08:00" MeasureTag="1" StationIndex="8" StationName="S08.内长内宽" Validity="Valid" WorkpieceTag="0" xmlns="http://schemas.hdcrd.com/measure" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <StationResult.CalculateResults>
+    <scg:List x:TypeArguments="CalculateResult" Capacity="8">
+      <CalculateResult Index="0" Validity="Valid">
+        <CalculateResult.Definition>
+          <CalculateDefinition ReferenceMeasureOutputName="{x:Null}" Description="内长1" ExpectValue="146.2" FloatPosition="3" Index="0" IsDisabled="False" IsHidden="False" Name="内长1" SipNo="5#" SystemOffsetValue="0" ToleranceMinus="-0.04" TolerancePlus="0.06" TuneEnabled="False" TuneParameter="0" Unit="mm">
+            <x:Null />
+          </CalculateDefinition>
+        </CalculateResult.Definition>
+        <CalculateResult.Output>
+          <MeasureOutput MeasureEvent="{x:Null}" Message="{x:Null}" Name="{x:Null}" Index="0" IsTuned="False" Judge="Go" Tag="0" Validity="Valid" Value="146.21444393112463" />
+        </CalculateResult.Output>
+      </CalculateResult>
+      <CalculateResult Index="1" Validity="Valid">
+        <CalculateResult.Definition>
+          <CalculateDefinition ReferenceMeasureOutputName="{x:Null}" Description="内长2" ExpectValue="146.2" FloatPosition="3" Index="0" IsDisabled="False" IsHidden="False" Name="内长2" SipNo="13#" SystemOffsetValue="0" ToleranceMinus="-0.04" TolerancePlus="0.06" TuneEnabled="False" TuneParameter="0" Unit="mm">
+            <x:Null />
+          </CalculateDefinition>
+        </CalculateResult.Definition>
+        <CalculateResult.Output>
+          <MeasureOutput MeasureEvent="{x:Null}" Message="{x:Null}" Name="{x:Null}" Index="0" IsTuned="False" Judge="Go" Tag="0" Validity="Valid" Value="146.11342848612369" />
+        </CalculateResult.Output>
+      </CalculateResult>
+      <CalculateResult Index="2" Validity="Valid">
+        <CalculateResult.Definition>
+          <CalculateDefinition ReferenceMeasureOutputName="{x:Null}" Description="内宽1" ExpectValue="69.54" FloatPosition="3" Index="0" IsDisabled="False" IsHidden="False" Name="内宽1" SipNo="2#" SystemOffsetValue="0" ToleranceMinus="-0.04" TolerancePlus="0.06" TuneEnabled="False" TuneParameter="0" Unit="mm">
+            <x:Null />
+          </CalculateDefinition>
+        </CalculateResult.Definition>
+        <CalculateResult.Output>
+          <MeasureOutput MeasureEvent="{x:Null}" Message="{x:Null}" Name="{x:Null}" Index="0" IsTuned="False" Judge="Go" Tag="0" Validity="Valid" Value="69.547887116075927" />
+        </CalculateResult.Output>
+      </CalculateResult>
+      <CalculateResult Index="3" Validity="Valid">
+        <CalculateResult.Definition>
+          <CalculateDefinition ReferenceMeasureOutputName="{x:Null}" Description="内宽2" ExpectValue="69.54" FloatPosition="3" Index="0" IsDisabled="False" IsHidden="False" Name="内宽2" SipNo="9#" SystemOffsetValue="0" ToleranceMinus="-0.04" TolerancePlus="0.06" TuneEnabled="False" TuneParameter="0" Unit="mm">
+            <x:Null />
+          </CalculateDefinition>
+        </CalculateResult.Definition>
+        <CalculateResult.Output>
+          <MeasureOutput MeasureEvent="{x:Null}" Message="{x:Null}" Name="{x:Null}" Index="0" IsTuned="False" Judge="Go" Tag="0" Validity="Valid" Value="69.580028554387425" />
+        </CalculateResult.Output>
+      </CalculateResult>
+      <CalculateResult Index="4" Validity="Valid">
+        <CalculateResult.Definition>
+          <CalculateDefinition ReferenceMeasureOutputName="{x:Null}" Description="内宽3" ExpectValue="69.54" FloatPosition="3" Index="0" IsDisabled="False" IsHidden="False" Name="内宽3" SipNo="16#" SystemOffsetValue="0" ToleranceMinus="-0.04" TolerancePlus="0.06" TuneEnabled="False" TuneParameter="0" Unit="mm">
+            <x:Null />
+          </CalculateDefinition>
+        </CalculateResult.Definition>
+        <CalculateResult.Output>
+          <MeasureOutput MeasureEvent="{x:Null}" Message="{x:Null}" Name="{x:Null}" Index="0" IsTuned="False" Judge="Go" Tag="0" Validity="Valid" Value="69.584910724918288" />
+        </CalculateResult.Output>
+      </CalculateResult>
+    </scg:List>
+  </StationResult.CalculateResults>
+  <StationResult.MeasureResults>
+    <scg:List x:TypeArguments="MeasureResult" Capacity="4">
+      <MeasureResult MeasureDateTime="{x:Null}" Message="{x:Null}" HasError="False" HasWarning="False" Index="0" Tag="0">
+        <MeasureResult.MeasureEvent>
+          <MeasureEvent DateTime="{x:Null}" EventNumber="0" Message="Trigger" PointIndex="0" PositionIndex="0" StationIndex="8" U="0" WorkpieceTag="0" X="0" Y="0" Z="0" />
+        </MeasureResult.MeasureEvent>
+        <MeasureResult.Outputs>
+          <MeasureOutput MeasureEvent="{x:Null}" Message="{x:Null}" Name="{x:Null}" Index="0" IsTuned="False" Judge="Go" Tag="0" Validity="Valid" Value="146.21444393112463" />
+          <MeasureOutput MeasureEvent="{x:Null}" Message="{x:Null}" Name="{x:Null}" Index="0" IsTuned="False" Judge="Go" Tag="0" Validity="Valid" Value="146.11342848612369" />
+          <MeasureOutput MeasureEvent="{x:Null}" Message="{x:Null}" Name="{x:Null}" Index="0" IsTuned="False" Judge="Go" Tag="0" Validity="Valid" Value="69.547887116075927" />
+          <MeasureOutput MeasureEvent="{x:Null}" Message="{x:Null}" Name="{x:Null}" Index="0" IsTuned="False" Judge="Go" Tag="0" Validity="Valid" Value="69.580028554387425" />
+          <MeasureOutput MeasureEvent="{x:Null}" Message="{x:Null}" Name="{x:Null}" Index="0" IsTuned="False" Judge="Go" Tag="0" Validity="Valid" Value="69.584910724918288" />
+        </MeasureResult.Outputs>
+      </MeasureResult>
+    </scg:List>
+  </StationResult.MeasureResults>
+</StationResult>

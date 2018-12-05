@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5CD58586-9E66-4E33-8013-0A56FFA4D7CA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Hdc.Measuring</RootNamespace>
+    <AssemblyName>Hdc.Measuring.Halcon</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="halcondotnet, Version=12.0.2.0, Culture=neutral, PublicKeyToken=4973bed59ddbf2b8, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\HalconDotNet\halcondotnet.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActiveComputerDevicePlugin.cs" />
+    <Compile Include="AffineXYMeasureTrigger.cs" />
+    <Compile Include="CameraHalconInspectorMeasureDevice.cs" />
+    <Compile Include="GenericMeasureDataMapEntry.cs" />
+    <Compile Include="GetImageFromCacheEntry.cs" />
+    <Compile Include="GetImageFromCacheHFramegrabberProvider.cs" />
+    <Compile Include="GrabImageStartTrigger.cs" />
+    <Compile Include="HalconCameraInitializer.cs" />
+    <Compile Include="HalconCameraWrapper.cs" />
+    <Compile Include="HFramegrabberProviderEx.cs" />
+    <Compile Include="HFramegrabberProvider.cs" />
+    <Compile Include="IHalconInspectorMeasureDevice.cs" />
+    <Compile Include="IHFramegrabberProvider.cs" />
+    <Compile Include="IMeasureDataMapEntry.cs" />
+    <Compile Include="InitializerHFramegrabberProvider.cs" />
+    <Compile Include="LoadFromFilesMeasureService.cs" />
+    <Compile Include="MeasureDataMap.cs" />
+    <Compile Include="MultipleMeasure\MultipleGrabImageStartTrigger.cs" />
+    <Compile Include="MultipleMeasure\MultipleInitializerHFramegrabberProvider.cs" />
+    <Compile Include="MultipleMeasure\MultipleCameraHalconInspectorMeasureDevice.cs" />
+    <Compile Include="MultipleMeasure\MultipleHalconCameraInitializer.cs" />
+    <Compile Include="MultipleMeasure\MultipleSaveImageFromCameraPlugin.cs" />
+    <Compile Include="MultipleMeasure\MultipleSetFramegrabberParamMeasureTrigger.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SaveImageFromCameraMeasureTrigger.cs" />
+    <Compile Include="SaveImageFromCameraPlugin.cs" />
+    <Compile Include="SetFramegrabberParamMeasureTrigger.cs" />
+    <Compile Include="SimCameraHalconInspectorMeasureDevice.cs" />
+    <Compile Include="MultipleMeasure\MultipleInitializerHFramegrabberProviderPlugin.cs" />
+    <Compile Include="Simulation\SimulationMeasureDevice.cs" />
+    <Compile Include="SmartRay\SmartRayHalconInspectorMeasureDevice.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hdc.Measuring\Hdc.Measuring.csproj">
+      <Project>{42E6EC06-576C-4D5D-B05C-C15D6DBFE716}</Project>
+      <Name>Hdc.Measuring</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hdc.Mv.Halcon\Hdc.Mv.Halcon.csproj">
+      <Project>{DF08645C-4F59-4FF1-B448-EA161E055504}</Project>
+      <Name>Hdc.Mv.Halcon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hdc.Mv.ImageAcquisition.Halcon\Hdc.Mv.ImageAcquisition.Halcon.csproj">
+      <Project>{D9F2D502-991D-4985-92B6-ED810B2856D5}</Project>
+      <Name>Hdc.Mv.ImageAcquisition.Halcon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hdc.Mv\Hdc.Mv.csproj">
+      <Project>{1345186b-af53-4db9-a1d9-64ec7f14ee2f}</Project>
+      <Name>Hdc.Mv</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hdc.Toolkit\Hdc.Toolkit.csproj">
+      <Project>{2AEABE20-5E8F-4310-A228-66BD3D434683}</Project>
+      <Name>Hdc.Toolkit</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

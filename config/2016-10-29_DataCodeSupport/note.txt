@@ -1,0 +1,17 @@
+
+
+OK + DataCodeSearchingDefinition
+OK ^ InspectionSchema
+OK   + DataCodeSearchingDefinitions
+
+OK + DataCodeSearchingResult
+OK ^ InspectionResult
+OK   + DataCodeSearchingResults
+
+OK + DataCodeSearchingInspector: IDataCodeSearchingInspector
+OK  + QRDataCodeExtrctor: IDataCodeExtrctor
+
+OK ^ Hdc.Mv.Inspection.Ex.UpdateRelativeCoordinate(this DataCodeSearchingDefinition def, IRelativeCoordinate relativeCoordinate)
+OK ^ Hdc.Mv.Inspection.Ex.UpdateRelativeCoordinate(this IEnumerable<DataCodeSearchingDefinition> defs, IRelativeCoordinate relativeCoordinate)
+
+OK ^ InspectionController

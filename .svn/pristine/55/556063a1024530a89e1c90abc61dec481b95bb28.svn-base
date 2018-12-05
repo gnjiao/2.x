@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BC9C07CA-5F33-4ACF-A3F1-44846F4B2431}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Hdc.Measuring.GoDEX</RootNamespace>
+    <AssemblyName>Hdc.Measuring.GoDEX</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EasyNetQ, Version=0.59.0.434, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\EasyNetQ.0.59.0.434\lib\net45\EasyNetQ.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RabbitMQ.Client, Version=3.6.2.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\RabbitMQ.Client.3.6.2\lib\net45\RabbitMQ.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EZioApi.cs" />
+    <Compile Include="GodexLablePrintMeasureDevice.cs" />
+    <Compile Include="GodexPrinter.cs" />
+    <Compile Include="OpenType.cs" />
+    <Compile Include="PaperMode.cs" />
+    <Compile Include="PrinterDebugMode.cs" />
+    <Compile Include="PrintingMode.cs" />
+    <Compile Include="PrintMeasureResultEntry.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hdc.Measuring.EasyNetQ\Hdc.Measuring.EasyNetQ.csproj">
+      <Project>{FE0A7396-A691-42AC-9532-2B00B4ED9657}</Project>
+      <Name>Hdc.Measuring.EasyNetQ</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hdc.Measuring\Hdc.Measuring.csproj">
+      <Project>{42E6EC06-576C-4D5D-B05C-C15D6DBFE716}</Project>
+      <Name>Hdc.Measuring</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hdc.Toolkit\Hdc.Toolkit.csproj">
+      <Project>{2AEABE20-5E8F-4310-A228-66BD3D434683}</Project>
+      <Name>Hdc.Toolkit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vins.ML.Domain\Vins.ML.Domain.csproj">
+      <Project>{B247F46B-1700-485C-825C-0001B186E0AC}</Project>
+      <Name>Vins.ML.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vins.ML.Toolkit\Vins.ML.Toolkit.csproj">
+      <Project>{4A2116E5-103D-4C41-98EB-AD84CF34D482}</Project>
+      <Name>Vins.ML.Toolkit</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

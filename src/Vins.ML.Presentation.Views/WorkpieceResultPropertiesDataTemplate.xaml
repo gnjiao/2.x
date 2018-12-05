@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Vins.ML.Presentation.Views">
+    <DataTemplate x:Key="WorkpieceResultPropertiesDataTemplate">
+        <StackPanel Margin="0">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock TextAlignment="Right"
+                           Text="工件序号: "
+                           Width="NaN"
+                           Margin="2" />
+                <TextBox Text="{Binding Tag, Mode=OneWay}"
+                         Margin="2"
+                         Width="150"
+                         IsReadOnly="True" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock TextAlignment="Right"
+                           Text="测量时间: "
+                           Width="NaN"
+                           Margin="2" />
+                <TextBox Text="{Binding MeasureCompletedDateTime, Mode=OneWay}"
+                         Margin="2"
+                         Width="150"
+                         IsReadOnly="True" />
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+</ResourceDictionary>

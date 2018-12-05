@@ -1,0 +1,73 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Vins.ML.Presentation.Views">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Hdc.Controls.Theming.Metro;component\Theme.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Vins.ML.Presentation.Views;component\CalculateResultsDataTemplate.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Vins.ML.Presentation.Views;component\CalculateResultsDataTemplateLite.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/Vins.ML.Presentation.Views;component\StationResultPropertiesDataTemplate.xaml"></ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+    <DataTemplate x:Key="StationResultDataTemplate">
+        <DockPanel Background="Silver"
+                   Margin="0,0,4,0">
+            <DockPanel DockPanel.Dock="Top"
+                       Margin="0,0,0,-4">
+                <TextBlock Text="{Binding StationIndex, Mode=OneWay, StringFormat={}{0:00}}" 
+                           VerticalAlignment="Center" FontSize="48" Margin="4,2" DockPanel.Dock="Left"
+                           Foreground="DimGray"></TextBlock>
+                <ContentControl Content="{Binding}"
+                                Margin="2"
+                                DockPanel.Dock="Right"
+                                ContentTemplate="{StaticResource StationResultPropertiesDataTemplate}"></ContentControl>
+                <ContentControl Content="{Binding }"
+                                Margin="4,2"
+                                HorizontalAlignment="Center"
+                                DockPanel.Dock="Left">
+                    <ContentControl.ContentTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Ellipse Width="60"
+                                         Height="60"
+                                         x:Name="Ellipse"
+                                         Fill="LimeGreen"
+                                         Margin="2"
+                                         VerticalAlignment="Center"
+                                         HorizontalAlignment="Center"></Ellipse>
+                                <TextBlock x:Name="NgTextBlock"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           Text="GO"
+                                           FontSize="30"
+                                           Foreground="White"
+                                           Margin="2"></TextBlock>
+                            </Grid>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding IsNG2}"
+                                             Value="true">
+                                    <Setter TargetName="Ellipse"
+                                            Property="Fill"
+                                            Value="Gold"></Setter>
+                                    <Setter TargetName="NgTextBlock"
+                                            Property="Text"
+                                            Value="NG"></Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsOver20um}"
+                                             Value="True">
+                                    <Setter TargetName="Ellipse"
+                                            Property="Fill"
+                                            Value="OrangeRed"></Setter>
+                                    <Setter TargetName="NgTextBlock"
+                                            Property="Text"
+                                            Value="NG"></Setter>
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </ContentControl.ContentTemplate>
+                </ContentControl>
+            </DockPanel>
+            <ContentControl Content="{Binding CalculateResults}"
+                            Margin="0"
+                            ContentTemplate="{StaticResource CalculateResultsDataTemplateLite}"></ContentControl>
+        </DockPanel>
+    </DataTemplate>
+</ResourceDictionary>

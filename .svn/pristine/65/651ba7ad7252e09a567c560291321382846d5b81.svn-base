@@ -1,0 +1,495 @@
+﻿<InspectionSchema xmlns="http://schemas.hdcrd.com/mv"
+                  Disabled="false">
+	<InspectionSchema.EdgeSearchingDefinitions>
+		
+		
+		<EdgeSearchingDefinition Name="IT4"
+								 StartX="0"
+								 StartY="0"
+								 EndX="0"
+								 EndY="0"
+								 ROIWidth="50"
+								 Domain_SaveCacheImageEnabled="false"
+								 RegionExtractor_SaveCacheImageEnabled="false"
+								 ImageFilter_Disabled="false"
+								 ImageFilter_SaveCacheImageEnabled="false"
+								 CropDomainEnabled="true"
+								 >
+			
+			<EdgeSearchingDefinition.RelativeLine>
+				<Line X1="-2600"
+				      Y1="-4801"
+				      X2="-2550"
+				      Y2="-4801" />
+			</EdgeSearchingDefinition.RelativeLine>
+      		
+			<EdgeSearchingDefinition.ImageFilter>
+				<CompositeFilter>
+					<GrayClosingRectFilter MaskWidth="51" MaskHeight="1"/>
+					<AnisotropicDiffusionImageFilter Mode="Weickert"/>
+				</CompositeFilter>
+			</EdgeSearchingDefinition.ImageFilter>
+			
+			<EdgeSearchingDefinition.LineExtractor>
+				<RakeLineExtractor Name=""
+				                   SaveCacheImageEnabled="false"
+				                   RegionsCount="15"
+				                   RegionHeight="80"
+				                   RegionWidth="3"
+				                   Sigma="1"
+				                   Threshold="15"
+				                   SelectionMode="First"
+				                   Transition="Positive"
+				                   />
+			</EdgeSearchingDefinition.LineExtractor>
+			
+		</EdgeSearchingDefinition>
+		
+		
+		<EdgeSearchingDefinition Name="IB4"
+								 StartX="0"
+								 StartY="0"
+								 EndX="0"
+								 EndY="0"
+								 ROIWidth="50"
+								 Domain_SaveCacheImageEnabled="false"
+								 RegionExtractor_SaveCacheImageEnabled="false"
+								 ImageFilter_Disabled="false"
+								 ImageFilter_SaveCacheImageEnabled="false"
+								 CropDomainEnabled="true"
+								 >
+			
+			<EdgeSearchingDefinition.RelativeLine>
+				<Line X1="-2550"
+				      Y1="-4690"
+				      X2="-2600"
+				      Y2="-4690" />
+			</EdgeSearchingDefinition.RelativeLine>
+      		
+			<EdgeSearchingDefinition.ImageFilter>
+				<CompositeFilter>
+					<GrayClosingRectFilter MaskWidth="51" MaskHeight="1"/>
+					<AnisotropicDiffusionImageFilter Mode="Weickert"/>
+				</CompositeFilter>
+			</EdgeSearchingDefinition.ImageFilter>
+			
+			<EdgeSearchingDefinition.LineExtractor>
+				<RakeLineExtractor Name=""
+				                   SaveCacheImageEnabled="false"
+				                   RegionsCount="15"
+				                   RegionHeight="80"
+				                   RegionWidth="3"
+				                   Sigma="1"
+				                   Threshold="15"
+				                   SelectionMode="First"
+				                   Transition="Positive"
+				                   />
+			</EdgeSearchingDefinition.LineExtractor>
+			
+		</EdgeSearchingDefinition>
+		
+		
+		<EdgeSearchingDefinition Name="IT5"
+								 StartX="0"
+								 StartY="0"
+								 EndX="0"
+								 EndY="0"
+								 ROIWidth="50"
+								 Domain_SaveCacheImageEnabled="false"
+								 RegionExtractor_SaveCacheImageEnabled="false"
+								 ImageFilter_Disabled="false"
+								 ImageFilter_SaveCacheImageEnabled="false"
+								 CropDomainEnabled="true"
+								 >
+			
+			<EdgeSearchingDefinition.RelativeLine>
+				<Line X1="2550"
+				      Y1="-4809"
+				      X2="2600"
+				      Y2="-4809" />
+			</EdgeSearchingDefinition.RelativeLine>
+      		
+			<EdgeSearchingDefinition.ImageFilter>
+				<CompositeFilter>
+					<GrayClosingRectFilter MaskWidth="51" MaskHeight="1"/>
+					<AnisotropicDiffusionImageFilter Mode="Weickert"/>
+				</CompositeFilter>
+			</EdgeSearchingDefinition.ImageFilter>
+			
+			<EdgeSearchingDefinition.LineExtractor>
+				<RakeLineExtractor Name=""
+				                   SaveCacheImageEnabled="false"
+				                   RegionsCount="10"
+				                   RegionHeight="80"
+				                   RegionWidth="3"
+				                   Sigma="1"
+				                   Threshold="15"
+				                   SelectionMode="First"
+				                   Transition="Positive"
+				                   />
+			</EdgeSearchingDefinition.LineExtractor>
+			
+		</EdgeSearchingDefinition>
+		
+		
+		<EdgeSearchingDefinition Name="IB5"
+								 StartX="0"
+								 StartY="0"
+								 EndX="0"
+								 EndY="0"
+								 ROIWidth="50"
+								 Domain_SaveCacheImageEnabled="false"
+								 RegionExtractor_SaveCacheImageEnabled="false"
+								 ImageFilter_Disabled="false"
+								 ImageFilter_SaveCacheImageEnabled="false"
+								 CropDomainEnabled="true"
+								 >
+			
+			<EdgeSearchingDefinition.RelativeLine>
+				<Line X1="2600"
+				      Y1="-4693"
+				      X2="2550"
+				      Y2="-4693" />
+			</EdgeSearchingDefinition.RelativeLine>
+      		
+			<EdgeSearchingDefinition.ImageFilter>
+				<CompositeFilter>
+					<GrayClosingRectFilter MaskWidth="51" MaskHeight="1"/>
+					<AnisotropicDiffusionImageFilter Mode="Weickert"/>
+				</CompositeFilter>
+			</EdgeSearchingDefinition.ImageFilter>
+			
+			<EdgeSearchingDefinition.LineExtractor>
+				<RakeLineExtractor Name=""
+				                   SaveCacheImageEnabled="false"
+				                   RegionsCount="10"
+				                   RegionHeight="80"
+				                   RegionWidth="5"
+				                   Sigma="1"
+				                   Threshold="15"
+				                   SelectionMode="First"
+				                   Transition="Positive"
+				                   />
+			</EdgeSearchingDefinition.LineExtractor>
+			
+		</EdgeSearchingDefinition>
+		
+		
+		<EdgeSearchingDefinition Name="IT6"
+								 StartX="0"
+								 StartY="0"
+								 EndX="0"
+								 EndY="0"
+								 ROIWidth="100"
+								 Domain_SaveCacheImageEnabled="false"
+								 RegionExtractor_SaveCacheImageEnabled="false"
+								 ImageFilter_Disabled="false"
+								 ImageFilter_SaveCacheImageEnabled="false"
+								 CropDomainEnabled="true"
+								 >
+			
+			<EdgeSearchingDefinition.RelativeLine>
+				<Line X1="-1315"
+				      Y1="4870"
+				      X2="-1715"
+				      Y2="4870" />
+			</EdgeSearchingDefinition.RelativeLine>
+      		
+			<EdgeSearchingDefinition.ImageFilter>
+				<CompositeFilter>
+					<GrayClosingRectFilter MaskWidth="201" MaskHeight="1"/>
+				</CompositeFilter>
+			</EdgeSearchingDefinition.ImageFilter>
+			
+			<EdgeSearchingDefinition.LineExtractor>
+				<RakeLineExtractor Name=""
+				                   SaveCacheImageEnabled="false"
+				                   RegionsCount="20"
+				                   RegionHeight="120"
+				                   RegionWidth="15"
+				                   Sigma="1"
+				                   Threshold="15"
+				                   SelectionMode="First"
+				                   Transition="Negative"
+				                   />
+			</EdgeSearchingDefinition.LineExtractor>
+			
+		</EdgeSearchingDefinition>
+		
+		
+		<EdgeSearchingDefinition Name="IB6"
+								 StartX="0"
+								 StartY="0"
+								 EndX="0"
+								 EndY="0"
+								 ROIWidth="100"
+								 Domain_SaveCacheImageEnabled="false"
+								 RegionExtractor_SaveCacheImageEnabled="false"
+								 ImageFilter_Disabled="false"
+								 ImageFilter_SaveCacheImageEnabled="false"
+								 CropDomainEnabled="true"
+								 >
+			
+			<EdgeSearchingDefinition.RelativeLine>
+				<Line X1="-1715"
+				      Y1="4983"
+				      X2="-1315"
+				      Y2="4983" />
+			</EdgeSearchingDefinition.RelativeLine>
+      		
+			<EdgeSearchingDefinition.ImageFilter>
+				<CompositeFilter>
+					<GrayClosingRectFilter MaskWidth="201" MaskHeight="1"/>
+				</CompositeFilter>
+			</EdgeSearchingDefinition.ImageFilter>
+			
+			<EdgeSearchingDefinition.LineExtractor>
+				<RakeLineExtractor Name=""
+				                   SaveCacheImageEnabled="false"
+				                   RegionsCount="20"
+				                   RegionHeight="120"
+				                   RegionWidth="10"
+				                   Sigma="1"
+				                   Threshold="15"
+				                   SelectionMode="First"
+				                   Transition="Negative"
+				                   />
+			</EdgeSearchingDefinition.LineExtractor>
+			
+		</EdgeSearchingDefinition>
+		
+		
+		<EdgeSearchingDefinition Name="IT7"
+								 StartX="0"
+								 StartY="0"
+								 EndX="0"
+								 EndY="0"
+								 ROIWidth="100"
+								 Domain_SaveCacheImageEnabled="false"
+								 RegionExtractor_SaveCacheImageEnabled="false"
+								 ImageFilter_Disabled="false"
+								 ImageFilter_SaveCacheImageEnabled="false"
+								 CropDomainEnabled="true"
+								 >
+			
+			<EdgeSearchingDefinition.RelativeLine>
+				<Line X1="200"
+				      Y1="4870"
+				      X2="-200"
+				      Y2="4870" />
+			</EdgeSearchingDefinition.RelativeLine>
+      		
+			<EdgeSearchingDefinition.ImageFilter>
+				<CompositeFilter>
+					<GrayClosingRectFilter MaskWidth="201" MaskHeight="1"/>
+				</CompositeFilter>
+			</EdgeSearchingDefinition.ImageFilter>
+			
+			<EdgeSearchingDefinition.LineExtractor>
+				<RakeLineExtractor Name=""
+				                   SaveCacheImageEnabled="false"
+				                   RegionsCount="20"
+				                   RegionHeight="120"
+				                   RegionWidth="15"
+				                   Sigma="1"
+				                   Threshold="15"
+				                   SelectionMode="First"
+				                   Transition="Negative"
+				                   />
+			</EdgeSearchingDefinition.LineExtractor>
+			
+		</EdgeSearchingDefinition>
+		
+		
+		<EdgeSearchingDefinition Name="IB7"
+								 StartX="0"
+								 StartY="0"
+								 EndX="0"
+								 EndY="0"
+								 ROIWidth="100"
+								 Domain_SaveCacheImageEnabled="false"
+								 RegionExtractor_SaveCacheImageEnabled="false"
+								 ImageFilter_Disabled="false"
+								 ImageFilter_SaveCacheImageEnabled="false"
+								 CropDomainEnabled="true"
+								 >
+			
+			<EdgeSearchingDefinition.RelativeLine>
+				<Line X1="-200"
+				      Y1="4983"
+				      X2="200"
+				      Y2="4983" />
+			</EdgeSearchingDefinition.RelativeLine>
+      		
+			<EdgeSearchingDefinition.ImageFilter>
+				<CompositeFilter>
+					<GrayClosingRectFilter MaskWidth="201" MaskHeight="1"/>
+				</CompositeFilter>
+			</EdgeSearchingDefinition.ImageFilter>
+			
+			<EdgeSearchingDefinition.LineExtractor>
+				<RakeLineExtractor Name=""
+				                   SaveCacheImageEnabled="false"
+				                   RegionsCount="20"
+				                   RegionHeight="120"
+				                   RegionWidth="10"
+				                   Sigma="1"
+				                   Threshold="15"
+				                   SelectionMode="First"
+				                   Transition="Negative"
+				                   />
+			</EdgeSearchingDefinition.LineExtractor>
+			
+		</EdgeSearchingDefinition>
+		
+		
+		<EdgeSearchingDefinition Name="IT8"
+								 StartX="0"
+								 StartY="0"
+								 EndX="0"
+								 EndY="0"
+								 ROIWidth="100"
+								 Domain_SaveCacheImageEnabled="false"
+								 RegionExtractor_SaveCacheImageEnabled="false"
+								 ImageFilter_Disabled="false"
+								 ImageFilter_SaveCacheImageEnabled="false"
+								 CropDomainEnabled="true"
+								 >
+			
+			<EdgeSearchingDefinition.RelativeLine>
+				<Line X1="1715"
+				      Y1="4870"
+				      X2="1315"
+				      Y2="4870" />
+			</EdgeSearchingDefinition.RelativeLine>
+      		
+			<EdgeSearchingDefinition.ImageFilter>
+				<CompositeFilter>
+					<GrayClosingRectFilter MaskWidth="201" MaskHeight="1"/>
+				</CompositeFilter>
+			</EdgeSearchingDefinition.ImageFilter>
+			
+			<EdgeSearchingDefinition.LineExtractor>
+				<RakeLineExtractor Name=""
+				                   SaveCacheImageEnabled="false"
+				                   RegionsCount="20"
+				                   RegionHeight="120"
+				                   RegionWidth="15"
+				                   Sigma="1"
+				                   Threshold="15"
+				                   SelectionMode="First"
+				                   Transition="Negative"
+				                   />
+			</EdgeSearchingDefinition.LineExtractor>
+			
+		</EdgeSearchingDefinition>
+		
+		
+		<EdgeSearchingDefinition Name="IB8"
+								 StartX="0"
+								 StartY="0"
+								 EndX="0"
+								 EndY="0"
+								 ROIWidth="100"
+								 Domain_SaveCacheImageEnabled="false"
+								 RegionExtractor_SaveCacheImageEnabled="false"
+								 ImageFilter_Disabled="false"
+								 ImageFilter_SaveCacheImageEnabled="false"
+								 CropDomainEnabled="true"
+								 >
+			
+			<EdgeSearchingDefinition.RelativeLine>
+				<Line X1="1315"
+				      Y1="4983"
+				      X2="1715"
+				      Y2="4983" />
+			</EdgeSearchingDefinition.RelativeLine>
+      		
+			<EdgeSearchingDefinition.ImageFilter>
+				<CompositeFilter>
+					<GrayClosingRectFilter MaskWidth="201" MaskHeight="1"/>
+				</CompositeFilter>
+			</EdgeSearchingDefinition.ImageFilter>
+			
+			<EdgeSearchingDefinition.LineExtractor>
+				<RakeLineExtractor Name=""
+				                   SaveCacheImageEnabled="false"
+				                   RegionsCount="20"
+				                   RegionHeight="120"
+				                   RegionWidth="10"
+				                   Sigma="1"
+				                   Threshold="15"
+				                   SelectionMode="First"
+				                   Transition="Negative"
+				                   />
+			</EdgeSearchingDefinition.LineExtractor>
+			
+		</EdgeSearchingDefinition>
+		
+		
+		
+	</InspectionSchema.EdgeSearchingDefinitions>
+	
+	
+	
+	<InspectionSchema.DistanceBetweenIntersectionPointsDefinitions>
+		
+		<DistanceBetweenLinesDefinition Name="InnerTopBottom-Distance-04"
+		                                DisplayName="天线宽度上1"
+		                                GroupName="天线宽度上"
+		                                Comment=""
+		                                
+		                                Line1Name="IT4"
+		                                Line2Name="IB4"
+		                                ExpectValue="1.50"
+		                                PositiveTolerance="0.10"
+		                                NegativeTolerance="-0.10"/>
+		
+		<DistanceBetweenLinesDefinition Name="InnerTopBottom-Distance-05"
+		                                DisplayName="天线宽度上2"
+		                                GroupName="天线宽度上"
+		                                Comment=""
+		                                
+		                                Line1Name="IT5"
+		                                Line2Name="IB5"
+		                                ExpectValue="1.50"
+		                                PositiveTolerance="0.10"
+		                                NegativeTolerance="-0.10"/>
+		
+		<DistanceBetweenLinesDefinition Name="InnerTopBottom-Distance-06"
+		                                DisplayName="天线宽度下1"
+		                                GroupName="天线宽度下"
+		                                Comment=""
+		                                
+		                                Line1Name="IT6"
+		                                Line2Name="IB6"
+		                                ExpectValue="1.50"
+		                                PositiveTolerance="0.10"
+		                                NegativeTolerance="-0.10"/>
+		
+		<DistanceBetweenLinesDefinition Name="InnerTopBottom-Distance-07"
+		                                DisplayName="天线宽度下2"
+		                                GroupName="天线宽度下"
+		                                Comment=""
+		                                
+		                                Line1Name="IT7"
+		                                Line2Name="IB7"
+		                                ExpectValue="1.50"
+		                                PositiveTolerance="0.10"
+		                                NegativeTolerance="-0.10"/>
+		
+		<DistanceBetweenLinesDefinition Name="InnerTopBottom-Distance-08"
+		                                DisplayName="天线宽度下3"
+		                                GroupName="天线宽度下"
+		                                Comment=""
+		                                
+		                                Line1Name="IT8"
+		                                Line2Name="IB8"
+		                                ExpectValue="1.50"
+		                                PositiveTolerance="0.10"
+		                                NegativeTolerance="-0.10"/>
+    	
+    	
+	</InspectionSchema.DistanceBetweenIntersectionPointsDefinitions>
+
+</InspectionSchema>

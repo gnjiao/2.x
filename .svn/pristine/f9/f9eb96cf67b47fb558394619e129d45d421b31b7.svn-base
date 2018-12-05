@@ -1,0 +1,356 @@
+﻿<Window x:Class="Vins.ML.ImageMeasuringTool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Vins.ML.ImageMeasuringTool"
+        xmlns:hdc="http://schemas.hdcrd.com/xaml"
+        mc:Ignorable="d"
+        Title="ImageMeasuringTool"
+        Height="800"
+        Width="1600"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Hdc.Controls.Theming.Metro;component\Theme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Vins.ML.Presentation.Views;component\StationResultDataTemplate.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Vins.ML.Presentation.Views;component\StationResultPropertiesDataTemplate.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Vins.ML.Presentation.Views;component\CalculateResultsDataTemplate.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <DockPanel>
+            <DockPanel Width="1200"
+                       DockPanel.Dock="Right">
+                <DockPanel DockPanel.Dock="Left"
+                           Margin="8"
+                           Background="WhiteSmoke">
+                    <StackPanel Orientation="Horizontal"
+                                DockPanel.Dock="Top">
+                        <TextBlock Text="Image Dir: "
+                                   VerticalAlignment="Center"
+                                   Margin="4"></TextBlock>
+                        <TextBox x:Name="ImageDirectoryTextBox"
+                                 Width="300"
+                                 Margin="4"
+                                 Padding="4"></TextBox>
+                        <Button x:Name="RefreshImageDirButton"
+                                Click="RefreshImageDir_OnClick"
+                                Padding="4"
+                                Margin="4">Refresh</Button>
+                    </StackPanel>
+                    <Grid DockPanel.Dock="Top">
+                        <StackPanel Orientation="Horizontal"
+                                    DockPanel.Dock="Top"
+                                    HorizontalAlignment="Right">
+                            <Button x:Name="RunButton"
+                                    Click="RunButton_OnClick"
+                                    Padding="4"
+                                    Margin="4">Run</Button>
+                            <Button x:Name="RunAllButton"
+                                    Click="RunAllButton_OnClick"
+                                    Padding="4"
+                                    Margin="4">Run All</Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Left">
+                            <Button x:Name="RenameFilesButton"
+                                    Click="RenameFiles_OnClick"
+                                    Padding="4"
+                                    Margin="4">Rename Files</Button>
+                        </StackPanel>
+                    </Grid>
+
+                    <DockPanel>
+                        <DataGrid Margin="4"
+                                  ItemsSource="{Binding ImageFileNames}"></DataGrid>
+                    </DockPanel>
+                </DockPanel>
+                <Border Background="WhiteSmoke"
+                        Margin="8">
+                    <ContentControl Content="{Binding CurrentStationResult}">
+                        <ContentControl.ContentTemplate>
+                            <DataTemplate>
+                                <DockPanel Margin="8">
+                                    <StackPanel DockPanel.Dock="Top">
+                                        <Border Background="Silver"
+                                                Margin="8">
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBlock Text="测量信息"
+                                                           Margin="8"
+                                                           FontSize="24"></TextBlock>
+                                                <ContentControl Content="{Binding }"
+                                                                Margin="8"
+                                                                ContentTemplate="{StaticResource StationResultPropertiesDataTemplate}"></ContentControl>
+                                            </StackPanel>
+                                        </Border>
+                                    </StackPanel>
+                                    <Border Background="Silver"
+                                            Margin="8">
+                                        <DockPanel>
+                                            <TextBlock Text="测量结果列表"
+                                                       Margin="8"
+                                                       FontSize="24"
+                                                       DockPanel.Dock="Top"></TextBlock>
+                                            <ContentControl Content="{Binding CalculateResults}"
+                                                            Margin="8"
+                                                            ContentTemplate="{StaticResource CalculateResultsDataTemplate}"></ContentControl>
+                                        </DockPanel>
+                                    </Border>
+                                </DockPanel>
+                            </DataTemplate>
+                        </ContentControl.ContentTemplate>
+                    </ContentControl>
+                </Border>
+            </DockPanel>
+            <StackPanel DockPanel.Dock="Left">
+                <Border Margin="8"
+                        Background="WhiteSmoke">
+                    <StackPanel>
+                        <Border>
+                            <TextBlock FontSize="24"
+                                       HorizontalAlignment="Left"
+                                       Margin="4">Station Statistic</TextBlock>
+                        </Border>
+                        <DockPanel>
+                            <TextBlock VerticalAlignment="Center"
+                                       Margin="4"
+                                       Width="80"
+                                       TextAlignment="Right">CountPerRound</TextBlock>
+                            <TextBox Margin="4"
+                                     x:Name="WpcCountPerRoundInStationStatisticTextBox"
+                                     Width="80"
+                                     HorizontalAlignment="Left">1</TextBox>
+                        </DockPanel>
+                        <DockPanel>
+                            <TextBlock VerticalAlignment="Center"
+                                       Margin="4"
+                                       Width="80"
+                                       TextAlignment="Right">Continue</TextBlock>
+                            <CheckBox Margin="4"
+                                      x:Name="ContinuesCheckBox"
+                                      Width="80"
+                                      HorizontalAlignment="Left"></CheckBox>
+                        </DockPanel>
+                        <DockPanel>
+                            <TextBlock VerticalAlignment="Center"
+                                       Margin="4"
+                                       Width="80"
+                                       TextAlignment="Right">Dir</TextBlock>
+                            <Button DockPanel.Dock="Right"
+                                    Margin="4"
+                                    Padding="2"
+                                    Width="60"
+                                    x:Name="SelectDirectoryInStationStatisticButton"
+                                    Click="SelectDirectoryInStationStatisticButton_OnClick">Select</Button>
+                            <TextBox Margin="4"
+                                     x:Name="DirectoryPathInStationStatisticTextBox">B:\</TextBox>
+                        </DockPanel>
+                        <DockPanel>
+                            <FrameworkElement Margin="4"
+                                              Width="80"
+                                              DockPanel.Dock="Left"></FrameworkElement>
+                            <Button DockPanel.Dock="Left"
+                                    HorizontalAlignment="Left"
+                                    x:Name="RunInStationStatisticButton"
+                                    Click="RunInStationStatisticButton_OnClick"
+                                    Padding="2"
+                                    Margin="4"
+                                    Width="120">Run</Button>
+                        </DockPanel>
+                    </StackPanel>
+                </Border>
+                <Border Margin="8"
+                        Background="WhiteSmoke">
+                    <StackPanel>
+                        <Border>
+                            <TextBlock FontSize="24"
+                                       HorizontalAlignment="Left"
+                                       Margin="4">Workpiece Statistic</TextBlock>
+                        </Border>
+                        <DockPanel>
+                            <TextBlock VerticalAlignment="Center"
+                                       Margin="4"
+                                       Width="80"
+                                       TextAlignment="Right">CountPerRound</TextBlock>
+                            <TextBox Margin="4"
+                                     x:Name="WpcCountPerRoundInWorkpieceStatisticTextBox"
+                                     Width="80"
+                                     HorizontalAlignment="Left">1</TextBox>
+                        </DockPanel>
+<!--                        <DockPanel>-->
+<!--                            <TextBlock VerticalAlignment="Center"-->
+<!--                                       Margin="4"-->
+<!--                                       Width="80"-->
+<!--                                       TextAlignment="Right">Unique</TextBlock>-->
+<!--                            <CheckBox Margin="4"-->
+<!--                                      x:Name="UniqueWpcsInWorkpieceStatisticCheckBox"-->
+<!--                                      Width="80"-->
+<!--                                      HorizontalAlignment="Left"></CheckBox>-->
+<!--                        </DockPanel>-->
+                        <DockPanel>
+                            <TextBlock VerticalAlignment="Center"
+                                       Margin="4"
+                                       Width="80"
+                                       TextAlignment="Right">Dir</TextBlock>
+                            <Button DockPanel.Dock="Right"
+                                    Margin="4"
+                                    Padding="2"
+                                    Width="60"
+                                    x:Name="SelectDirectoryInWorkpieceStatisticButton"
+                                    Click="SelectDirectoryInWorkpieceStatisticButton_OnClick">Select</Button>
+                            <TextBox Margin="4"
+                                     x:Name="DirectoryPathInWorkpieceStatisticTextBox">B:\</TextBox>
+                        </DockPanel>
+                        <DockPanel>
+                            <FrameworkElement Margin="4"
+                                              Width="80"
+                                              DockPanel.Dock="Left"></FrameworkElement>
+                            <Button DockPanel.Dock="Left"
+                                    HorizontalAlignment="Left"
+                                    x:Name="RunInInWorkpieceStatisticButton"
+                                    Click="RunInInWorkpieceStatisticButton_OnClick"
+                                    Padding="2"
+                                    Margin="4"
+                                    Width="120">Run</Button>
+                        </DockPanel>
+                    </StackPanel>
+                </Border>
+                <Border Margin="8"
+                        Background="WhiteSmoke">
+                    <StackPanel>
+                        <Border>
+                            <TextBlock FontSize="24"
+                                       HorizontalAlignment="Left"
+                                       Margin="4">Fixture Statistic</TextBlock>
+                        </Border>
+                        <DockPanel>
+                            <TextBlock VerticalAlignment="Center"
+                                       Margin="4"
+                                       Width="80"
+                                       TextAlignment="Right">Dir</TextBlock>
+                            <Button DockPanel.Dock="Right"
+                                    Margin="4"
+                                    Padding="2"
+                                    Width="60"
+                                    x:Name="SelectDirectoryInFixtureStatisticButton"
+                                    Click="SelectDirectoryInFixtureStatisticButton_OnClick">Select</Button>
+                            <TextBox Margin="4"
+                                     x:Name="DirectoryPathInFixtureStatisticTextBox">B:\</TextBox>
+                        </DockPanel>
+                        <DockPanel>
+                            <FrameworkElement Margin="4"
+                                              Width="80"
+                                              DockPanel.Dock="Left"></FrameworkElement>
+                            <Button DockPanel.Dock="Left"
+                                    HorizontalAlignment="Left"
+                                    x:Name="RunInFixtureStatisticButton"
+                                    Click="RunInFixtureStatisticButton_OnClick"
+                                    Padding="2"
+                                    Margin="4"
+                                    Width="120">Run</Button>
+                        </DockPanel>
+                    </StackPanel>
+                </Border>
+                <Border Margin="8"
+                        Background="WhiteSmoke">
+                    <StackPanel>
+                        <Border>
+                            <TextBlock FontSize="24"
+                                       HorizontalAlignment="Left" Margin="4">Sample Generate</TextBlock>
+                        </Border>
+                        <DockPanel>
+                            <TextBlock VerticalAlignment="Center"
+                                       Margin="4"
+                                       Width="80"
+                                       TextAlignment="Right">Wpc Count</TextBlock>
+                            <TextBox Margin="4"
+                                     x:Name="CreateSampleWorkpieceResultsWpcCountTextBox"
+                                     Width="80"
+                                     HorizontalAlignment="Left">10</TextBox>
+                        </DockPanel>
+                        <DockPanel>
+                            <TextBlock VerticalAlignment="Center"
+                                       Margin="4"
+                                       Width="80"
+                                       TextAlignment="Right">Station Count</TextBlock>
+                            <TextBox Margin="4"
+                                     x:Name="CreateSampleWorkpieceResultsStationCountTextBox"
+                                     Width="80"
+                                     HorizontalAlignment="Left">5</TextBox>
+                        </DockPanel>
+                        <DockPanel>
+                            <TextBlock VerticalAlignment="Center"
+                                       Margin="4"
+                                       Width="80"
+                                       TextAlignment="Right">Output Dir</TextBlock>
+                            <TextBox Margin="4"
+                                     x:Name="CreateSampleWorkpieceResultsDirTextBox"
+                                     Text="B:\"></TextBox>
+                        </DockPanel>
+                        <DockPanel>
+                            <FrameworkElement VerticalAlignment="Center"
+                                              Margin="4"
+                                              Width="80"></FrameworkElement>
+                            <Button Margin="4"
+                                    x:Name="CreateSampleWorkpieceResults"
+                                    Width="120"
+                                    Padding="2"
+                                    HorizontalAlignment="Left"
+                                    Click="CreateSampleWorkpieceResults_OnClick">Create Sample</Button>
+                        </DockPanel>
+                    </StackPanel>
+                </Border>
+                <Border Margin="8"
+                        Background="WhiteSmoke" Height="134">
+                    <StackPanel>
+                        <Border>
+                            <TextBlock FontSize="24"
+                                       HorizontalAlignment="Left"
+                                       Margin="4">Separate Workpiece</TextBlock>
+                        </Border>
+                        <DockPanel>
+                            <TextBlock VerticalAlignment="Center"
+                                       Margin="4"
+                                       Width="80"
+                                       TextAlignment="Right">CountPerDay</TextBlock>
+                            <TextBox Margin="4"
+                                     x:Name="WpcCountPerRoundInSeparateWorkpieceStatisticTextBox"
+                                     Width="80"
+                                     HorizontalAlignment="Left">1</TextBox>
+                        </DockPanel>
+                        <DockPanel>
+                            <TextBlock VerticalAlignment="Center"
+                                       Margin="4"
+                                       Width="80"
+                                       TextAlignment="Right">Dir</TextBlock>
+                            <Button DockPanel.Dock="Right"
+                                    Margin="4"
+                                    Padding="2"
+                                    Width="60"
+                                    x:Name="SelectDirectoryInWorkpiecePerDayStatisticButton"
+                                    Click="SelectDirectoryInSeparateWorkpiece_OnClick">Select</Button>
+                            <TextBox Margin="4"
+                                     x:Name="DirectoryPathInSeparateWorkpieceStatisticPerDayTextBox">B:\</TextBox>
+                        </DockPanel>
+                        <DockPanel>
+                            <FrameworkElement Margin="4"
+                                              Width="80"
+                                              DockPanel.Dock="Left"></FrameworkElement>
+                            <Button DockPanel.Dock="Left"
+                                    HorizontalAlignment="Left"
+                                    x:Name="RunInInWorkpiecePerDaStatisticButton01"
+                                    Click="RunInSeparateWorkpieceButton_OnClick"
+                                    Padding="2"
+                                    Margin="4"
+                                    Width="120">Run</Button>
+                        </DockPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Window>

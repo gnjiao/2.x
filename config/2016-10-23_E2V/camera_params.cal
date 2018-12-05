@@ -1,0 +1,87 @@
+#
+# INTERNAL CAMERA PARAMETERS
+#
+
+# ===== generic parameter syntax ==========================================
+#
+# Syntax:      ParGroup: <pargroupname>;
+#                        <pargroup_description>;
+#
+#               <name> : <shortname> : <default_value>;
+#                        <type> : <lower_bound> : <upper_bound>;
+#                        <description>;
+#
+#                [ <type> ::= BOOL|XBOOL|INT|FLOAT|DOUBLE|STRING ]
+#
+# =========================================================================
+
+
+
+##############################################################################
+#
+#  LinescanCamera : Parameter
+#    >  Focus
+#    >  Kappa
+#    >  Sx
+#    >  Sy
+#    >  Cx
+#    >  Cy
+#    >  ImageWidth
+#    >  ImageHeight
+#    >  Vx
+#    >  Vy
+#    >  Vz
+#
+##############################################################################
+
+ParGroup: LinescanCamera: Parameter;
+	"Internal linescan camera parameters";
+
+Focus:foc:	2.00283;
+	DOUBLE:0.0:;
+	"Focal length of the lens [meter]";
+
+Kappa:kappa:	0;
+	DOUBLE::;
+	"Radial distortion coefficient [1/(meter*meter)]";
+
+Sx:sx:	5e-006;
+	DOUBLE:0.0:;
+	"Width of a cell on the sensor [meter]";
+
+Sy:sy:	5e-006;
+	DOUBLE:0.0:;
+	"Height of a cell on the sensor [meter]";
+
+Cx:cx:	4079.45;
+	DOUBLE:0.0:;
+	"X-coordinate of the image center [pixel]";
+
+Cy:cy:	-63.7738;
+	DOUBLE:0.0:;
+	"Y-coordinate of the image center [pixel]";
+
+ImageWidth:imgw:	8192;
+	INT:1:32767;
+	"Width of the images [pixel]";
+
+ImageHeight:imgh:	14000;
+	INT:1:32767;
+	"Height of the images [pixel]";
+
+Vx:vx:	-5.71961e-008;
+	DOUBLE::;
+	"X-component of the motion vector [m/scanline]";
+
+Vy:vy:	1.30802e-005;
+	DOUBLE::;
+	"Y-component of the motion vector [m/scanline]";
+
+Vz:vz:	1.75267e-006;
+	DOUBLE::;
+	"Z-component of the motion vector [m/scanline]";
+
+
+#
+# HALCON Version 12.0 --  Thu Jun 02 19:26:31 2016
+#

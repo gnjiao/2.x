@@ -1,0 +1,36 @@
+﻿<ParameterMetadataSchema xmlns="http://schemas.hdcrd.com/mercury" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6000"   IsBoolean="True"  Description="M6000 紧急停止"  Comment=""/>  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6001"   IsBoolean="True"  Description="M6001 直线电机未锁定"  Comment=""/>  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6002"   IsBoolean="True"  Description="M6002 直线电机故障" />  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6003"   IsBoolean="True"  Description="M6003 工位1直线电机未复位"  Comment=""/>  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6004"   IsBoolean="True"  Description="M6004 工位2机器人未复位" />  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6005"   IsBoolean="True"  Description="M6005 工位3机器人未复位"  Comment=""/>  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6006"   IsBoolean="True"  Description="M6006 工位4机器人未复位" Comment=""/>  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6007"   IsBoolean="True"  Description="M6007 工位5机器人未复位" Comment=""/>  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6008"   IsBoolean="True"  Description="M6008 运转超时未到位" Comment=""/>  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6009"   IsBoolean="True"  Description="M6009 上料工位未到位" Comment=""/>  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6010"   IsBoolean="True"  Description="M6010 工位1未到位" Comment=""/>  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6011"   IsBoolean="True"  Description="M6011 工位2未到位" Comment=""/>  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6012"   IsBoolean="True"  Description="M6012 工位3未到位" Comment=""/>  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6013"   IsBoolean="True"  Description="M6013 工位4未到位" Comment=""/>  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6014"   IsBoolean="True"  Description="M6014 工位5未到位" Comment=""/>  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6015"   IsBoolean="True"  Description="M6015 拐角处未到位" Comment=""/>  
+  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6030"   IsBoolean="True"  Description="M6030 随行板定位气缸1-1顶升未到位" Comment=""/>  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6031"   IsBoolean="True"  Description="M6031 随行板定位气缸1-2顶升未到位" Comment=""/>  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6032"   IsBoolean="True"  Description="M6032 随行板定位气缸2-1顶升未到位" Comment=""/>  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6033"   IsBoolean="True"  Description="M6033 随行板定位气缸4-1顶升未到位" Comment=""/>  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6034"   IsBoolean="True"  Description="M6034 随行板定位气缸5-1顶升未到位" Comment=""/>  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6035"   IsBoolean="True"  Description="M6035 随行板定位气缸5-2顶升未到位" Comment=""/>  
+  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6040"   IsBoolean="True"  Description="M6040 工位1未完成" Comment=""/>  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6041"   IsBoolean="True"  Description="M6041 工位2未完成" Comment=""/>  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6042"   IsBoolean="True"  Description="M6042 工位3未完成" Comment=""/>  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6043"   IsBoolean="True"  Description="M6043 工位4未完成" Comment=""/>  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6044"   IsBoolean="True"  Description="M6044 工位5未完成" Comment=""/>  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6045"   IsBoolean="True"  Description="M6045 收放料工位未完成" Comment=""/>  
+  <ParameterMetadata CatalogName="Alarm" 	CatalogDescription="报警"			GroupName="AlarmGroup1"     GroupDescription="报警组1"			    Name="Alarm_M6046"   IsBoolean="True"  Description="M6046 工位1电机未返回" Comment=""/>  
+  
+</ParameterMetadataSchema>

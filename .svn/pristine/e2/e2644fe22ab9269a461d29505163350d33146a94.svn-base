@@ -1,0 +1,10 @@
+﻿<Config xmlns="clr-namespace:Vins.ML.OpcService;assembly=Vins.ML.OpcService"
+        OpcXi_ServerUrl="da:Takebishi.Dxp.1"
+        OpcXi_Password=""
+        OpcXi_UserName="" 
+        
+        EasyNetQ_Username="hdc"
+        EasyNetQ_Password="hdc"
+        EasyNetQ_Host="localhost"
+        EasyNetQ_VirtualHost="vinsml"
+        />

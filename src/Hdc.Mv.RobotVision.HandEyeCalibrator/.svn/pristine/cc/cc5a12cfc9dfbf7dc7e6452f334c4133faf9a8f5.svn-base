@@ -1,0 +1,9 @@
+﻿<Application x:Class="Hdc.Mv.RobotVision.HandEyeCalibrator.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Hdc.Mv.ImageAcquisition.Halcon.SampleAppForGigE"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>

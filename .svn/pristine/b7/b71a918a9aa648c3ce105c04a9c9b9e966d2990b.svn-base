@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.1" halcon_version="12.0.1">
+<procedure name="FindHoleHalfCircleRegion">
+<interface>
+<io>
+<par name="Image" base_type="iconic" dimension="0"/>
+</io>
+<oo>
+<par name="OutputRegion" base_type="iconic" dimension="0"/>
+</oo>
+<ic>
+<par name="LeftOrRight" base_type="ctrl" dimension="0"/>
+<par name="HasPre" base_type="ctrl" dimension="0"/>
+<par name="HoughCircleThresholdGrayMin" base_type="ctrl" dimension="0"/>
+<par name="HoughCircleThresholdGrayMax" base_type="ctrl" dimension="0"/>
+<par name="HoughCircleSelectAreaMin" base_type="ctrl" dimension="0"/>
+<par name="HoughCircleSelectAreaMax" base_type="ctrl" dimension="0"/>
+<par name="HoughCircleRadius" base_type="ctrl" dimension="0"/>
+<par name="HoughCirclePercent" base_type="ctrl" dimension="0"/>
+<par name="MaxLineWidth" base_type="ctrl" dimension="0"/>
+</ic>
+</interface>
+<body>
+<l>if(LeftOrRight='true')</l>
+<l>    PolarAngleStart:=3.14159/2 + 3.14159/8</l>
+<l>    PolarAngleEnd:=3.14159*3/2 - 3.14159/8</l>
+<l>else</l>
+<l>    PolarAngleStart:=-3.14159/2 + 3.14159/8</l>
+<l>    PolarAngleEnd:=3.14159/2 - 3.14159/8</l>
+<l>endif</l>
+<c></c>
+<c></c>
+<c></c>
+<l>if(LeftOrRight='true' and HasPre='true')</l>
+<l>* anisotropic_diffusion (Image, ImageAnisoPreL, 'weickert', 5, 1, 10)</l>
+<l>* binary_threshold (ImageAnisoPreL, RegionPreL, 'max_separability', 'dark', UsedThresholdPreL)</l>
+<l>* connection (RegionPreL, ConnectedRegionsPreL)</l>
+<l>* region_features (ConnectedRegionsPreL, 'area', ValuePreL)</l>
+<l>* tuple_max (ValuePreL, MaxPreL)</l>
+<l>* select_shape (ConnectedRegionsPreL, SelectedRegionsPreL, 'area', 'and', MaxPreL, MaxPreL)</l>
+<l>* reduce_domain (ImageAnisoPreL, SelectedRegionsPreL, ImageReduced1PreL)</l>
+<l>* regiongrowing (ImageReduced1PreL, RegionsPreL, 1, 1, 2, 100)</l>
+<l>* connection (RegionsPreL, ConnectedRegions1PreL)</l>
+<l>* select_shape (ConnectedRegions1PreL, SelectedRegions1PreL, ['area','inner_radius'], 'and', [20000,40], [50000,100])</l>
+<l>* opening_circle (SelectedRegions1PreL, RegionOpeningPreL, 20.5)</l>
+<l>* smallest_rectangle1 (RegionOpeningPreL, Row1PreL, Column1PreL, Row2PreL, Column2PreL)</l>
+<l>* gen_rectangle1 (RectanglePreL, Row1PreL, Column1PreL, Row2PreL, Column2PreL)</l>
+<l>* dilation_rectangle1 (RectanglePreL, RegionDilationPreL, 75, 401)</l>
+<c></c>
+<l>* get_domain (ImageAnisoPreL, DomainPreL)</l>
+<l>* intersection (DomainPreL, RegionDilationPreL, RegionIntersectionPreL)</l>
+<l>* difference (DomainPreL, RegionIntersectionPreL, RegionDifferencePreL)</l>
+<l>* reduce_domain (ImageAnisoPreL, RegionDifferencePreL, ImageReducedPreL)</l>
+<l>* mean_image (ImageReducedPreL, ImageMeanPreL, 1, 401)</l>
+<l>* threshold (ImageMeanPreL, Region1PreL, 1, 255)</l>
+<l>* get_image_size (ImageAnisoPreL, WidthPreL, HeightPreL)</l>
+<l>* region_to_bin (Region1PreL, BinImagePreL, 255, 0, WidthPreL, HeightPreL)</l>
+<l>* add_image (BinImagePreL, Image, ImageResult, 1, 0)</l>
+<c>    </c>
+<c>    * Above is abondoned at 2016-11-16, for now using relative coordinate</c>
+<c>    * New add in 2016-11-16, May add a new param? (col of rectangle2)</c>
+<l>    get_image_size (Image, Width1, Height1)</l>
+<l>    gen_rectangle2 (Rectangle, Height1/2, 40, 0, 40, Height1/2)</l>
+<l>    paint_region (Rectangle, Image, ImageResult, 255, 'fill')</l>
+<c>    * Over</c>
+<c>    </c>
+<l>elseif (LeftOrRight='false' and HasPre='true')</l>
+<l>* anisotropic_diffusion (Image, ImageAnisoPreR, 'weickert', 5, 1, 10)</l>
+<l>* binary_threshold (ImageAnisoPreR, RegionPreR, 'max_separability', 'dark', UsedThresholdPreR)</l>
+<l>* connection (RegionPreR, ConnectedRegionsPreR)</l>
+<l>* select_shape (ConnectedRegionsPreR, SelectedRegionsPreR, ['area','circularity'], 'and', [8000,0.7], [20000,1])</l>
+<l>* smallest_rectangle1 (SelectedRegionsPreR, Row1PreR, Column1PreR, Row2PreR, Column2PreR)</l>
+<l>* gen_rectangle1 (RectanglePreR, Row1PreR, Column1PreR, Row2PreR, Column2PreR)</l>
+<l>* dilation_rectangle1 (RectanglePreR, RegionDilationPreR, 121, 401)</l>
+<l>* move_region (RegionDilationPreR, RegionMovedPreR, 0, -200)</l>
+<l>* dilation_rectangle1 (RegionMovedPreR, RegionDilation1PreR, 401, 1)</l>
+<c></c>
+<l>* get_domain (ImageAnisoPreR, DomainPreR)</l>
+<l>* intersection (DomainPreR, RegionDilation1PreR, RegionIntersectionPreR)</l>
+<l>* difference (DomainPreR, RegionIntersectionPreR, RegionDifferencePreR)</l>
+<l>* reduce_domain (ImageAnisoPreR, RegionDifferencePreR, ImageReducedPreR)</l>
+<l>* mean_image (ImageReducedPreR, ImageMeanPreR, 1, 401)</l>
+<l>* threshold (ImageMeanPreR, Region1PreR, 1, 255)</l>
+<l>* get_image_size (ImageAnisoPreR, WidthPreR, HeightPreR)</l>
+<l>* region_to_bin (Region1PreR, BinImagePreR, 255, 0, WidthPreR, HeightPreR)</l>
+<l>* add_image (BinImagePreR, Image, ImageResult, 1, 0)</l>
+<c>    </c>
+<c>    * Above is abondoned at 2016-11-16, for now using relative coordinate</c>
+<c>    * New add in 2016-11-16, May add a new param? (col of rectangle2)</c>
+<l>    get_image_size (Image, Width1, Height1)</l>
+<l>    gen_rectangle2 (Rectangle, Height1/2, Width1-48, 0, 48, Height1/2)</l>
+<l>    paint_region (Rectangle, Image, ImageResult, 255, 'fill')</l>
+<c>    * Over</c>
+<c>    </c>
+<c>* New added in 2016-10-23(New Para added)</c>
+<l>elseif (HasPre='false')</l>
+<l>scale_image (Image, ImageResult, 1, 0)</l>
+<c>* Over</c>
+<l>endif</l>
+<c></c>
+<l>get_image_size(ImageResult, Width, Height)</l>
+<c></c>
+<l>anisotropic_diffusion (ImageResult, ImageAniso2, 'weickert', 5, 1, 10)</l>
+<c></c>
+<l>regiongrowing (ImageAniso2, RegionsGrowing, 1, 1, 2, 10)</l>
+<l>region_features (RegionsGrowing, 'area', AreasGrowing)</l>
+<l>tuple_max (AreasGrowing, MaxAreaGrowing)</l>
+<l>select_shape (RegionsGrowing, OutterRegion, 'area', 'and', MaxAreaGrowing, MaxAreaGrowing)</l>
+<l>opening_circle (OutterRegion, RegionOpening1, 3.5)</l>
+<l>connection (RegionOpening1, ConnectedRegions3)</l>
+<c></c>
+<c></c>
+<l>dilation_circle (RegionOpening1, RegionDilation3, 19)</l>
+<l>difference (RegionDilation3, RegionOpening1, RegionDifference2)</l>
+<l>reduce_domain (ImageAniso2, RegionDifference2, ImageReduced2)</l>
+<c></c>
+<l>mean_image (ImageReduced2, ImageMean, 11, 11)</l>
+<l>dyn_threshold (ImageReduced2, ImageMean, RegionDynThresh, 7, 'dark')</l>
+<c></c>
+<c></c>
+<c></c>
+<l>connection (RegionDynThresh, ConnectedRegions2)</l>
+<l>select_shape (ConnectedRegions2, SelectedRegions2, 'area', 'and', HoughCircleSelectAreaMin, HoughCircleSelectAreaMax)</l>
+<l>union1 (SelectedRegions2, RegionUnion1)</l>
+<c></c>
+<l>dilation_circle (RegionUnion1, RegionDilation2, 1.5)</l>
+<c></c>
+<c></c>
+<l>hough_circles (RegionDilation2, RegionOut, HoughCircleRadius, HoughCirclePercent, 0)</l>
+<c></c>
+<c>* New added in 2016-10-23</c>
+<l>connection (RegionOut, ConnectedRegions4)</l>
+<l>if(LeftOrRight='true')</l>
+<l>sort_region (ConnectedRegions4, SortedRegions, 'character', 'true', 'column')</l>
+<l>elseif (LeftOrRight='false')</l>
+<l>sort_region (ConnectedRegions4, SortedRegions, 'character', 'false', 'column')</l>
+<l>endif</l>
+<l>select_obj (SortedRegions, RegionOut, 1)</l>
+<c>* Over</c>
+<c></c>
+<l>region_features (RegionOut, 'row', CenterRow)</l>
+<l>region_features (RegionOut, 'column', CenterCol)</l>
+<c></c>
+<l>tuple_length (CenterRow, CenterRowLength)</l>
+<l>tuple_length (CenterCol, CenterColLength)</l>
+<l>if(CenterRowLength=0 or CenterColLength=0)</l>
+<l>    full_domain (ImageResult, ImageFull)</l>
+<l>    get_domain (ImageFull, OutputRegion)</l>
+<l>    return()</l>
+<l>endif</l>
+<c></c>
+<l>gen_circle (Circle2, CenterRow, CenterCol, HoughCircleRadius)</l>
+<c></c>
+<c></c>
+<l>polar_trans_image_ext (ImageResult, PolarTransImage, CenterRow, CenterCol, PolarAngleStart, PolarAngleEnd, 0, HoughCircleRadius*2.1, HoughCircleRadius*2.1, HoughCircleRadius*2.1, 'bilinear')</l>
+<c></c>
+<l>mean_image (PolarTransImage, ImageMean1, 21, 1)</l>
+<l>gray_opening_rect (ImageMean1, ImageOpening, 3, 11)</l>
+<l>* anisotropic_diffusion (ImageOpening, ImageAniso3, 'weickert', 5, 1, 3)</l>
+<c></c>
+<c></c>
+<c></c>
+<l>threshold (ImageOpening, Region2, 230, 255)</l>
+<l>reduce_domain (ImageOpening, Region2, ImageReduced1)</l>
+<l>regiongrowing (ImageReduced1, Regions1, 1, 1, 1, 100)</l>
+<c></c>
+<l>* opening_rectangle1 (Region2, RegionOpening, 11, 3)</l>
+<l>connection (Regions1, ConnectedRegions)</l>
+<c></c>
+<l>count_obj (ConnectedRegions, FoundOutterRegionCount)</l>
+<c></c>
+<l>if(FoundOutterRegionCount=0)</l>
+<l>    full_domain (ImageResult, ImageFull)</l>
+<l>    get_domain (ImageFull, OutputRegion)</l>
+<l>    return()</l>
+<l>endif</l>
+<c></c>
+<l>region_features (ConnectedRegions, 'area', Areas2)</l>
+<l>tuple_max (Areas2, Max2)</l>
+<l>select_shape (ConnectedRegions, SelectedRegions, 'area', 'and', Max2, Max2)</l>
+<l>dilation_rectangle1 (SelectedRegions, RegionDilation, 10, 1)</l>
+<c></c>
+<l>move_region (RegionDilation, RegionMoved, 0-MaxLineWidth, 0)</l>
+<l>difference (RegionMoved, RegionDilation, RegionDifference)</l>
+<c></c>
+<c></c>
+<l>reduce_domain (ImageOpening, RegionDifference, ImageReduced)</l>
+<c></c>
+<l>threshold (ImageReduced, Regions, 0, 216)</l>
+<c></c>
+<l>region_features (Regions, 'area', Area)</l>
+<l>count_obj (Regions, HoughRegionCount)</l>
+<c></c>
+<l>if(HoughRegionCount=0)</l>
+<l>    full_domain (ImageResult, ImageFull)</l>
+<l>    get_domain (ImageFull, OutputRegion)</l>
+<l>    return()</l>
+<l>endif</l>
+<c></c>
+<l>AvgLineWidth:= Area/(HoughCircleRadius*2.1)</l>
+<c></c>
+<l>if(AvgLineWidth&lt;1.0)</l>
+<l>     union2 (SelectedRegions, Regions, RegionUnion)</l>
+<c>     </c>
+<l>     fill_up (RegionUnion, SelectedRegionsFillUp)</l>
+<l>     closing_circle (SelectedRegionsFillUp, RegionClosing, 3.5)</l>
+<l>     opening_circle (RegionClosing, RegionOpening, 3.5)</l>
+<c>     </c>
+<l>     get_domain (PolarTransImage, Domain1)</l>
+<l>     difference (Domain1, RegionOpening, RegionDifference1)</l>
+<l>     polar_trans_region_inv (RegionDifference1, XYTransRegion, CenterRow, CenterCol, PolarAngleStart, PolarAngleEnd, 0, HoughCircleRadius*2.1,  HoughCircleRadius*2.1, HoughCircleRadius*2.1,  Width, Height, 'bilinear')</l>
+<c>     </c>
+<l>     opening_rectangle1 (XYTransRegion, RegionOpening2, 1, 5)</l>
+<c>     </c>
+<l>     connection (RegionOpening2, ConnectedRegions1)</l>
+<l>    region_features (ConnectedRegions1, 'area', Areas)</l>
+<l>    tuple_max (Areas, Max)</l>
+<l>    select_shape (ConnectedRegions1, OutputRegion, 'area', 'and', Max, Max)</l>
+<c>     </c>
+<l>    return()</l>
+<l>endif</l>
+<c></c>
+<c></c>
+<l>dilation_circle (RegionDilation, RegionDilation1, AvgLineWidth/2.0)</l>
+<l>get_domain (PolarTransImage, Domain1)</l>
+<l>difference (Domain1, RegionDilation1, RegionDifference1)</l>
+<c></c>
+<c></c>
+<l>polar_trans_region_inv (RegionDifference1, XYTransRegion, CenterRow, CenterCol, PolarAngleStart, PolarAngleEnd, 0, HoughCircleRadius*2.1,  HoughCircleRadius*2.1, HoughCircleRadius*2.1,  Width, Height, 'bilinear')</l>
+<c></c>
+<c></c>
+<l>connection (XYTransRegion, ConnectedRegions1)</l>
+<c>* New added in 2016-10-23, set column2 a param later, and check for left.</c>
+<l>if (LeftOrRight='false')</l>
+<l>    select_shape (ConnectedRegions1, SelectedRegions1, 'column2', 'and', 0, CenterCol+HoughCircleRadius+10)</l>
+<l>    connection (SelectedRegions1, ConnectedRegions1)</l>
+<l>endif</l>
+<c>* Over</c>
+<l>region_features (ConnectedRegions1, 'area', Areas)</l>
+<l>tuple_max (Areas, Max)</l>
+<l>select_shape (ConnectedRegions1, OutputRegion, 'area', 'and', Max, Max)</l>
+<c></c>
+<c></c>
+<c></c>
+<c></c>
+<l>return ()</l>
+</body>
+<docu id="FindHoleHalfCircleRegion">
+<parameters>
+<parameter id="HasPre">
+<default_type>integer</default_type>
+<type_list>
+<item>integer</item>
+</type_list>
+<value_max>1</value_max>
+<value_min>0</value_min>
+</parameter>
+<parameter id="HoughCirclePercent"/>
+<parameter id="HoughCircleRadius"/>
+<parameter id="HoughCircleSelectAreaMax"/>
+<parameter id="HoughCircleSelectAreaMin"/>
+<parameter id="HoughCircleThresholdGrayMax"/>
+<parameter id="HoughCircleThresholdGrayMin"/>
+<parameter id="Image"/>
+<parameter id="LeftOrRight">
+<default_type>integer</default_type>
+<type_list>
+<item>integer</item>
+</type_list>
+<value_max>1</value_max>
+<value_min>0</value_min>
+</parameter>
+<parameter id="MaxLineWidth"/>
+<parameter id="OutputRegion"/>
+</parameters>
+</docu>
+</procedure>
+</hdevelop>

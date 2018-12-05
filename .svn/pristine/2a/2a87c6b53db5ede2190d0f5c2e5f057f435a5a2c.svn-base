@@ -1,0 +1,64 @@
+﻿<MeasureSchema StationIndex="1" StationName="S01.贴片槽与天线槽长宽" xmlns="http://schemas.hdcrd.com/measure" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mv="http://schemas.hdcrd.com/mv">
+
+	<MeasureSchema.Initializers>
+		<MqInitializer EasyNetQ_Host="192.168.0.100" EasyNetQ_VirtualHost="vinsml" EasyNetQ_Username="hdc" EasyNetQ_Password="hdc"/>
+	</MeasureSchema.Initializers>
+	
+	<MeasureSchema.StationResultProcessors>
+    	<PublishMqEventStationResultProcessor/>
+    	<XamlReportStationResultProcessor/>
+    	<CsvReportStationResultProcessor/>
+ 	</MeasureSchema.StationResultProcessors>
+	
+	<MeasureSchema.Plugins>
+	</MeasureSchema.Plugins>
+	
+	<MeasureSchema.WorkpieceInPositionEventController>
+		<WorkpieceInPositionMqEventController StationIndex="01" SubscriptionId="S01"/>
+	</MeasureSchema.WorkpieceInPositionEventController>
+	
+	<MeasureSchema.WorkpieceInPositionCommandController>
+		<TriggerInMemoryEventCommandController Message="Trigger"/>
+	</MeasureSchema.WorkpieceInPositionCommandController>
+	
+	<MeasureSchema.SensorInPositionEventController>
+		<InMemoryEventController EventName="Trigger"/>
+	</MeasureSchema.SensorInPositionEventController>
+	
+	<MeasureSchema.SensorInPositionCommandController>
+		<TriggerInMemoryEventCommandController Message="CameraFinished"/>
+	</MeasureSchema.SensorInPositionCommandController>
+	
+	<MeasureSchema.StationCompletedEventController>
+		<InMemoryEventController EventName="CameraFinished"/>
+	</MeasureSchema.StationCompletedEventController>
+	
+	<MeasureSchema.StationCompletedCommandController>
+		<GeneralMqCommandController CommandName="StationCompletedAppEvent01"/>
+	</MeasureSchema.StationCompletedCommandController>
+	
+	<MeasureSchema.WorkpieceTagService>
+		<MockWorkpieceTagService/>
+	</MeasureSchema.WorkpieceTagService>
+	
+	
+	<MeasureSchema.MeasureDefinitions>
+		
+		<MeasureDefinition DeviceName="Point-00" Index="0">
+		      <SimMeasureDevice />
+		
+			<MeasureDefinition.Triggers>
+			
+			</MeasureDefinition.Triggers>
+		</MeasureDefinition>
+		
+		
+	</MeasureSchema.MeasureDefinitions>
+	
+	<CalculateDefinition SipNo="40#-1" Description="天线宽度上1" Unit="mm" ExpectValue="1.50" FloatPosition="3" Name="天线宽度上1" SystemOffsetValue="-0.03" ToleranceMinus="-0.15" TolerancePlus="0.25" TuneEnabled="false">
+		<!--<GetMeasureOutputCalculateOperation DataIndex="0" OutputIndex="0"/>-->
+		<SimCalculateOperation  ExpectValue="1.50" ToleranceMinus="-0.15" TolerancePlus="0.25" Percent="0.9"/>
+	</CalculateDefinition>
+	
+	
+</MeasureSchema>

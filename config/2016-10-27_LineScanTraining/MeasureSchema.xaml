@@ -1,0 +1,158 @@
+﻿<MeasureSchema StationIndex="8" StationName="S08.内长内宽" xmlns="http://schemas.hdcrd.com/measure" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mv="http://schemas.hdcrd.com/mv">
+
+	<MeasureSchema.Initializers>
+		<MqInitializer EasyNetQ_Host="127.0.0.1" EasyNetQ_VirtualHost="vinsml" EasyNetQ_Username="hdc" EasyNetQ_Password="hdc"/>
+		<HalconCameraInitializer>
+			<mv:HalconCamera OpenFramegrabber_Name="SiliconSoftware"
+							 OpenFramegrabber_Field="interlaced"
+							 OpenFramegrabber_BitsPerChannel="8"
+							 OpenFramegrabber_ColorSpace="gray"
+							 OpenFramegrabber_ExternalTrigger="false"
+							 OpenFramegrabber_CameraType="silicon.mcf"
+							 OpenFramegrabber_Device="0"
+							 OpenFramegrabber_Port="0"
+							 >
+				<mv:FrameGrabberParamEntry Name="grab_timeout" Value="15000" DataType="Int32"/>
+			</mv:HalconCamera>
+		</HalconCameraInitializer>
+	</MeasureSchema.Initializers>
+	
+	<MeasureSchema.StationResultProcessors>
+    	<PublishMqEventStationResultProcessor/>
+    	<XamlReportStationResultProcessor/>
+    	<CsvReportStationResultProcessor/>
+ 	</MeasureSchema.StationResultProcessors>
+	
+	<MeasureSchema.Plugins>
+		<SaveImageFromCameraPlugin ImageDirectory="b:\" IsDisabled="false" IsOverwrite="false"/>
+		<LoadImagesFromDirectoryPlugin ImageDirectory="b:\"/>
+		<ActiveComputerDevicePlugin/>
+		<StationWatchdogViaMqPlugin/>
+	</MeasureSchema.Plugins>
+	
+	<MeasureSchema.WorkpieceInPositionEventController>
+		<WorkpieceInPositionMqEventController StationIndex="08" SubscriptionId="S08"/>
+	</MeasureSchema.WorkpieceInPositionEventController>
+	
+	<MeasureSchema.WorkpieceInPositionCommandController>
+		<TriggerInMemoryEventCommandController Message="Trigger"/>
+	</MeasureSchema.WorkpieceInPositionCommandController>
+	
+	<MeasureSchema.SensorInPositionEventController>
+		<InMemoryEventController EventName="Trigger"/>
+	</MeasureSchema.SensorInPositionEventController>
+	
+	<MeasureSchema.SensorInPositionCommandController>
+		<TriggerInMemoryEventCommandController Message="CameraFinished"/>
+	</MeasureSchema.SensorInPositionCommandController>
+	
+	<MeasureSchema.StationCompletedEventController>
+		<InMemoryEventController EventName="CameraFinished"/>
+	</MeasureSchema.StationCompletedEventController>
+	
+	<MeasureSchema.StationCompletedCommandController>
+		<GeneralMqCommandController CommandName="StationCompletedAppEvent08"/>
+	</MeasureSchema.StationCompletedCommandController>
+	
+	<MeasureSchema.WorkpieceTagService>
+		<MockWorkpieceTagService/>
+	</MeasureSchema.WorkpieceTagService>
+	
+	
+	<MeasureSchema.MeasureDefinitions>
+		
+		<MeasureDefinition DeviceName="Point-00" Index="0">
+			<CameraHalconInspectorMeasureDevice InitializeCameraEnabled="true">
+				<CameraHalconInspectorMeasureDevice.HFramegrabberProvider>
+					<InitializerHFramegrabberProvider GrabAsyncMaxDelay="10000"/>
+				</CameraHalconInspectorMeasureDevice.HFramegrabberProvider>
+				<CameraHalconInspectorMeasureDevice.Inspector>
+					<mv:HalconInspectionSchemaInspector InspectionSchemaDir="InspectionSchemas"/>
+				</CameraHalconInspectorMeasureDevice.Inspector>
+				<CameraHalconInspectorMeasureDevice.Calibrator>
+					
+					<mv:HalconImageCalibrator2 CameraParamsFileName="camera_params.cal"
+											   CameraPoseFileName="camera_pose.dat"
+											   
+											   CropX="0"
+											   CropY="0" 
+											   CropWidth="7530" 
+											   CropHeight="13200"
+											   
+											   OffsetX="0"
+											   OffsetY="0"
+											   
+											   Rotate="-1.3"
+											   
+											   MirrorRow="false"
+											   
+											   Interpolation="Bilinear"
+											   PixelCellSideLengthInMillimeter="12"/>
+					
+				</CameraHalconInspectorMeasureDevice.Calibrator>
+				
+      			<GenericMeasureDataMapEntry ResultType="DistanceBetweenPointsResults" ResultIndex="0" PropertyName="DistanceInWorld"/>
+      			<GenericMeasureDataMapEntry ResultType="DistanceBetweenPointsResults" ResultIndex="1" PropertyName="DistanceInWorld"/>
+      			<GenericMeasureDataMapEntry ResultType="DistanceBetweenPointsResults" ResultIndex="2" PropertyName="DistanceInWorld"/>
+      			<GenericMeasureDataMapEntry ResultType="DistanceBetweenPointsResults" ResultIndex="3" PropertyName="DistanceInWorld"/>
+      			<GenericMeasureDataMapEntry ResultType="DistanceBetweenPointsResults" ResultIndex="4" PropertyName="DistanceInWorld"/>
+				<!--
+      			<GenericMeasureDataMapEntry ResultType="Circles" ResultIndex="0" PropertyName="RelativeCenterXInWorld"/>
+      			<GenericMeasureDataMapEntry ResultType="Circles" ResultIndex="0" PropertyName="RelativeCenterYInWorld"/>
+      			<GenericMeasureDataMapEntry ResultType="Circles" ResultIndex="1" PropertyName="RelativeCenterXInWorld"/>
+      			<GenericMeasureDataMapEntry ResultType="Circles" ResultIndex="1" PropertyName="RelativeCenterYInWorld"/>
+      			-->
+			</CameraHalconInspectorMeasureDevice>
+			<MeasureDefinition.Triggers>
+				<GrabImageStartTrigger TriggerType="Before"/>
+				<SetFramegrabberParamMeasureTrigger Name="FG_LINEEXPOSURE" Value="80" DataType="Double"/>
+				<SetFramegrabberParamMeasureTrigger Name="FG_DIGIO_OUTPUT" Value="0" DataType="Int32"/>
+				<DelayMeasureTrigger TriggerType="Before" Delay="10"/>
+				<SetFramegrabberParamMeasureTrigger Name="FG_DIGIO_OUTPUT" Value="1" DataType="Int32"/>
+				<DelayMeasureTrigger TriggerType="Before" Delay="50"/>
+				<SetFramegrabberParamMeasureTrigger Name="FG_DIGIO_OUTPUT" Value="0" DataType="Int32"/>
+			</MeasureDefinition.Triggers>
+		</MeasureDefinition>
+		
+		
+	</MeasureSchema.MeasureDefinitions>
+	
+	<CalculateDefinition SipNo="5#" Description="内长1" Unit="mm" ExpectValue="146.20" FloatPosition="3" Name="内长1" SystemOffsetValue="0.00" ToleranceMinus="-0.04" TolerancePlus="0.06" TuneEnabled="false">
+		<GetMeasureOutputCalculateOperation DataIndex="0" OutputIndex="0"/>
+	</CalculateDefinition>
+	
+	<CalculateDefinition SipNo="13#" Description="内长2" Unit="mm" ExpectValue="146.20" FloatPosition="3" Name="内长2" SystemOffsetValue="-0.00" ToleranceMinus="-0.04" TolerancePlus="0.06" TuneEnabled="false">
+		<GetMeasureOutputCalculateOperation DataIndex="0" OutputIndex="1"/>
+	</CalculateDefinition>
+
+	<CalculateDefinition SipNo="2#" Description="内宽1" Unit="mm" ExpectValue="69.54" FloatPosition="3" Name="内宽1" SystemOffsetValue="-0.00" ToleranceMinus="-0.04" TolerancePlus="0.06" TuneEnabled="false">
+		<GetMeasureOutputCalculateOperation DataIndex="0" OutputIndex="2"/>
+	</CalculateDefinition>
+	
+	<CalculateDefinition SipNo="9#" Description="内宽2" Unit="mm" ExpectValue="69.54" FloatPosition="3" Name="内宽2" SystemOffsetValue="-0.00" ToleranceMinus="-0.04" TolerancePlus="0.06" TuneEnabled="false">
+		<GetMeasureOutputCalculateOperation DataIndex="0" OutputIndex="3"/>
+	</CalculateDefinition>
+	
+	<CalculateDefinition SipNo="16#" Description="内宽3" Unit="mm" ExpectValue="69.54" FloatPosition="3" Name="内宽3" SystemOffsetValue="-0.00" ToleranceMinus="-0.04" TolerancePlus="0.06" TuneEnabled="false">
+		<GetMeasureOutputCalculateOperation DataIndex="0" OutputIndex="4"/>
+	</CalculateDefinition>
+	
+		<!--
+	<CalculateDefinition SipNo="999#" Description="TestLength" Unit="um" ExpectValue="0" FloatPosition="3" Name="TestLength" SystemOffsetValue="-48000" ToleranceMinus="0" TolerancePlus="0" TuneEnabled="false">
+		<GetDistanceBetweenTwoCircleCalculationOperation>
+			<GetDistanceBetweenTwoCircleCalculationOperation.Circle1XOperation>
+				<GetMeasureOutputCalculateOperation DataIndex="0" OutputIndex="0"/>
+			</GetDistanceBetweenTwoCircleCalculationOperation.Circle1XOperation>
+			<GetDistanceBetweenTwoCircleCalculationOperation.Circle1YOperation>
+				<GetMeasureOutputCalculateOperation DataIndex="0" OutputIndex="1"/>
+			</GetDistanceBetweenTwoCircleCalculationOperation.Circle1YOperation>
+			<GetDistanceBetweenTwoCircleCalculationOperation.Circle2XOperation>
+				<GetMeasureOutputCalculateOperation DataIndex="0" OutputIndex="2"/>
+			</GetDistanceBetweenTwoCircleCalculationOperation.Circle2XOperation>
+			<GetDistanceBetweenTwoCircleCalculationOperation.Circle2YOperation>
+				<GetMeasureOutputCalculateOperation DataIndex="0" OutputIndex="3"/>
+			</GetDistanceBetweenTwoCircleCalculationOperation.Circle2YOperation>
+		</GetDistanceBetweenTwoCircleCalculationOperation>
+	</CalculateDefinition>
+	-->
+</MeasureSchema>

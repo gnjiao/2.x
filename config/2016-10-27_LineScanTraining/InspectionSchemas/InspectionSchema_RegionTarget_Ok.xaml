@@ -1,0 +1,41 @@
+﻿<InspectionSchema xmlns="http://schemas.hdcrd.com/mv"
+                  Disabled="false">
+  <InspectionSchema.DefectDefinitions>
+    <DefectDefinition Name="Defect12"
+                            Domain_SaveCacheImageEnabled="true"
+                            RoiHalfWidth="149"
+                            Location = "Corner_R">
+                           
+      <DefectDefinition.RoiActualLine>
+        <Line X1="0"
+              Y1="150"
+              X2="300"
+              Y2="150" />              
+      </DefectDefinition.RoiActualLine>
+      
+      <DefectDefinition.DefectRegionExtractor>
+      	<StructuredRegionExtractor>
+      		<StructuredRegionExtractor.RegionExtractor>      		
+      		      <SVM_Classifier Svmaddress="B:\SVMHandleReducedPositive.gsc"/>      		                                    
+      		</StructuredRegionExtractor.RegionExtractor>
+      	</StructuredRegionExtractor>
+      </DefectDefinition.DefectRegionExtractor>      
+    </DefectDefinition>
+  </InspectionSchema.DefectDefinitions>
+
+<!--
+       <InspectionSchema.RegionTargetAreaDefinitions>
+		<RegionTargetAreaDefinition Name="Distance-01"
+		                                DisplayName="台阶1高度1"
+		                                GroupName="台阶1"
+		                                Comment=""
+
+		                                ExpectValue="24.39"
+		                                PositiveTolerance="0.05"
+		                                NegativeTolerance="-0.05"/>	                                
+	</InspectionSchema.RegionTargetAreaDefinitions>
+	
+	-->
+</InspectionSchema>
+
+

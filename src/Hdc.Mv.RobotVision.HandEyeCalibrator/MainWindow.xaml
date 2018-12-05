@@ -1,0 +1,638 @@
+﻿<Window x:Class="Hdc.Mv.RobotVision.HandEyeCalibrator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hdc.Mv.ImageAcquisition.Halcon.SampleAppForGigE"
+        xmlns:halconDotNet="clr-namespace:HalconDotNet;assembly=halcondotnet"
+        xmlns:hdc="http://schemas.hdcrd.com/xaml"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="900"
+        Width="1800"
+        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen"
+        
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Grid>
+        <DockPanel>
+            <DockPanel Dock="Right">
+                <Grid DockPanel.Dock="Top">
+                    <WrapPanel DockPanel.Dock="Top"
+                               Width="600">
+                        <GroupBox Header="Camera"
+                                  Margin="4">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <Button x:Name="InitCameraButton"
+                                            Click="InitCameraButton_Click"
+                                            Width="80"
+                                            Margin="2"
+                                            Height="40">InitCamera</Button>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button x:Name="GrabButton"
+                                            Click="GrabButton_Click"
+                                            Width="80"
+                                            Margin="2"
+                                            Height="40">Grab</Button>
+                                    <Button x:Name="InspectButton"
+                                            Click="InspectButton_Click"
+                                            Width="80"
+                                            Margin="2"
+                                            Height="40">Inspect</Button>
+                                    <Button x:Name="SnapButton"
+                                            Click="GrabAndInspectButton_Click"
+                                            Width="80"
+                                            Margin="2"
+                                            Height="40">Grab Inspect</Button>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button x:Name="EnableGrabContinueButton"
+                                            Click="EnableGrabContinueButton_Click"
+                                            Width="80"
+                                            Margin="2"
+                                            Height="40">EnableGrabContinue</Button>
+                                    <Button x:Name="DisableGrabContinueButton"
+                                            Click="DisableGrabContinueButton_Click"
+                                            Width="80"
+                                            Margin="2"
+                                            Height="40">DisableGrabContinue</Button>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button x:Name="StartContinuosGrabButton"
+                                            Click="StartContinuosGrabButton_Click"
+                                            Width="80"
+                                            Height="40"
+                                            Margin="2">Start</Button>
+                                    <Button x:Name="StopContinuosGrabButton"
+                                            Click="StopContinuosGrabButton_Click"
+                                            Width="80"
+                                            Height="40"
+                                            Margin="2">Stop</Button>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Width="80"
+                                               Margin="2"
+                                               VerticalAlignment="Center">ExposureTime</TextBlock>
+                                    <TextBox Width="40"
+                                             Margin="2"
+                                             VerticalAlignment="Center"
+                                             IsEnabled="False"
+                                             IsReadOnly="True"
+                                             x:Name="ExposureTimeTextBlock"></TextBox>
+                                    <TextBox Width="40"
+                                             Margin="2"
+                                             VerticalAlignment="Center"
+                                             x:Name="ExposureTimeTextBox"></TextBox>
+                                    <Button Width="40"
+                                            Margin="2"
+                                            VerticalAlignment="Center"
+                                            x:Name="ChangeExposureTimeButton"
+                                            Click="ChangeExposureTimeButton_OnClick">Set</Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <GroupBox Header="App"
+                                  Margin="4">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <Button x:Name="ZoomFitButton"
+                                            Click="ZoomFitButton_Click"
+                                            Width="80"
+                                            Margin="2"
+                                            Height="40">ZoomFit</Button>
+                                    <Button x:Name="SaveImageButton"
+                                            Click="SaveImageButton_Click"
+                                            Width="80"
+                                            Margin="2"
+                                            Height="40">SaveImage</Button>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button x:Name="LoadSchemaButton"
+                                            Click="LoadSchemaButton_Click"
+                                            Width="80"
+                                            Margin="2"
+                                            Height="40">LoadSchema</Button>
+                                    <Button x:Name="TestButton"
+                                            Click="TestButton_Click"
+                                            Width="80"
+                                            Margin="2"
+                                            Height="40">Test</Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <GroupBox Header="Robot"
+                                  Margin="4">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <Button x:Name="InitRobotServiceButton"
+                                            Click="InitRobotServiceButton_Click"
+                                            Width="100"
+                                            Height="30"
+                                            Margin="2">InitRobotService</Button>
+                                    <Button x:Name="AutoCalibButton"
+                                            Click="AutoCalibButton_Click"
+                                            Width="100"
+                                            Height="30"
+                                            Margin="2">AutoCalib</Button>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                </StackPanel>
+
+
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Width="80"
+                                               Margin="2"
+                                               TextAlignment="Right"
+                                               VerticalAlignment="Center">HereInBase:</TextBlock>
+                                    <TextBlock Width="12"
+                                               Margin="2"
+                                               VerticalAlignment="Center">X</TextBlock>
+                                    <TextBox x:Name="RobotHereXTextBox"
+                                             Width="60"
+                                             Height="30"
+                                             VerticalContentAlignment="Center"
+                                             IsReadOnly="True"
+                                             Margin="2"></TextBox>
+                                    <TextBlock Width="12"
+                                               VerticalAlignment="Center"
+                                               Margin="2">Y</TextBlock>
+                                    <TextBox x:Name="RobotHereYTextBox"
+                                             Width="60"
+                                             Height="30"
+                                             VerticalContentAlignment="Center"
+                                             IsReadOnly="True"
+                                             Margin="2"></TextBox>
+                                    <TextBlock Width="12"
+                                               VerticalAlignment="Center"
+                                               Margin="2">Z</TextBlock>
+                                    <TextBox x:Name="RobotHereZTextBox"
+                                             Width="60"
+                                             Height="30"
+                                             VerticalContentAlignment="Center"
+                                             IsReadOnly="True"
+                                             Margin="2"></TextBox>
+                                    <TextBlock Width="12"
+                                               VerticalAlignment="Center"
+                                               Margin="2">U</TextBlock>
+                                    <TextBox x:Name="RobotHereUTextBox"
+                                             Width="60"
+                                             Height="30"
+                                             VerticalContentAlignment="Center"
+                                             IsReadOnly="True"
+                                             Margin="2"></TextBox>
+                                    <Button x:Name="GetRobotHereButton"
+                                            Click="GetRobotHereButton_Click"
+                                            Width="100"
+                                            Height="30"
+                                            Margin="2">GetRobotHere</Button>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Width="80"
+                                               Margin="2"
+                                               TextAlignment="Right"
+                                               VerticalAlignment="Center">OriToolInBase:</TextBlock>
+                                    <TextBlock Width="12"
+                                               Margin="2"
+                                               VerticalAlignment="Center">X</TextBlock>
+                                    <TextBox x:Name="OriToolInBaseXTextBox"
+                                             Width="60"
+                                             Height="30"
+                                             VerticalContentAlignment="Center"
+                                             IsReadOnly="True"
+                                             Margin="2"></TextBox>
+                                    <TextBlock Width="12"
+                                               VerticalAlignment="Center"
+                                               Margin="2">Y</TextBlock>
+                                    <TextBox x:Name="OriToolInBaseYTextBox"
+                                             Width="60"
+                                             Height="30"
+                                             VerticalContentAlignment="Center"
+                                             IsReadOnly="True"
+                                             Margin="2"></TextBox>
+                                    <TextBlock Width="12"
+                                               VerticalAlignment="Center"
+                                               Margin="2">Z</TextBlock>
+                                    <TextBox x:Name="OriToolInBaseZTextBox"
+                                             Width="60"
+                                             Height="30"
+                                             VerticalContentAlignment="Center"
+                                             IsReadOnly="True"
+                                             Margin="2"></TextBox>
+                                    <TextBlock Width="12"
+                                               VerticalAlignment="Center"
+                                               Margin="2">U</TextBlock>
+                                    <TextBox x:Name="OriToolInBaseUTextBox"
+                                             Width="60"
+                                             Height="30"
+                                             VerticalContentAlignment="Center"
+                                             IsReadOnly="True"
+                                             Margin="2"></TextBox>
+                                    <Button x:Name="GetOriToolInBaseButton"
+                                            Click="GetOriToolInBaseButton_Click"
+                                            Width="100"
+                                            Height="30"
+                                            Margin="2">GetOriToolInBase</Button>
+                                    <Button x:Name="GoOriToolInBaseButton"
+                                            Click="GoOriToolInBaseButton_Click"
+                                            Width="30"
+                                            Height="30"
+                                            Margin="2">Go</Button>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Width="80"
+                                               Margin="2"
+                                               TextAlignment="Right"
+                                               VerticalAlignment="Center">RefToolInBase:</TextBlock>
+                                    <TextBlock Width="12"
+                                               Margin="2"
+                                               VerticalAlignment="Center">X</TextBlock>
+                                    <TextBox x:Name="RefToolInBaseXTextBox"
+                                             Width="60"
+                                             Height="30"
+                                             VerticalContentAlignment="Center"
+                                             IsReadOnly="True"
+                                             Margin="2"></TextBox>
+                                    <TextBlock Width="12"
+                                               VerticalAlignment="Center"
+                                               Margin="2">Y</TextBlock>
+                                    <TextBox x:Name="RefToolInBaseYTextBox"
+                                             Width="60"
+                                             Height="30"
+                                             VerticalContentAlignment="Center"
+                                             IsReadOnly="True"
+                                             Margin="2"></TextBox>
+                                    <TextBlock Width="12"
+                                               VerticalAlignment="Center"
+                                               Margin="2">Z</TextBlock>
+                                    <TextBox x:Name="RefToolInBaseZTextBox"
+                                             Width="60"
+                                             Height="30"
+                                             VerticalContentAlignment="Center"
+                                             IsReadOnly="True"
+                                             Margin="2"></TextBox>
+                                    <TextBlock Width="12"
+                                               VerticalAlignment="Center"
+                                               Margin="2">U</TextBlock>
+                                    <TextBox x:Name="RefToolInBaseUTextBox"
+                                             Width="60"
+                                             Height="30"
+                                             VerticalContentAlignment="Center"
+                                             IsReadOnly="True"
+                                             Margin="2"></TextBox>
+                                    <Button x:Name="GetRefToolInBaseButton"
+                                            Click="GetRefToolInBaseButton_Click"
+                                            Width="100"
+                                            Height="30"
+                                            Margin="2">GetRefToolInBase</Button>
+                                    <Button x:Name="GoRefToolInBaseButton"
+                                            Click="GoRefToolInBaseButton_Click"
+                                            Width="30"
+                                            Height="30"
+                                            Margin="2">Go</Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <GroupBox Header="Inspect"
+                                  Margin="4">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Width="100"
+                                               VerticalAlignment="Center"
+                                               TextAlignment="Right"
+                                               Margin="2">CurrentInCam:</TextBlock>
+                                    <TextBlock Width="12"
+                                               VerticalAlignment="Center"
+                                               Margin="2">X</TextBlock>
+                                    <TextBox x:Name="XTextBox"
+                                             Width="60"
+                                             Height="30"
+                                             VerticalContentAlignment="Center"
+                                             IsReadOnly="True"
+                                             Margin="2"></TextBox>
+                                    <TextBlock Width="12"
+                                               VerticalAlignment="Center"
+                                               Margin="2">Y</TextBlock>
+                                    <TextBox x:Name="YTextBox"
+                                             Width="60"
+                                             Height="30"
+                                             IsReadOnly="True"
+                                             VerticalContentAlignment="Center"
+                                             Margin="2"></TextBox>
+                                    <Button x:Name="InspectCurrentInCamButton"
+                                            Click="InspectCurrentInCamButton_Click"
+                                            Width="30"
+                                            Height="30"
+                                            Margin="2">Go</Button>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Width="100"
+                                               VerticalAlignment="Center"
+                                               TextAlignment="Right"
+                                               Margin="2">Source_OriInCam:</TextBlock>
+                                    <TextBlock Width="12"
+                                               VerticalAlignment="Center"
+                                               Margin="2">X</TextBlock>
+                                    <TextBox x:Name="OriInCamXTextBox"
+                                             Width="60"
+                                             Height="30"
+                                             VerticalContentAlignment="Center"
+                                             IsReadOnly="True"
+                                             Margin="2"></TextBox>
+                                    <TextBlock Width="12"
+                                               VerticalAlignment="Center"
+                                               Margin="2">Y</TextBlock>
+                                    <TextBox x:Name="OriInCamYTextBox"
+                                             Width="60"
+                                             Height="30"
+                                             IsReadOnly="True"
+                                             VerticalContentAlignment="Center"
+                                             Margin="2"></TextBox>
+                                    <Button x:Name="InspectOriInCamButton"
+                                            Click="InspectOriInCamButton_Click"
+                                            Width="30"
+                                            Height="30"
+                                            Margin="2">Go</Button>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Width="100"
+                                               VerticalAlignment="Center"
+                                               TextAlignment="Right"
+                                               Margin="2">Source_OriInBase:</TextBlock>
+                                    <TextBlock Width="12"
+                                               VerticalAlignment="Center"
+                                               Margin="2">X</TextBlock>
+                                    <TextBox x:Name="OriInBaseXTextBox"
+                                             Width="60"
+                                             Height="30"
+                                             VerticalContentAlignment="Center"
+                                             IsReadOnly="True"
+                                             Margin="2"></TextBox>
+                                    <TextBlock Width="12"
+                                               VerticalAlignment="Center"
+                                               Margin="2">Y</TextBlock>
+                                    <TextBox x:Name="OriInBaseYTextBox"
+                                             Width="60"
+                                             Height="30"
+                                             IsReadOnly="True"
+                                             VerticalContentAlignment="Center"
+                                             Margin="2"></TextBox>
+                                    <Button x:Name="CalculateOriInBaseButton"
+                                            Click="CalculateOriInBaseButton_Click"
+                                            Width="30"
+                                            Height="30"
+                                            Margin="2">Cal</Button>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Width="100"
+                                               VerticalAlignment="Center"
+                                               TextAlignment="Right"
+                                               Margin="2">Source_RefInCam:</TextBlock>
+                                    <TextBlock Width="12"
+                                               VerticalAlignment="Center"
+                                               Margin="2">X</TextBlock>
+                                    <TextBox x:Name="RefInCamXTextBox"
+                                             Width="60"
+                                             Height="30"
+                                             VerticalContentAlignment="Center"
+                                             IsReadOnly="True"
+                                             Margin="2"></TextBox>
+                                    <TextBlock Width="12"
+                                               VerticalAlignment="Center"
+                                               Margin="2">Y</TextBlock>
+                                    <TextBox x:Name="RefInCamYTextBox"
+                                             Width="60"
+                                             Height="30"
+                                             IsReadOnly="True"
+                                             VerticalContentAlignment="Center"
+                                             Margin="2"></TextBox>
+                                    <Button x:Name="InspectRefInCamButton"
+                                            Click="InspectRefInCamButton_Click"
+                                            Width="30"
+                                            Height="30"
+                                            Margin="2">Go</Button>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Width="100"
+                                               VerticalAlignment="Center"
+                                               TextAlignment="Right"
+                                               Margin="2">Source_OriInBase:</TextBlock>
+                                    <TextBlock Width="12"
+                                               VerticalAlignment="Center"
+                                               Margin="2">X</TextBlock>
+                                    <TextBox x:Name="RefInBaseXTextBox"
+                                             Width="60"
+                                             Height="30"
+                                             VerticalContentAlignment="Center"
+                                             IsReadOnly="True"
+                                             Margin="2"></TextBox>
+                                    <TextBlock Width="12"
+                                               VerticalAlignment="Center"
+                                               Margin="2">Y</TextBlock>
+                                    <TextBox x:Name="RefInBaseYTextBox"
+                                             Width="60"
+                                             Height="30"
+                                             IsReadOnly="True"
+                                             VerticalContentAlignment="Center"
+                                             Margin="2"></TextBox>
+                                    <Button x:Name="CalculateRefInBaseButton"
+                                            Click="CalculateRefInBaseButton_Click"
+                                            Width="30"
+                                            Height="30"
+                                            Margin="2">Cal</Button>
+                                </StackPanel>
+
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="Inspect"
+                                  Margin="4">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel>
+                                        <TextBlock Width="12"
+                                                   VerticalAlignment="Center"
+                                                   Margin="2">X</TextBlock>
+                                        <Button x:Name="GoHereXInc10mmButton"
+                                                Click="GoHereXInc10mmButton_Click"
+                                                Width="40"
+                                                Height="30"
+                                                Margin="2">+ 10</Button>
+                                        <Button x:Name="GoHereXDec10mmButton"
+                                                Click="GoHereXDec10mmButton_Click"
+                                                Width="40"
+                                                Height="30"
+                                                Margin="2">- 10</Button>
+                                    </StackPanel>
+                                    <StackPanel>
+                                        <TextBlock Width="12"
+                                                   VerticalAlignment="Center"
+                                                   Margin="2">X</TextBlock>
+                                        <Button x:Name="GoHereXInc1mmButton"
+                                                Click="GoHereXInc1mmButton_Click"
+                                                Width="40"
+                                                Height="30"
+                                                Margin="2">+ 1</Button>
+                                        <Button x:Name="GoHereXDec1mmButton"
+                                                Click="GoHereXDec1mmButton_Click"
+                                                Width="40"
+                                                Height="30"
+                                                Margin="2">- 1</Button>
+                                    </StackPanel>
+                                    <StackPanel>
+                                        <TextBlock Width="12"
+                                                   VerticalAlignment="Center"
+                                                   Margin="2">X</TextBlock>
+                                        <Button x:Name="GoHereXInc100umButton"
+                                                Click="GoHereXInc100umButton_Click"
+                                                Width="40"
+                                                Height="30"
+                                                Margin="2">+ 0.1</Button>
+                                        <Button x:Name="GoHereXDec100umButton"
+                                                Click="GoHereXDec100umButton_Click"
+                                                Width="40"
+                                                Height="30"
+                                                Margin="2">- 0.1</Button>
+                                    </StackPanel>
+                                    <StackPanel>
+                                        <TextBlock Width="12"
+                                                   VerticalAlignment="Center"
+                                                   Margin="2">X</TextBlock>
+                                        <Button x:Name="GoHereXInc10umButton"
+                                                Click="GoHereXInc10umButton_Click"
+                                                Width="40"
+                                                Height="30"
+                                                Margin="2">+ 0.01</Button>
+                                        <Button x:Name="GoHereXDec10umButton"
+                                                Click="GoHereXDec10umButton_Click"
+                                                Width="40"
+                                                Height="30"
+                                                Margin="2">- 0.01</Button>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel>
+                                        <TextBlock Width="12"
+                                                   VerticalAlignment="Center"
+                                                   Margin="2">Y</TextBlock>
+                                        <Button x:Name="GoHereYInc10mmButton"
+                                                Click="GoHereYInc10mmButton_Click"
+                                                Width="40"
+                                                Height="30"
+                                                Margin="2">+ 10</Button>
+                                        <Button x:Name="GoHereYDec10mmButton"
+                                                Click="GoHereYDec10mmButton_Click"
+                                                Width="40"
+                                                Height="30"
+                                                Margin="2">- 10</Button>
+                                    </StackPanel>
+                                    <StackPanel>
+                                        <TextBlock Width="12"
+                                                   VerticalAlignment="Center"
+                                                   Margin="2">Y</TextBlock>
+                                        <Button x:Name="GoHereYInc1mmButton"
+                                                Click="GoHereYInc1mmButton_Click"
+                                                Width="40"
+                                                Height="30"
+                                                Margin="2">+ 1</Button>
+                                        <Button x:Name="GoHereYDec1mmButton"
+                                                Click="GoHereYDec1mmButton_Click"
+                                                Width="40"
+                                                Height="30"
+                                                Margin="2">- 1</Button>
+                                    </StackPanel>
+                                    <StackPanel>
+                                        <TextBlock Width="12"
+                                                   VerticalAlignment="Center"
+                                                   Margin="2">Y</TextBlock>
+                                        <Button x:Name="GoHereYInc100umButton"
+                                                Click="GoHereYInc100umButton_Click"
+                                                Width="40"
+                                                Height="30"
+                                                Margin="2">+ 0.1</Button>
+                                        <Button x:Name="GoHereYDec100umButton"
+                                                Click="GoHereYDec100umButton_Click"
+                                                Width="40"
+                                                Height="30"
+                                                Margin="2">- 0.1</Button>
+                                    </StackPanel>
+                                    <StackPanel>
+                                        <TextBlock Width="12"
+                                                   VerticalAlignment="Center"
+                                                   Margin="2">Y</TextBlock>
+                                        <Button x:Name="GoHereYInc10umButton"
+                                                Click="GoHereYInc10umButton_Click"
+                                                Width="40"
+                                                Height="30"
+                                                Margin="2">+ 0.01</Button>
+                                        <Button x:Name="GoHereYDec10umButton"
+                                                Click="GoHereYDec10umButton_Click"
+                                                Width="40"
+                                                Height="30"
+                                                Margin="2">- 0.01</Button>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                            
+                        </GroupBox>
+                        <GroupBox Header="Inspect"
+                            Margin="4">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel>
+                                        <Button x:Name="OpenRobotManagerButton"
+                                            Click="OpenRobotManagerButton_Click"
+                                            Width="40"
+                                            Height="30"
+                                            Margin="2" Content="RobotManager"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal"/>
+                            </StackPanel>
+
+                        </GroupBox>
+                    </WrapPanel>
+                </Grid>
+                <GroupBox Header="RobotPoints" Margin="4">
+                    <DockPanel>
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
+                            <Button x:Name="ExportRobotPointsButton"
+                                    Click="ExportRobotPointsButton_Click"
+                                    Width="60"
+                                    Height="30"
+                                    Margin="2">Export</Button>
+                            <Button x:Name="ImportRobotPointsButton"
+                                    Click="ImportRobotPointsButton_Click"
+                                    Width="60"
+                                    Height="30"
+                                    Margin="2">Import</Button>
+                        </StackPanel>
+                        <DataGrid ItemsSource="{Binding RobotPoints}" >
+
+                        </DataGrid>
+                    </DockPanel>
+                </GroupBox>
+            </DockPanel>
+            <Grid Background="Silver">
+                <hdc:HalconViewer  x:Name="HalconViewer">
+                    <hdc:CircleHalconViewerSeries ItemsSource="{Binding DefinitionsCircleIndicators}"
+                                                  CenterXPath="CenterX"
+                                                  CenterYPath="CenterY"
+                                                  RadiusPath="Radius"
+                                                  ColorName="green"
+                                                  LineWidth="4"
+                                                  RegionFillMode="Fill" />
+                    <hdc:CircleHalconViewerSeries ItemsSource="{Binding ResultsCircleIndicators}"
+                                                  CenterXPath="CenterX"
+                                                  CenterYPath="CenterY"
+                                                  RadiusPath="Radius"
+                                                  ColorName="red"
+                                                  LineWidth="4" />
+                </hdc:HalconViewer>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</Window>

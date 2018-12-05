@@ -1,0 +1,116 @@
+Global Preserve Integer PositionCount
+Global Preserve Integer SignalValue
+Global Preserve Integer WpcInPositionAck
+Global Preserve Integer SensorInPositionAck
+
+Global Preserve Integer SpeedInit
+Global Preserve Integer AccelInit
+
+Global Preserve Integer SpeedMeasure
+Global Preserve Integer AccelMeasure
+
+
+
+Function main
+
+Print "Robot Print: Function.main, begin"
+
+Print "Robot Print: Power ", Power
+Print "Robot Print: Speed ", Speed
+	
+Init()
+Measures()
+
+Print "Robot Print: Function.main, end"
+
+Fend
+
+Function Init
+Print "Robot Print: Function.Init, begin"
+
+
+Motor On
+Power High
+
+LimZ -20
+
+SpeedInit = 30
+AccelInit = 30
+
+SpeedMeasure = 100
+AccelMeasure = 100
+
+Speed SpeedInit
+Accel AccelInit, AccelInit
+
+Print "Robot Print: Power ", Power
+Print "Robot Print: Speed ", Speed
+
+Jump P112
+Go P111
+Go P112
+
+Print "Robot Print: Function.Init, end"
+Fend
+
+Function Measures
+Print "Robot Print: Function.Measures, begin"
+
+Integer i
+Do While True
+	Print "Robot Print: ================================== WPC begin"
+	Print "Robot Print: Wait WpcInPositionAck begin"
+	Wait WpcInPositionAck > 0
+	Print "Robot Print: Wait WpcInPositionAck end"
+	
+	WpcInPositionAck = 0
+	PositionCount = 0
+	
+'Tool 1
+
+	
+	
+	Speed SpeedMeasure
+	Accel AccelMeasure, AccelMeasure
+	
+	Print "Robot Print: Power ", Power
+	Print "Robot Print: Speed ", Speed
+	
+	For i = 112 To 120
+		Print "Robot Print: ----------------------------------- Position begin"
+		Go P(i)
+		
+		Print "Robot Print: SPELCom_Event 2000: SensorInPosition begin"
+		'SPELCom_Event 2000, "PositionIndex=", PositionCount, ";PointIndex=", i, ";"
+		SendSensorInPositionEvent(i)
+		Print "Robot Print: SPELCom_Event 2000: SensorInPosition end"
+		
+		PositionCount = PositionCount + 1
+		
+		Print "Robot Print: Wait SensorInPositionAck begin"
+		Wait SensorInPositionAck > 0
+		Print "Robot Print: Wait SensorInPositionAck end"
+		
+		SensorInPositionAck = 0
+		
+		'Go P(i + 1)
+	Next i
+	
+	SPELCom_Event 2001, "Robot Event: AllPositionsCompletedEventController"
+	Print "Robot Print: ================================== WPC end"
+	Go P(112)
+Loop
+
+Print "Robot Print: Function.Measures, end"
+Fend
+
+Function SendSensorInPositionEvent(pointIndex As Integer)
+Print "Robot Print: 'pointIndex' is", pointIndex
+Print "Robot Print: 'pointX' is", Str$(CX(P(pointIndex)))
+Print "Robot Print: 'pointY' is", Str$(CY(P(pointIndex)))
+
+Print "Robot Print: SPELCom_Event 2000: SensorInPosition begin"
+
+SPELCom_Event 2000, "PositionIndex=", PositionCount, ";PointIndex=", pointIndex, ";", ";CX=", CX(P(pointIndex)), ";CY=", CY(P(pointIndex))
+PositionCount = PositionCount + 1
+Fend

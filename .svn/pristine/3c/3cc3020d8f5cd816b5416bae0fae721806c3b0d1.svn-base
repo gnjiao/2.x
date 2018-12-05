@@ -1,0 +1,9 @@
+﻿<Config xmlns="clr-namespace:Vins.ML.MeasureLineManager;assembly=Vins.ML.MeasureLineManager"
+        
+        EasyNetQ_Host="127.0.0.1"
+        EasyNetQ_VirtualHost="vinsml"
+        EasyNetQ_Username="hdc"
+        EasyNetQ_Password="hdc"
+        
+        DownloadStationPositionOffset="13"
+        />

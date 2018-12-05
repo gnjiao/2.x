@@ -1,0 +1,166 @@
+﻿<MeasureSchema StationIndex="1" StationName="S01.贴片槽与天线槽长宽" xmlns="http://schemas.hdcrd.com/measure" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mv="http://schemas.hdcrd.com/mv">
+
+	<MeasureSchema.Initializers>
+		<MqInitializer EasyNetQ_Host="192.168.100.100" EasyNetQ_VirtualHost="vinsml" EasyNetQ_Username="hdc" EasyNetQ_Password="hdc"/>
+		<HalconCameraInitializer>
+			<mv:HalconCamera OpenFramegrabber_Name="SiliconSoftware"
+							 OpenFramegrabber_Field="interlaced"
+							 OpenFramegrabber_BitsPerChannel="8"
+							 OpenFramegrabber_ColorSpace="gray"
+							 OpenFramegrabber_ExternalTrigger="false"
+							 OpenFramegrabber_CameraType="102.mcf"
+							 OpenFramegrabber_Device="0"
+							 OpenFramegrabber_Port="0"
+							 >
+				<mv:FrameGrabberParamEntry Name="grab_timeout" Value="15000" DataType="Int32"/>
+			</mv:HalconCamera>
+		</HalconCameraInitializer>
+	</MeasureSchema.Initializers>
+	
+	<MeasureSchema.StationResultProcessors>
+    	<PublishMqEventStationResultProcessor/>
+    	<XamlReportStationResultProcessor/>
+    	<CsvReportStationResultProcessor/>
+ 	</MeasureSchema.StationResultProcessors>
+	
+	<MeasureSchema.Plugins>
+		<SaveImageFromCameraPlugin ImageDirectory="E:\Photos\H1533\temp place" IsDisabled="true" IsOverwrite="false"/>
+		<LoadImagesFromDirectoryPlugin ImageDirectory="E:\Photos\H1533\temp place"/>
+		<ActiveComputerDevicePlugin/>
+	</MeasureSchema.Plugins>
+	
+	<MeasureSchema.WorkpieceInPositionEventController>
+		<WorkpieceInPositionMqEventController StationIndex="01" SubscriptionId="S01"/>
+	</MeasureSchema.WorkpieceInPositionEventController>
+	
+	<MeasureSchema.WorkpieceInPositionCommandController>
+		<TriggerInMemoryEventCommandController Message="Trigger"/>
+	</MeasureSchema.WorkpieceInPositionCommandController>
+	
+	<MeasureSchema.SensorInPositionEventController>
+		<InMemoryEventController EventName="Trigger"/>
+	</MeasureSchema.SensorInPositionEventController>
+	
+	<MeasureSchema.SensorInPositionCommandController>
+		<TriggerInMemoryEventCommandController Message="CameraFinished"/>
+	</MeasureSchema.SensorInPositionCommandController>
+	
+	<MeasureSchema.StationCompletedEventController>
+		<InMemoryEventController EventName="CameraFinished"/>
+	</MeasureSchema.StationCompletedEventController>
+	
+	<MeasureSchema.StationCompletedCommandController>
+		<GeneralMqCommandController CommandName="StationCompletedAppEvent01"/>
+	</MeasureSchema.StationCompletedCommandController>
+	
+	<MeasureSchema.WorkpieceTagService>
+		<MockWorkpieceTagService/>
+	</MeasureSchema.WorkpieceTagService>
+	
+	
+	<MeasureSchema.MeasureDefinitions>
+		
+		<MeasureDefinition DeviceName="Point-00" Index="0">
+			<CameraHalconInspectorMeasureDevice InitializeCameraEnabled="true">
+				<CameraHalconInspectorMeasureDevice.HFramegrabberProvider>
+					<InitializerHFramegrabberProvider GrabAsyncMaxDelay="2000"/>
+				</CameraHalconInspectorMeasureDevice.HFramegrabberProvider>
+				<CameraHalconInspectorMeasureDevice.Inspector>
+					<mv:HalconInspectionSchemaInspector InspectionSchemaDir="InspectionSchemas"/>
+				</CameraHalconInspectorMeasureDevice.Inspector>
+				<CameraHalconInspectorMeasureDevice.Calibrator>
+					
+					<mv:HalconImageCalibrator2 CameraParamsFileName="camera_params.cal"
+											   CameraPoseFileName="camera_pose.dat"
+											   
+											   CropX="910"
+											   CropY="870" 
+											   CropWidth="6350" 
+											   CropHeight="12000"
+											   
+											   OffsetX="840"
+											   OffsetY="850"
+											   
+											   Rotate="90.4"
+											   
+											   MirrorRow="false"
+											   
+											   Interpolation="Bilinear"
+											   PixelCellSideLengthInMillimeter="13.1951"/>
+					
+				</CameraHalconInspectorMeasureDevice.Calibrator>
+				
+      			<GenericMeasureDataMapEntry ResultType="DistanceBetweenPointsResults" ResultIndex="0" PropertyName="DistanceInWorld"/>
+      			<GenericMeasureDataMapEntry ResultType="DistanceBetweenPointsResults" ResultIndex="1" PropertyName="DistanceInWorld"/>
+      			<GenericMeasureDataMapEntry ResultType="DistanceBetweenPointsResults" ResultIndex="2" PropertyName="DistanceInWorld"/>
+      			<GenericMeasureDataMapEntry ResultType="DistanceBetweenPointsResults" ResultIndex="3" PropertyName="DistanceInWorld"/>
+      			<GenericMeasureDataMapEntry ResultType="DistanceBetweenPointsResults" ResultIndex="4" PropertyName="DistanceInWorld"/>
+      			<GenericMeasureDataMapEntry ResultType="DistanceBetweenPointsResults" ResultIndex="5" PropertyName="DistanceInWorld"/>
+      			<GenericMeasureDataMapEntry ResultType="DistanceBetweenPointsResults" ResultIndex="6" PropertyName="DistanceInWorld"/>
+      			<GenericMeasureDataMapEntry ResultType="DistanceBetweenPointsResults" ResultIndex="7" PropertyName="DistanceInWorld"/>
+      			<!--<GenericMeasureDataMapEntry ResultType="DistanceBetweenPointsResults" ResultIndex="8" PropertyName="DistanceInWorld"/>
+      			<GenericMeasureDataMapEntry ResultType="DistanceBetweenPointsResults" ResultIndex="9" PropertyName="DistanceInWorld"/>
+      			<GenericMeasureDataMapEntry ResultType="DistanceBetweenPointsResults" ResultIndex="10" PropertyName="DistanceInWorld"/>
+				-->
+			</CameraHalconInspectorMeasureDevice>
+			<MeasureDefinition.Triggers>
+				<GrabImageStartTrigger TriggerType="Before"/>	<!---->
+				<GeneralMqEventTrigger TriggerType="Before" CommandName="LinearMotorStartCommand01"/>
+			</MeasureDefinition.Triggers>
+		</MeasureDefinition>
+		
+		
+	</MeasureSchema.MeasureDefinitions>
+	
+	<CalculateDefinition SipNo="40#-1" Description="天线宽度上1" Unit="mm" ExpectValue="1.50" FloatPosition="3" Name="天线宽度上1" SystemOffsetValue="-0.03" ToleranceMinus="-0.15" TolerancePlus="0.25" TuneEnabled="false">
+		<GetMeasureOutputCalculateOperation DataIndex="0" OutputIndex="0"/>
+	</CalculateDefinition>
+	
+	<CalculateDefinition SipNo="40#-2" Description="天线宽度上2" Unit="mm" ExpectValue="1.50" FloatPosition="3" Name="天线宽度上2" SystemOffsetValue="-0.03" ToleranceMinus="-0.15" TolerancePlus="0.25" TuneEnabled="false">
+		<GetMeasureOutputCalculateOperation DataIndex="0" OutputIndex="1"/>
+	</CalculateDefinition>
+	
+	<CalculateDefinition SipNo="37#-1" Description="天线宽度下1" Unit="mm" ExpectValue="1.50" FloatPosition="3" Name="天线宽度下1" SystemOffsetValue="-0.0" ToleranceMinus="-0.15" TolerancePlus="0.20" TuneEnabled="false">
+		<GetMeasureOutputCalculateOperation DataIndex="0" OutputIndex="2"/>
+	</CalculateDefinition>
+	
+	<CalculateDefinition SipNo="37#-2" Description="天线宽度下2" Unit="mm" ExpectValue="1.50" FloatPosition="3" Name="天线宽度下2" SystemOffsetValue="-0.0" ToleranceMinus="-0.15" TolerancePlus="0.20" TuneEnabled="false">
+		<GetMeasureOutputCalculateOperation DataIndex="0" OutputIndex="3"/>
+	</CalculateDefinition>
+	
+	<CalculateDefinition SipNo="37#-3" Description="天线宽度下3" Unit="mm" ExpectValue="1.50" FloatPosition="3" Name="天线宽度下3" SystemOffsetValue="-0.0" ToleranceMinus="-0.15" TolerancePlus="0.20" TuneEnabled="false">
+		<GetMeasureOutputCalculateOperation DataIndex="0" OutputIndex="4"/>
+	</CalculateDefinition>
+	
+	
+	<!--2016.7.7 <CalculateDefinition SipNo="36#-1" Description="贴片槽宽度1" Unit="mm" ExpectValue="10.60" FloatPosition="3" Name="贴片槽宽度1" SystemOffsetValue="0.00" ToleranceMinus="-0.08" TolerancePlus="0.05" TuneEnabled="false">-->
+	<CalculateDefinition SipNo="36#-1" Description="贴片槽宽度1" Unit="mm" ExpectValue="10.60" FloatPosition="3" Name="贴片槽宽度1" SystemOffsetValue="0.00" ToleranceMinus="-0.09" TolerancePlus="0.05" TuneEnabled="false">
+		<GetSmallestDeviationMeasureOutputCalculationOperation StandardValue="10.60" ToleranceUpper="0.05" ToleranceLower="-0.09" SystemOffsetValue="0.00">
+			<GetMeasureOutputCalculateOperation DataIndex="0" OutputIndex="5"/>
+			<!--<GetMeasureOutputCalculateOperation DataIndex="0" OutputIndex="6"/>
+			<GetMeasureOutputCalculateOperation DataIndex="0" OutputIndex="7"/>-->
+		</GetSmallestDeviationMeasureOutputCalculationOperation>
+	</CalculateDefinition>
+	<!--
+	<CalculateDefinition SipNo="36#-2" Description="贴片槽宽度2" Unit="mm" ExpectValue="10.60" FloatPosition="3" Name="贴片槽宽度2" SystemOffsetValue="0.03" ToleranceMinus="-0.08" TolerancePlus="0.05" TuneEnabled="false">
+		<GetMeasureOutputCalculateOperation DataIndex="0" OutputIndex="6"/>
+	</CalculateDefinition>
+	-->
+	<!--2016.7.7 <CalculateDefinition SipNo="36#-2" Description="贴片槽宽度2" Unit="mm" ExpectValue="10.60" FloatPosition="3" Name="贴片槽宽度2" SystemOffsetValue="0.02" ToleranceMinus="-0.08" TolerancePlus="0.05" TuneEnabled="false">-->
+	<CalculateDefinition SipNo="36#-2" Description="贴片槽宽度2" Unit="mm" ExpectValue="10.60" FloatPosition="3" Name="贴片槽宽度2" SystemOffsetValue="0.02" ToleranceMinus="-0.10" TolerancePlus="0.05" TuneEnabled="false">
+		<GetMeasureOutputCalculateOperation DataIndex="0" OutputIndex="6"/>
+	</CalculateDefinition>
+	<!--
+	para 2016.7.4
+	<CalculateDefinition SipNo="36#-2" Description="贴片槽宽度2" Unit="mm" ExpectValue="10.60" FloatPosition="3" Name="贴片槽宽度2" SystemOffsetValue="0.01" ToleranceMinus="-0.08" TolerancePlus="0.05" TuneEnabled="false">
+		<GetMeasureOutputCalculateOperation DataIndex="0" OutputIndex="6"/>
+	</CalculateDefinition>
+	-->
+	
+	<!--2016.7.7 <CalculateDefinition SipNo="33#" Description="贴片槽长度" Unit="mm" ExpectValue="66.95" FloatPosition="3" Name="贴片槽长度" SystemOffsetValue="-0.01" ToleranceMinus="-0.08" TolerancePlus="0.05" TuneEnabled="false">-->
+	<CalculateDefinition SipNo="33#" Description="贴片槽长度" Unit="mm" ExpectValue="66.95" FloatPosition="3" Name="贴片槽长度" SystemOffsetValue="-0.01" ToleranceMinus="-0.08" TolerancePlus="0.06" TuneEnabled="false">
+		<GetMeasureOutputCalculateOperation DataIndex="0" OutputIndex="7"/>
+	</CalculateDefinition>
+	<!---->
+	
+</MeasureSchema>

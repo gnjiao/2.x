@@ -1,0 +1,83 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <BinDirectory>bin\$(Configuration)</BinDirectory>
+    <BinDebugDirectory>bin\Debug</BinDebugDirectory>
+    <BinReleaseDirectory>bin\Release</BinReleaseDirectory>
+    <!--<PublishDirectory>bin.demo\$(Configuration)</PublishDirectory>-->
+    <!--<OutDirectory>bin\$(Configuration)</OutDirectory>-->
+    <CleanRoot>.</CleanRoot>
+  </PropertyGroup>
+  <ItemGroup>
+  
+    <PublishDirectory Include="bin\$(Configuration)"></PublishDirectory>
+    <PublishDirectory Include="bin.demo\$(Configuration)"></PublishDirectory>
+
+    <!--DependentFiles-->
+    <DependentFiles Include="lib\Advosol.PaXi\PaXiNet4.dll"></DependentFiles>
+    <DependentFiles Include="lib\Advosol.PaXi\*.License"></DependentFiles>
+    
+    <!--
+    <DependentFiles Include="lib\Keyence.LJ-G_5000_x64\LJIF.dll"></DependentFiles>
+    <DependentFiles Include="lib\Keyence.LJ-G_5000_x64\KeyUsbDrv.dll"></DependentFiles>
+    <DependentFiles Include="lib\Keyence.LK-G_3000_x64\LkIF.dll"></DependentFiles>
+    <DependentFiles Include="lib\Keyence.LK-G_3000_x64\KeyUsbDrv.dll"></DependentFiles>
+    -->
+    
+    <DependentFiles Include="lib\EZio\*.dll"></DependentFiles>
+    <DependentFiles Include="lib\EZioApiWrapper\*.dll"></DependentFiles>
+    <DependentFiles Include="lib\Omron.ZW2.DisplacementSensorSDK\DSComm.dll"></DependentFiles>
+    <DependentFiles Include="lib\SuperSocket\*.dll"></DependentFiles>
+    <DependentFiles Include="lib\FocalSpec\*.dll"></DependentFiles>
+    
+    <DependentFiles Include="lib\log4net_1.2.15.0\log4net.dll"></DependentFiles>
+    <!-- <DependentFiles Include="sln\packages\log4net.2.0.5\lib\net45-full\log4net.dll"></DependentFiles> -->
+    <!-- <DependentFiles Include="config\hdvp\*"></DependentFiles>-->
+    
+    <DependentFiles Include="lib\xxxx\*.dll"></DependentFiles>
+    <DependentFiles Include="lib\xxxx\*.dll"></DependentFiles>
+    <!--<DependentFiles Include="config\DeviceConfigs.xaml"></DependentFiles>-->
+    
+
+    <!--DependentFolders-->
+    <DependentFolders Include="lib\RecursiveDir\**\*"></DependentFolders>
+    <DependentFolders Include="resource\**\*.xaml"></DependentFolders>
+    <DependentFolders Include="resource\**\*.xml"></DependentFolders>
+    <DependentFolders Include="resource\**\*.bmp"></DependentFolders>
+    <DependentFolders Include="resource\**\*.tif"></DependentFolders>
+    <DependentFolders Include="resource\**\*.jpg"></DependentFolders>
+    <DependentFolders Include="config\H1533\**\*"></DependentFolders>
+
+    <!--Projects-->
+    <Projects Include="sln\Vins.ML.sln"></Projects>
+    <PublishProjects Include="sln\Vins.ML.sln"></PublishProjects>
+
+    <!--SolutionsToClean-->
+    <SolutionsToClean Include="**\*.csproj"></SolutionsToClean>
+
+    <!--FilesToClean-->
+    <FilesToClean Include="**\*.user"></FilesToClean>
+    <FilesToClean Include="**\*.cache"></FilesToClean>
+    <FilesToClean Include="**\*.suo"></FilesToClean>
+    <FilesToClean Include="**\*.vs10x"></FilesToClean>
+    <FilesToClean Include="**\*.docstates"></FilesToClean>
+    <FilesToClean Include="**\*.gpState"></FilesToClean>
+    <FilesToClean Include="**\*.sdf"></FilesToClean>
+
+    <!--DirectoriesToClean-->
+    <DirectoriesToClean Include="bin"></DirectoriesToClean>
+    <DirectoriesToClean Include="bin.demo"></DirectoriesToClean>
+    <DirectoriesToClean Include="bin.test"></DirectoriesToClean>
+    <DirectoriesToClean Include="_setup"></DirectoriesToClean>
+    <DirectoriesToClean Include="_publish"></DirectoriesToClean>
+    <DirectoriesToClean Include="AdvInst-cache"></DirectoriesToClean>
+    <DirectoriesToClean Include="sln\ipch"></DirectoriesToClean>
+    <DirectoriesToClean Include="sln\.vs"></DirectoriesToClean>
+
+	<!--DirectoriesToRecursionClean-->
+    <DirectoriesToRecursionClean Include="bin"></DirectoriesToRecursionClean>
+    <DirectoriesToRecursionClean Include="obj"></DirectoriesToRecursionClean>
+    <DirectoriesToRecursionClean Include="debug"></DirectoriesToRecursionClean>
+    <DirectoriesToRecursionClean Include="release"></DirectoriesToRecursionClean>
+    
+  </ItemGroup>
+</Project>

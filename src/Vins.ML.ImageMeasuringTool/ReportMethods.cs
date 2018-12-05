@@ -1,0 +1,689 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using Aspose.Cells;
+using Hdc.Linq;
+
+namespace Hdc.Measuring.Reporting
+{
+    public static class ReportMethods
+    {
+        public static Workbook GetWorkbookByMeasure(this List<List<StationResult>> wpcGroups)
+        {
+            Workbook workbook = new Workbook();
+            workbook.Worksheets.Clear();
+
+            var measureCount = wpcGroups.First().First().CalculateResults.Count;
+
+            for (int i = 0; i < measureCount; i++)
+            {
+                var wpcGroup = wpcGroups[i];
+
+                var ws = workbook.Worksheets.Add("WPC_" + i.ToString("D2"));
+                CreateWorksheetByMeasure(wpcGroup, ws, i);
+            }
+            return workbook;
+        }
+
+        private static void CreateWorksheetByMeasure(List<StationResult> @group, Worksheet ws, int measureIndex)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public static Workbook GetWorkbookByWpc(this List<List<StationResult>> wpcGroups)
+        {
+            Workbook workbook = new Workbook();
+            workbook.Worksheets.Clear();
+
+            for (int i = 0; i < wpcGroups.Count; i++)
+            {
+                var @group = wpcGroups[i];
+
+                var ws = workbook.Worksheets.Add("WPC_" + i.ToString("D2"));
+                CreateWorksheetByWpc(@group, ws);
+                ws.AutoFitColumns();
+            }
+            return workbook;
+        }
+
+        public static void CreateWorksheetByWpc(this IList<StationResult> stationResults, Worksheet worksheet)
+        {
+            // Overwrite Definition using first stationResult
+            var minCount = stationResults.Min(x => x.CalculateResults.Count);
+            for (int j = 0; j < minCount; j++)
+            {
+                var calculateResult = stationResults.First().CalculateResults[j];
+
+                // Overwrite Definition using first stationResult
+                foreach (var stationResult in stationResults)
+                {
+                    stationResult.CalculateResults[j].Definition = calculateResult.Definition;
+                }
+            }
+
+            // By Total
+            var stationResultsGroupByWpc = stationResults.GroupBy(x => x.WorkpieceTag).ToList();
+            var wpcs = stationResultsGroupByWpc.Select(x =>
+            {
+                var wpc = new WorkpieceResult()
+                {
+                    Tag = x.Key,
+                };
+                foreach (var stationResult in x)
+                {
+                    wpc.StationResults.Add(stationResult);
+                }
+                return wpc;
+            }).ToList();
+            var wpcCount = wpcs.Count();
+            var IsLevelACountByWpc = wpcs.Count(x => x.IsLevelA);
+            var IsLevelAPercentByWpc = IsLevelACountByWpc / (double)wpcCount;
+            var IsLevelBCountByWpc = wpcs.Count(x => x.IsLevelB);
+            var IsLevelBPercentByWpc = IsLevelBCountByWpc / (double)wpcCount;
+            var IsOver20umCountByWpc = wpcs.Count(x => x.IsOver20um);
+            var IsOver20umPercentByWpc = IsOver20umCountByWpc / (double)wpcCount;
+            var IsLevelABCountByWpc = IsLevelACountByWpc + IsLevelBCountByWpc;
+            var IsLevelABPercentByWpc = IsLevelABCountByWpc / (double)wpcCount;
+            var IsNG2CountByWpc = wpcs.Count(x => x.IsNG2);
+            var IsNG2PercentByWpc = IsNG2CountByWpc / (double)wpcCount;
+            var IsAbnormalCountByWpc = wpcs.Count(x => x.IsAbnormal);
+            var IsAbnormalPercentByWpc = IsAbnormalCountByWpc / (double)wpcCount;
+
+            // 
+            var dataStartRowIndex = 1;
+            var dataStartColumnIndex = 1;
+
+
+            int rowIndex = dataStartRowIndex - 1;
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "Name";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "SIP#";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "StandardValue";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "ToleranceUpper";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "ToleranceLower";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "SystemOffset";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "IsOver20umOffsetUpper";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "IsOver20umOffsetLower";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "Unit";
+            rowIndex++;
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "Average";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "StdDEV";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "Max";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "Min";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "Range";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "DeviationMax";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "DeviationMin";
+            rowIndex++;
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "OverTolerance_Count";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "OverTolerance_Percent";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "OverToleranceUpper_Count";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "OverTolerance_Percent";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "OverToleranceLower_Count";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "OverTolerance_Percent";
+            rowIndex++;
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "Total_Count";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "OK_Count";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "OK_Percent";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "NG_Count";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "NG_Percent";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "Abnormal_Count";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "Abnormal_Percent";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "NG&Abnormal_Count";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "NG&Abnormal_Percent";
+
+            rowIndex++;
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "OKOrUnder20um_Count";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "OKOrUnder20um_Percent";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "NGAndUnder20um_Count";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "NGAndUnder20um_Percent";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "NGAndOver20um_Count";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "NGAndOver20um_Percent";
+
+            rowIndex++;
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "WPC_Count";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "LevelA_Count_By_Total";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "LevelA_Percent_By_Total";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "LevelB_Count_By_Total";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "LevelB_Percent_By_Total";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "LevelC_Count_By_Total";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "LevelC_Percent_By_Total";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "LevelA&B_Count_By_Total";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "LevelA&B_Percent_By_Total";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "NG_Count_By_Total";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "NG_Percent_By_Total";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "Abnormal_Count_By_Total";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "Abnormal_Percent_By_Total";
+
+
+            // Standard Values
+            for (int j = 0; j < minCount; j++)
+            {
+                var j1 = j;
+                rowIndex = dataStartRowIndex - 1;
+                var calculateResult = stationResults.First().CalculateResults[j];
+
+                //
+                var column = dataStartColumnIndex + j;
+                worksheet.Cells[rowIndex++, column].Value = calculateResult.Definition.Name;
+                worksheet.Cells[rowIndex++, column].Value = calculateResult.Definition.SipNo;
+                worksheet.Cells[rowIndex++, column].Value = calculateResult.Definition.StandardValue.ToString("0.000");
+                worksheet.Cells[rowIndex++, column].Value = calculateResult.Definition.ToleranceUpper.ToString("0.000");
+                worksheet.Cells[rowIndex++, column].Value = calculateResult.Definition.ToleranceLower.ToString("0.000");
+                worksheet.Cells[rowIndex++, column].Value = calculateResult.Definition.SystemOffsetValue.ToString("0.000");
+                worksheet.Cells[rowIndex++, column].Value = calculateResult.Definition.IsOver20umOffsetUpper.ToString("0.000");
+                worksheet.Cells[rowIndex++, column].Value = calculateResult.Definition.IsOver20umOffsetLower.ToString("0.000");
+                worksheet.Cells[rowIndex++, column].Value = calculateResult.Definition.Unit;
+                rowIndex++;
+                var calculateResults = stationResults.Select(x => x.CalculateResults[j1]).ToList();
+                var totalCount = calculateResults.Count;
+
+                var enumerable = calculateResults.Select(x => x.FinalValue).ToList();
+                var filterAbnormalValue = enumerable.FilterAbnormalValues(
+                    calculateResult.Definition.StandardValue,
+                    calculateResult.Definition.ToleranceUpper * 4,
+                    calculateResult.Definition.ToleranceLower * 4);
+                var abnormalValuesCount = enumerable.GetAbnormalValuesCount(
+                    calculateResult.Definition.StandardValue,
+                    calculateResult.Definition.ToleranceUpper * 4,
+                    calculateResult.Definition.ToleranceLower * 4);
+                var avalibleValues = filterAbnormalValue.CheckIfEmpty(double.NaN).ToList();
+
+                worksheet.Cells[rowIndex++, column].Value = avalibleValues.Average().ToString("0.000");
+                worksheet.Cells[rowIndex++, column].Value = avalibleValues.CalculateStdDev().ToString("0.000");
+//                worksheet.Cells[rowIndex++, column].Value = avalibleValues.Max().ToString("0.000");
+//                worksheet.Cells[rowIndex++, column].Value = avalibleValues.Min().ToString("0.000");
+//                worksheet.Cells[rowIndex++, column].Value =
+//                    Math.Abs(calculateResults.Max(x => x.FinalValue) - calculateResults.Min(x => x.FinalValue))
+//                        .ToString("0.000");
+//                worksheet.Cells[rowIndex++, column].Value =
+//                    (calculateResults.Max(x => x.FinalValue) - calculateResult.Definition.ExpectValue).ToString("0.000");
+//                worksheet.Cells[rowIndex++, column].Value =
+//                    (calculateResults.Min(x => x.FinalValue) - calculateResult.Definition.ExpectValue).ToString("0.000");
+
+
+                var max = avalibleValues.Max();
+                worksheet.Cells[rowIndex++, column].Value = max.ToString("0.000");
+
+                var min = avalibleValues.Min();
+                worksheet.Cells[rowIndex++, column].Value = min.ToString("0.000");
+
+                worksheet.Cells[rowIndex++, column].Value = Math.Abs(max - min).ToString("0.000");
+
+                worksheet.Cells[rowIndex++, column].Value = (max - calculateResult.Definition.StandardValue).ToString("0.000");
+
+                worksheet.Cells[rowIndex++, column].Value = (min - calculateResult.Definition.StandardValue).ToString("0.000");
+
+                // black row
+                rowIndex++;
+
+                // OverToleranceCount & OverTolerancePercent
+                var ngCount = calculateResults.Count(x => x.IsNG2);
+                if (ngCount > 0)
+                    worksheet.Cells[rowIndex, column].Value = ngCount;
+                rowIndex++;
+
+                worksheet.Cells[rowIndex, column].SetStyle(new Style() { Number = 10 });
+                var ngPercent = (double)ngCount/ calculateResults.Count;
+                if (ngPercent > 0)
+                    worksheet.Cells[rowIndex, column].Value = ngPercent;
+                rowIndex++;
+
+                // OverToleranceUpperCount & OverTolerancePercent
+                var ngUpperCount = calculateResults.Count(x => x.IsNG2Upper);
+                if (ngUpperCount > 0)
+                    worksheet.Cells[rowIndex, column].Value = ngUpperCount;
+                rowIndex++;
+
+                worksheet.Cells[rowIndex, column].SetStyle(new Style() { Number = 10 });
+                var ngUpperPercent = (double)ngUpperCount / calculateResults.Count;
+                if(ngUpperPercent>0)
+                    worksheet.Cells[rowIndex, column].Value = ngUpperPercent;
+                rowIndex++;
+
+                // OverToleranceLowerCount & OverTolerancePercent
+                var ngLowerCount = calculateResults.Count(x => x.IsNG2Lower);
+                if (ngLowerCount > 0)
+                    worksheet.Cells[rowIndex, column].Value = ngLowerCount;
+                rowIndex++;
+
+                worksheet.Cells[rowIndex, column].SetStyle(new Style() { Number = 10 });
+                var ngLowerPercent = (double)ngLowerCount / calculateResults.Count;
+                if (ngLowerPercent > 0)
+                    worksheet.Cells[rowIndex, column].Value = ngLowerPercent;
+                rowIndex++;
+
+                // black row
+                rowIndex++;
+
+                // TotalCount
+                var okCount = totalCount - ngCount - abnormalValuesCount;
+                if (okCount < totalCount)
+                    worksheet.Cells[rowIndex, column].Value = totalCount;
+                rowIndex++;
+
+                // OKCount & OKPercent
+                if (okCount < totalCount)
+                {
+                    worksheet.Cells[rowIndex, column].Value = okCount;
+                }
+                rowIndex++;
+
+                worksheet.Cells[rowIndex, column].SetStyle(new Style() { Number = 10 });
+                var okPercent = (double)okCount / calculateResults.Count;
+                if (okPercent < 1)
+                    worksheet.Cells[rowIndex, column].Value = okPercent;
+                rowIndex++;
+
+                // NgCount & NgPercent
+                if (ngCount > 0)
+                    worksheet.Cells[rowIndex, column].Value = ngCount;
+                rowIndex++;
+
+                worksheet.Cells[rowIndex, column].SetStyle(new Style() { Number = 10 });
+                if (ngPercent > 0)
+                    worksheet.Cells[rowIndex, column].Value = ngPercent;
+                rowIndex++;
+
+                // AbnormalCount & AbnormalPercent
+                if (abnormalValuesCount > 0)
+                    worksheet.Cells[rowIndex, column].Value = abnormalValuesCount;
+                rowIndex++;
+
+                worksheet.Cells[rowIndex, column].SetStyle(new Style() { Number = 10 });
+                var abnormalPercent = (double)abnormalValuesCount / calculateResults.Count;
+                if (abnormalPercent > 0)
+                    worksheet.Cells[rowIndex, column].Value = abnormalPercent;
+                rowIndex++;
+
+                // ngAndAbnormalCount & ngAndAbnormalPercent
+                var ngAndAbnormalCount = ngCount + abnormalValuesCount;
+                if (ngAndAbnormalCount > 0)
+                    worksheet.Cells[rowIndex, column].Value = ngAndAbnormalCount;
+                rowIndex++;
+
+                worksheet.Cells[rowIndex, column].SetStyle(new Style() { Number = 10 });
+                var ngAndAbnormalPercent = (double)ngAndAbnormalCount / calculateResults.Count;
+                if (ngAndAbnormalPercent > 0)
+                    worksheet.Cells[rowIndex, column].Value = ngAndAbnormalPercent;
+                rowIndex++;
+
+                // black row
+                rowIndex++;
+
+                // okAndUnder20umCount & okAndUnder20Percent
+                var ngAndOver20umCount = calculateResults.Count(x => x.IsOver20um);
+                var okAndUnder20umCount = totalCount - ngAndOver20umCount - abnormalValuesCount;
+                var ngAndUnder20umCount = totalCount - ngAndOver20umCount - okCount - abnormalValuesCount;
+
+                if (okAndUnder20umCount < totalCount)
+                {
+                    worksheet.Cells[rowIndex, column].Value = okAndUnder20umCount;
+                }
+                rowIndex++;
+
+                worksheet.Cells[rowIndex, column].SetStyle(new Style() { Number = 10 });
+                var okAndUnder20Percent = (double)okAndUnder20umCount / totalCount;
+                if (okAndUnder20Percent < 1)
+                    worksheet.Cells[rowIndex, column].Value = okAndUnder20Percent;
+                rowIndex++;
+
+                // NgAndUnder20um: Count & Percent
+                if (ngAndUnder20umCount > 0)
+                    worksheet.Cells[rowIndex, column].Value = ngAndUnder20umCount;
+                rowIndex++;
+
+                var ngAndUnder20umPercent = (double)ngAndUnder20umCount / totalCount;
+                worksheet.Cells[rowIndex, column].SetStyle(new Style() { Number = 10 });
+                if (ngAndUnder20umCount > 0)
+                    worksheet.Cells[rowIndex, column].Value = ngAndUnder20umPercent;
+                rowIndex++;
+
+                // NgAndOver20um: Count & Percent
+                if (ngAndOver20umCount > 0)
+                    worksheet.Cells[rowIndex, column].Value = ngAndOver20umCount;
+                rowIndex++;
+
+                var IsOver20umPercent = (double)ngAndOver20umCount / totalCount;
+                worksheet.Cells[rowIndex, column].SetStyle(new Style() { Number = 10 });
+                if (IsOver20umPercent > 0)
+                    worksheet.Cells[rowIndex, column].Value = IsOver20umPercent;
+                rowIndex++;
+
+                // Wpc: Count & Percent
+                if (j == 0)  // run just once;
+                {
+                    rowIndex++;
+                    worksheet.Cells[rowIndex, column].Value = wpcCount;
+                    rowIndex++;
+                    worksheet.Cells[rowIndex, column].Value = IsLevelACountByWpc;
+                    rowIndex++;
+                    worksheet.Cells[rowIndex, column].Value = IsLevelAPercentByWpc;
+                    worksheet.Cells[rowIndex, column].SetStyle(new Style() { Number = 10 });
+                    rowIndex++;
+                    worksheet.Cells[rowIndex, column].Value = IsLevelBCountByWpc;
+                    rowIndex++;
+                    worksheet.Cells[rowIndex, column].Value = IsLevelBPercentByWpc;
+                    worksheet.Cells[rowIndex, column].SetStyle(new Style() { Number = 10 });
+                    rowIndex++;
+                    worksheet.Cells[rowIndex, column].Value = IsOver20umCountByWpc;
+                    rowIndex++;
+                    worksheet.Cells[rowIndex, column].Value = IsOver20umPercentByWpc;
+                    worksheet.Cells[rowIndex, column].SetStyle(new Style() { Number = 10 });
+                    rowIndex++;
+                    worksheet.Cells[rowIndex, column].Value = IsLevelABCountByWpc;
+                    rowIndex++;
+                    worksheet.Cells[rowIndex, column].Value = IsLevelABPercentByWpc;
+                    worksheet.Cells[rowIndex, column].SetStyle(new Style() { Number = 10 });
+                    rowIndex++;
+                    worksheet.Cells[rowIndex, column].Value = IsNG2CountByWpc;
+                    rowIndex++;
+                    worksheet.Cells[rowIndex, column].Value = IsNG2PercentByWpc;
+                    worksheet.Cells[rowIndex, column].SetStyle(new Style() { Number = 10 });
+                    rowIndex++;
+                    worksheet.Cells[rowIndex, column].Value = IsAbnormalCountByWpc;
+                    rowIndex++;
+                    worksheet.Cells[rowIndex, column].Value = IsAbnormalPercentByWpc;
+                    worksheet.Cells[rowIndex, column].SetStyle(new Style() { Number = 10 });
+                    rowIndex++;
+                }
+                else
+                {
+                    rowIndex++;
+                    for (int i = 0; i < 13; i++)
+                    {
+                        worksheet.Cells[rowIndex, column].Value = "-";
+                        worksheet.Cells[rowIndex, column].SetStyle(new Style() { HorizontalAlignment = TextAlignmentType.Center });
+                        rowIndex++;
+                    }
+                }
+            }
+
+            rowIndex++;
+            rowIndex++;
+            rowIndex++;
+            rowIndex++;
+            rowIndex++;
+
+            var dataTitleStartRowIndex = rowIndex;
+            // Standard Values
+            for (int j = 0; j < stationResults.First().CalculateResults.Count; j++)
+            {
+                rowIndex = dataTitleStartRowIndex - 1;
+                var calculateResult = stationResults.First().CalculateResults[j];
+                var column = dataStartColumnIndex + j;
+                worksheet.Cells[rowIndex++, column].Value = calculateResult.Definition.Name;
+//                worksheet.Cells[rowIndex++, column].Value = calculateResult.Definition.SipNo;
+            }
+
+            // Test Indexes
+            int invalidresult = 1;
+            int validresult = 1;
+
+            // Test Indexes
+            for (int i = 0; i < stationResults.Count; i++)//检测输出结果中是否有二维码，如果有，则报表中显现出二维码结果，如果没有，正常计数且标红色 by Lemont.Qing
+            {
+                if (stationResults[i].MeasureResults[0].Message != null)
+                {
+                    worksheet.Cells[rowIndex + i, dataStartColumnIndex - 1].Value = validresult + "     " + stationResults[i].MeasureResults[0].Message;
+                    validresult++;
+                }
+                else
+                {
+                    var cell = worksheet.Cells[rowIndex + i, dataStartColumnIndex - 1];
+                    cell.Value = invalidresult;
+                    invalidresult++;
+                }
+            }
+
+            // Test Values
+            for (int i = 0; i < stationResults.Count; i++)
+            {
+                var stationResult = stationResults[i];
+                var row = rowIndex + i;
+
+                for (int j = 0; j < stationResult.CalculateResults.Count; j++)
+                {
+                    var calculateResult = stationResult.CalculateResults[j];
+                    var column = dataStartColumnIndex + j;
+                    var cell = worksheet.Cells[row, column];
+                    cell.Value = calculateResult.FinalValue;//.ToString("0.000");
+
+                    var style = cell.GetStyle();
+                    style.Number = 2;
+//                    style.Custom = "0.000";
+//                    style.Custom = "0.000;[Red]-0.000";
+                    var isAbnormal = calculateResult.FinalValue.CheckIsAbnormalValue(
+                            calculateResult.Definition.StandardValue,
+                            calculateResult.Definition.ToleranceUpperWithAbnormalValueLimitUpper,
+                            calculateResult.Definition.ToleranceLowerWithAbnormalValueLimitLower);
+
+                    if (isAbnormal)
+                    {
+//                        style.BackgroundColor = Color.Gray;
+//                        style.ForegroundColor = Color.Silver;
+                        style.Font.IsBold = true;
+                        style.Font.Color = Color.Orange;
+                    }
+                    else if (calculateResult.IsNG2)
+                    {
+//                        style.BackgroundColor = Color.Red;
+//                        style.ForegroundColor = Color.DarkRed;
+//                        style.Font.IsBold = true;
+                        style.Font.Color = Color.Red;
+                    }
+                    cell.SetStyle(style);
+                    
+                }
+            }
+
+            worksheet.Cells.ConvertStringToNumericValue();
+            //            foreach (var cell in worksheet.Cells)
+            //            {
+            //                cell.
+            //            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="stationResults"></param>
+        /// <param name="worksheet"></param>
+        /// <param name="columnOffset"></param>
+        /// <returns>last column index</returns>
+        public static int CreateWorksheetByWpcWithColumnOffset(this IList<StationResult> stationResults, Worksheet worksheet, int columnOffset)
+        {
+            var dataStartRowIndex = 1;
+            var dataStartColumnIndex = columnOffset + 1;
+
+
+            int rowIndex = dataStartRowIndex - 1;
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "Name";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "SIP#";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "StandardValue";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "ToleranceUpper";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "ToleranceLower";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "SystemOffset";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "Unit";
+            rowIndex++;
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "Average";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "StdDEV";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "Max";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "Min";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "Range";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "DeviationMax";
+            worksheet.Cells[rowIndex++, dataStartColumnIndex - 1].Value = "DeviationMin";
+
+
+            // Standard Values
+            for (int j = 0; j < stationResults.First().CalculateResults.Count; j++)
+            {
+                var j1 = j;
+                rowIndex = dataStartRowIndex - 1;
+                var calculateResult = stationResults.First().CalculateResults[j];
+                var column = dataStartColumnIndex + j;
+                worksheet.Cells[rowIndex++, column].Value = calculateResult.Definition.Name;
+                worksheet.Cells[rowIndex++, column].Value = calculateResult.Definition.SipNo;
+                worksheet.Cells[rowIndex++, column].Value = calculateResult.Definition.StandardValue.ToString("0.00");
+                worksheet.Cells[rowIndex++, column].Value = calculateResult.Definition.ToleranceUpper.ToString("0.00");
+                worksheet.Cells[rowIndex++, column].Value = calculateResult.Definition.ToleranceLower.ToString("0.00");
+                worksheet.Cells[rowIndex++, column].Value = calculateResult.Definition.SystemOffsetValue.ToString("0.00");
+                worksheet.Cells[rowIndex++, column].Value = calculateResult.Definition.Unit;
+                rowIndex++;
+                var calculateResults = stationResults.Select(x => x.CalculateResults[j1]).ToList();
+
+                var filterAbnormalValue = calculateResults
+                    .Select(x=>x.FinalValue)
+                    .FilterAbnormalValues(calculateResult.Definition.StandardValue, 1, -1);
+                var avalibleValues = filterAbnormalValue
+                    .CheckIfEmpty(double.NaN).ToList();
+
+                worksheet.Cells[rowIndex++, column].Value = avalibleValues.Average().ToString("0.000");
+
+                worksheet.Cells[rowIndex++, column].Value = avalibleValues.CalculateStdDev().ToString("0.000");
+
+                var max = avalibleValues.Max();
+                worksheet.Cells[rowIndex++, column].Value = max.ToString("0.000");
+
+                var min = avalibleValues.Min();
+                worksheet.Cells[rowIndex++, column].Value = min.ToString("0.000");
+
+                worksheet.Cells[rowIndex++, column].Value = Math.Abs(max - min).ToString("0.000");
+
+                worksheet.Cells[rowIndex++, column].Value = (max - calculateResult.Definition.StandardValue).ToString("0.000");
+
+                worksheet.Cells[rowIndex++, column].Value = (min - calculateResult.Definition.StandardValue).ToString("0.000");
+            }
+
+            rowIndex++;
+            rowIndex++;
+
+            var dataTitleStartRowIndex = rowIndex;
+            // Standard Values
+            for (int j = 0; j < stationResults.First().CalculateResults.Count; j++)
+            {
+                rowIndex = dataTitleStartRowIndex - 1;
+                var calculateResult = stationResults.First().CalculateResults[j];
+                var column = dataStartColumnIndex + j;
+                worksheet.Cells[rowIndex++, column].Value = calculateResult.Definition.Name;
+                //                worksheet.Cells[rowIndex++, column].Value = calculateResult.Definition.SipNo;
+            }
+
+
+            // Test Indexes
+            for (int i = 0; i < stationResults.Count; i++)
+            {
+                worksheet.Cells[rowIndex + i, dataStartColumnIndex - 1].Value = (i + 1).ToString("D2") +"_" + stationResults[i].FixtureDataCode;
+            }
+
+            // Test Values
+            for (int i = 0; i < stationResults.Count; i++)
+            {
+                var stationResult = stationResults[i];
+                var row = rowIndex + i;
+
+                for (int j = 0; j < stationResult.CalculateResults.Count; j++)
+                {
+                    var cr = stationResult.CalculateResults[j];
+                    var column = dataStartColumnIndex + j;
+                    var cell = worksheet.Cells[row, column];
+                    var style = cell.GetStyle();
+                    style.Number = 2;
+                    //                    style.Custom = "0.000";
+                    //                    style.Custom = "0.000;[Red]-0.000";
+                    cell.SetStyle(style);
+                    cell.Value = cr.FinalValue;//.ToString("0.000");
+                }
+            }
+
+            worksheet.Cells.ConvertStringToNumericValue();
+            //            foreach (var cell in worksheet.Cells)
+            //            {
+            //                cell.
+            //            }
+
+            return dataStartColumnIndex + stationResults.First().CalculateResults.Count + 1;
+        }
+
+
+
+        public static List<List<StationResult>> SpilitWpc(this List<StationResult> stationResults, int wpcCount,
+            bool isContinueous)
+        {
+            if (isContinueous)
+            {
+                List<List<StationResult>> groups2 = new List<List<StationResult>>();
+
+                for (int i = 0; i < stationResults.Count; i++)
+                {
+                    var remain = i%wpcCount;
+                    if (remain == 0)
+                    {
+                        groups2.Add(new List<StationResult>());
+                    }
+
+                    groups2.Last().Add(stationResults[i]);
+                }
+
+                return groups2;
+            }
+
+            if (stationResults.First().WorkpieceTag == stationResults.Last().WorkpieceTag)
+            {
+                for (int i = 0; i < stationResults.Count; i++)
+                {
+                    stationResults[i].WorkpieceTag += i;
+                }
+            }
+
+            List<List<StationResult>> groups = new List<List<StationResult>>();
+
+            var orderedStationResults = stationResults.OrderBy(x => x.WorkpieceTag).ToList();
+
+            var firstWpcTag = orderedStationResults.First().WorkpieceTag;
+            var lastWpcTag = orderedStationResults.Last().WorkpieceTag;
+            var turnCount = (lastWpcTag - firstWpcTag)/wpcCount + 1;
+
+            for (int i = 0; i < wpcCount; i++)
+            {
+                var i1 = i;
+
+                List<StationResult> group = new List<StationResult>();
+
+                for (int j = 0; j < turnCount; j++)
+                {
+                    var index = firstWpcTag + j*wpcCount + i;
+                    var sr = orderedStationResults.LastOrDefault(x => x.WorkpieceTag == (index));
+                    if (sr == null)
+                        continue;
+                    group.Add(sr);
+                }
+
+                if (!group.Any())
+                    continue;
+
+                groups.Add(group);
+            }
+
+            return groups;
+        }
+
+        public static List<List<WorkpieceResult>> SpilitWpc(this List<WorkpieceResult> stationResults, int wpcCount)
+        {
+            List<List<WorkpieceResult>> groups2 = new List<List<WorkpieceResult>>();
+
+            for (int i = 0; i < stationResults.Count; i++)
+            {
+                var remain = i%wpcCount;
+                if (remain == 0)
+                {
+                    groups2.Add(new List<WorkpieceResult>());
+                }
+
+                groups2.Last().Add(stationResults[i]);
+            }
+
+            return groups2;
+        }
+    }
+}

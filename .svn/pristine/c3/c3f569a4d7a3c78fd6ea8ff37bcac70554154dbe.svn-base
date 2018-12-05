@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="Vins.ML.Presentation.Views.GoNgIndicator"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Vins.ML.Presentation.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             DataContext="{Binding RelativeSource={RelativeSource Self}}">
+    <Viewbox>
+        <ContentControl Content="{Binding}">
+            <ContentControl.ContentTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Ellipse Width="24"
+                                 Height="24"
+                                 x:Name="Ellipse"
+                                 Fill="LimeGreen"
+                                 Margin="2" />
+                        <TextBlock x:Name="NgTextBlock"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Text="GO"
+                                   FontSize="14"
+                                   Foreground="White"
+                                   Margin="2" />
+                    </Grid>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsNG}"
+                                     Value="true">
+                            <Setter TargetName="Ellipse"
+                                    Property="Fill"
+                                    Value="Gold"></Setter>
+                            <Setter TargetName="NgTextBlock"
+                                    Property="Text"
+                                    Value="NG"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsNG2}"
+                                     Value="true">
+                            <Setter TargetName="Ellipse"
+                                    Property="Fill"
+                                    Value="OrangeRed"></Setter>
+                            <Setter TargetName="NgTextBlock"
+                                    Property="Text"
+                                    Value="NG"></Setter>
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </ContentControl.ContentTemplate>
+        </ContentControl>
+    </Viewbox>
+</UserControl>

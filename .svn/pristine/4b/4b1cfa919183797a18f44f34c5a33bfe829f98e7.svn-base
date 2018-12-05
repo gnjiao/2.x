@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="Vins.ML.MeasureLineManager.SingleStationScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Vins.ML.MeasureLineManager"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             xmlns:hdc="http://schemas.hdcrd.com/xaml">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Hdc.Controls.Theming.Metro;component\Theme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Vins.ML.Presentation.Views;component\CalculateResultsDataTemplate.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Vins.ML.Presentation.Views;component\CalculateResultsDataTemplateLite.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Vins.ML.Presentation.Views;component\CalculateResultDataTemplateNano.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Vins.ML.Presentation.Views;component\StationResultPropertiesDataTemplate.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Vins.ML.Presentation.Views;component\StationResultDataTemplate.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <DockPanel>
+            <DockPanel DockPanel.Dock="Right"
+                       Width="600">
+                <Grid DockPanel.Dock="Top">
+                    <ListBox ItemsSource="{Binding SelectedItem.MeasureResults, ElementName=LastestWorkpieceResultsListBox}"
+                             x:Name="MeasureResultsListBox"></ListBox>
+                </Grid>
+                <Grid>
+                    <ContentControl Content="{Binding SelectedItem.CalculateResults, ElementName=MeasureResultsListBox}"
+                                    ContentTemplate="{StaticResource CalculateResultsDataTemplate}"></ContentControl>
+                </Grid>
+            </DockPanel>
+            <Grid DockPanel.Dock="Top">
+                <ListBox ItemsSource="{Binding LastestWorkpieceResults}"
+                         HorizontalContentAlignment="Stretch"
+                         VerticalContentAlignment="Stretch"
+                         BorderThickness="0"
+                         x:Name="LastestWorkpieceResultsListBox">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="5"
+                                         Rows="4"></UniformGrid>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemContainerStyle>
+                        <Style  TargetType="{x:Type ListBoxItem}">
+                            <Setter Property="Background"
+                                    Value="Transparent" />
+                            <Setter Property="BorderThickness"
+                                    Value="0" />
+                            <Setter Property="Padding"
+                                    Value="0" />
+                            <Setter Property="Margin"
+                                    Value="4" />
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Silver"
+                                    x:Name="boarder"
+                                    BorderThickness="2"
+                                    Margin="0">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="工位"></TextBlock>
+                                        <TextBlock Text="{Binding Tag}"></TextBlock>
+                                    </StackPanel>
+                                    <ItemsControl ItemsSource="{Binding StationResults}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border>
+                                                    <TextBlock Text="{Binding StationIndex}"></TextBlock>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+
+        </DockPanel>
+    </Grid>
+</UserControl>

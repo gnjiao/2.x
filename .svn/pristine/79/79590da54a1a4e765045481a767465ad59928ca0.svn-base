@@ -1,0 +1,311 @@
+﻿<UserControl x:Class="Vins.ML.MeasureLineManager.MonitorScreen"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Vins.ML.MeasureLineManager"
+             mc:Ignorable="d"
+             d:DesignHeight="1080"
+             d:DesignWidth="1920"
+             xmlns:hdc="http://schemas.hdcrd.com/xaml"
+             xmlns:views="clr-namespace:Vins.ML.Presentation.Views;assembly=Vins.ML.Presentation.Views">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Hdc.Controls.Theming.Metro;component\Theme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Vins.ML.Presentation.Views;component\CalculateResultsDataTemplate.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Vins.ML.Presentation.Views;component\CalculateResultsDataTemplateLite.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Vins.ML.Presentation.Views;component\CalculateResultDataTemplateNano.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Vins.ML.Presentation.Views;component\StationResultPropertiesDataTemplate.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Vins.ML.Presentation.Views;component\StationResultDataTemplate.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Vins.ML.Presentation.Views;component\WorkpieceResultPropertiesDataTemplate.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid DockPanel.Dock="Bottom"
+          Margin="0,0,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{Binding Config.RowInfo1Height}"></RowDefinition>
+            <RowDefinition Height="{Binding Config.RowInfo2Height}"></RowDefinition>
+        </Grid.RowDefinitions>
+        <ItemsControl ItemsSource="{Binding CurrentStationResults}"
+                      ItemTemplate="{DynamicResource StationResultDataTemplate}"
+                      DockPanel.Dock="Top"
+                      Margin="0,0,-4,0"
+                      Grid.ColumnSpan="5"
+                      Grid.Column="0"
+                      TextElement.FontSize="15">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="{Binding Config.MonitorScreen_UniformGridColumns}"
+                                 Rows="{Binding Config.MonitorScreen_UniformGridRows}"></UniformGrid>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+
+        <DockPanel Background="Silver"
+                   Grid.ColumnSpan="3"
+                   Margin="0,0,0,0"
+                   Grid.Row="1">
+            <DockPanel DockPanel.Dock="Left">
+                <TextBlock FontSize="30"
+                           Margin="4"
+                           DockPanel.Dock="Top">下料工位状态</TextBlock>
+                <ContentControl Content="{Binding DownloadWorkpieceResult}"
+                                Margin="8,16"
+                                DockPanel.Dock="Bottom"
+                                ContentTemplate="{DynamicResource WorkpieceResultPropertiesDataTemplate}">
+                </ContentControl>
+                <!--                <views:GoNgIndicator IsNG="{Binding DownloadWorkpieceResult.IsNG}"-->
+                <!--                                     Width="80"-->
+                <!--                                     Height="80"></views:GoNgIndicator>-->
+
+                <ContentControl Content="{Binding DownloadWorkpieceResult}"
+                                Margin="8">
+                    <ContentControl.ContentTemplate>
+                        <DataTemplate>
+                            <Grid HorizontalAlignment="Center"
+                                  VerticalAlignment="Center">
+                                <Ellipse Width="100"
+                                         Height="100"
+                                         x:Name="Ellipse"
+                                         Fill="LimeGreen"
+                                         Margin="2"
+                                         VerticalAlignment="Center"
+                                         HorizontalAlignment="Center"></Ellipse>
+                                <TextBlock x:Name="NgTextBlock"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           Text="GO"
+                                           FontSize="30"
+                                           Foreground="White"
+                                           Margin="2"></TextBlock>
+                            </Grid>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding IsNG2}"
+                                             Value="True">
+                                    <Setter TargetName="Ellipse"
+                                            Property="Fill"
+                                            Value="Gold"></Setter>
+                                    <Setter TargetName="NgTextBlock"
+                                            Property="Text"
+                                            Value="NG"></Setter>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsOver20um}"
+                                             Value="True">
+                                    <Setter TargetName="Ellipse"
+                                            Property="Fill"
+                                            Value="OrangeRed"></Setter>
+                                    <Setter TargetName="NgTextBlock"
+                                            Property="Text"
+                                            Value="NG"></Setter>
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </ContentControl.ContentTemplate>
+                </ContentControl>
+            </DockPanel>
+            <ItemsControl ItemsSource="{Binding DownloadWorkpieceResult.StationResults}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="10" Rows="1"></UniformGrid>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="2,0,0,0"
+                                BorderBrush="Gray">
+                            <DockPanel Margin="4">
+                                <DockPanel DockPanel.Dock="Left"
+                                           VerticalAlignment="Center"
+                                           Margin="4">
+                                    <!--                                    <TextBlock Text="工位"-->
+                                    <!--                                               DockPanel.Dock="Top"-->
+                                    <!--                                               Margin="4"-->
+                                    <!--                                               HorizontalAlignment="Center"-->
+                                    <!--                                               FontSize="24"></TextBlock>-->
+                                    <TextBlock Text="{Binding StationIndex, StringFormat={}{0:00}}"
+                                               Margin="4"
+                                               HorizontalAlignment="Center"
+                                               DockPanel.Dock="Top"
+                                               FontWeight="Bold"
+                                               FontSize="30"></TextBlock>
+                                    <Grid DockPanel.Dock="Top"
+                                          Margin="4">
+                                        <Ellipse Width="40"
+                                                 Height="40"
+                                                 x:Name="Ellipse"
+                                                 Fill="LimeGreen"
+                                                 Margin="2"
+                                                 VerticalAlignment="Center"
+                                                 HorizontalAlignment="Center"></Ellipse>
+                                        <TextBlock x:Name="NgTextBlock"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   Text="GO"
+                                                   FontSize="20"
+                                                   Foreground="White"
+                                                   Margin="2"></TextBlock>
+                                    </Grid>
+                                </DockPanel>
+                                <ItemsControl ItemsSource="{Binding CalculateResults}"
+                                              ItemTemplate="{DynamicResource CalculateResultDataTemplateNano}"
+                                              SnapsToDevicePixels="True"
+                                              TextElement.FontSize="16">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Orientation="Vertical"></WrapPanel>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                </ItemsControl>
+                            </DockPanel>
+                        </Border>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding IsNG2}"
+                                         Value="True">
+                                <Setter TargetName="Ellipse"
+                                        Property="Fill"
+                                        Value="Gold"></Setter>
+                                <Setter TargetName="NgTextBlock"
+                                        Property="Text"
+                                        Value="NG"></Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsOver20um}"
+                                         Value="True">
+                                <Setter TargetName="Ellipse"
+                                        Property="Fill"
+                                        Value="OrangeRed"></Setter>
+                                <Setter TargetName="NgTextBlock"
+                                        Property="Text"
+                                        Value="NG"></Setter>
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </DockPanel>
+        <Grid Background="Silver"
+              Margin="0,0,0,0"
+              Grid.ColumnSpan="2"
+              Grid.Column="3"
+              Grid.Row="1">
+            <UniformGrid Columns="3"
+                         VerticalAlignment="Bottom"
+                         HorizontalAlignment="Right">
+                <StackPanel>
+                    <Button Width="{DynamicResource {x:Static hdc:HdcLayout.ButtonSideLengthLargeKey}}"
+                            Height="{DynamicResource {x:Static hdc:HdcLayout.ButtonSideLengthLargeKey}}"
+                            Margin="{DynamicResource {x:Static hdc:HdcLayout.MarginLargeKey}}"
+                            Style="{DynamicResource EllipseButtonStyle}"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
+                            x:Name="SwitchToReportScreenFromMainScreenButton"
+                            Click="SwitchToReportScreenFromMainScreenButton_OnClick">
+                        <Border Background="{hdc:DrawingBrushExtension N024}"></Border>
+                    </Button>
+                    <TextBlock Text="报表"
+                               HorizontalAlignment="Center"></TextBlock>
+                </StackPanel>
+                <StackPanel>
+                    <Button Width="{DynamicResource {x:Static hdc:HdcLayout.ButtonSideLengthLargeKey}}"
+                            Height="{DynamicResource {x:Static hdc:HdcLayout.ButtonSideLengthLargeKey}}"
+                            Margin="{DynamicResource {x:Static hdc:HdcLayout.MarginLargeKey}}"
+                            Style="{DynamicResource EllipseButtonStyle}"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"    x:Name="SwitchToMaintainScreenFromMainScreenButton"
+                            Click="SwitchToMaintainScreenFromMainScreenButton_OnClick">
+                        <Border Background="{hdc:DrawingBrushExtension N009}"></Border>
+                    </Button>
+                    <TextBlock Text="配置"
+                               HorizontalAlignment="Center"></TextBlock>
+                </StackPanel>
+                <StackPanel>
+                    <Button Width="{DynamicResource {x:Static hdc:HdcLayout.ButtonSideLengthLargeKey}}"
+                            Height="{DynamicResource {x:Static hdc:HdcLayout.ButtonSideLengthLargeKey}}"
+                            Margin="{DynamicResource {x:Static hdc:HdcLayout.MarginLargeKey}}"
+                            Style="{DynamicResource EllipseButtonStyle}"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch">
+                        <Border Background="{hdc:DrawingBrushExtension N030}"></Border>
+                    </Button>
+                    <TextBlock Text="返回"
+                               HorizontalAlignment="Center"></TextBlock>
+                </StackPanel>
+            </UniformGrid>
+        </Grid>
+        <Grid x:Name = "WorkcountViewGrid"              
+              Visibility="{Binding Config.ShowWorkCountView}"
+              Background="Silver"
+              Margin="0,0,0,0"
+              Grid.ColumnSpan="1"
+              Grid.Column="3"
+              Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="5*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock HorizontalAlignment="Right" Grid.Column="0" Grid.Row="0"  FontSize="24" Margin="4" >总产数量：</TextBlock>
+                <TextBlock HorizontalAlignment="Right" Grid.Column="0" Grid.Row="1"  FontSize="24" Margin="4" >班产数量：</TextBlock>
+                <TextBlock HorizontalAlignment="Right" Grid.Column="0" Grid.Row="2"  FontSize="24" Margin="4" >OK数量：</TextBlock>
+                <TextBlock HorizontalAlignment="Right" Grid.Column="0" Grid.Row="3"  FontSize="24" Margin="4" >NG数量：</TextBlock>
+                <TextBlock HorizontalAlignment="Right" Grid.Column="0" Grid.Row="4"  FontSize="24" Margin="4" >良率：</TextBlock>
+                <TextBlock HorizontalAlignment="Right" Grid.Column="0" Grid.Row="5"  FontSize="24" Margin="4" >分类：</TextBlock>
+
+
+                <TextBlock HorizontalAlignment="Right" Grid.Column="1" Grid.Row="0"  FontSize="24" Margin="4" Text="{Binding Path=TotalCount}" />
+                <TextBlock HorizontalAlignment="Right" Grid.Column="1" Grid.Row="1"  FontSize="24" Margin="4" Text="{Binding Path=JobCount}" />
+                <TextBlock HorizontalAlignment="Right" Grid.Column="1" Grid.Row="2"  FontSize="24" Margin="4" Text="{Binding Path=IsOkCount}" />
+                <TextBlock HorizontalAlignment="Right" Grid.Column="1" Grid.Row="3"  FontSize="24" Margin="4" Text="{Binding Path=IsNgCount}" />
+                <TextBlock HorizontalAlignment="Right" Grid.Column="1" Grid.Row="4"  FontSize="24" Margin="4" Text="{Binding Path=OkPrecent}" />
+                <TextBlock HorizontalAlignment="Right" Grid.Column="1" Grid.Row="5"  FontSize="24" Margin="4" Text="{Binding Path=Classfy}" />
+                
+                <StackPanel Grid.Column="2" Grid.Row="0" Grid.RowSpan="2">
+                    <Button Height="28"
+                            Margin="{DynamicResource {x:Static hdc:HdcLayout.MarginLargeKey}}"
+                            Style="{DynamicResource EllipseButtonStyle}"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
+                            x:Name="ResetTotalCountButton"
+                            Click="ResetTotalCountButton_OnClick">
+                        <Border Background="{hdc:DrawingBrushExtension N022}"></Border>
+                    </Button>
+                    <TextBlock Text="重置总产" FontSize="14"
+                               HorizontalAlignment="Center"></TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Grid.Row="2" Grid.RowSpan="2">
+                    <Button Height="28"
+                            Margin="{DynamicResource {x:Static hdc:HdcLayout.MarginLargeKey}}"
+                            Style="{DynamicResource EllipseButtonStyle}"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
+                            x:Name="ResetJobCountButton"
+                            Click="ResetJobCountButton_OnClick"
+                            >
+                        <Border Background="{hdc:DrawingBrushExtension N029}"></Border>
+                    </Button>
+                    <TextBlock Text="重置班产" FontSize="14"
+                               HorizontalAlignment="Center"></TextBlock>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

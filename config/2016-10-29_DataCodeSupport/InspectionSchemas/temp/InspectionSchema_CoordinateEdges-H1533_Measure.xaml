@@ -1,0 +1,259 @@
+﻿<InspectionSchema xmlns="http://schemas.hdcrd.com/mv"
+                  Disabled="false">
+	<InspectionSchema.CoordinateEdges>
+		
+		
+		
+		<EdgeSearchingDefinition Name="T1"
+								 StartX="2635"
+								 StartY="520"
+								 EndX="1635"
+								 EndY="520"
+								 ROIWidth="400"
+								 Domain_SaveCacheImageEnabled="false"
+								 ImageFilter_SaveCacheImageEnabled="false"
+								 >
+			
+			<EdgeSearchingDefinition.ImageFilter>
+				<CompositeFilter>
+					<GrayClosingRectFilter MaskWidth="101" MaskHeight="1"/>
+				</CompositeFilter>
+			</EdgeSearchingDefinition.ImageFilter>
+			<EdgeSearchingDefinition.LineExtractor>
+				<RakeLineExtractor Name=""
+								   SaveCacheImageEnabled="false"
+								   RegionsCount="40"
+								   RegionHeight="500"
+								   RegionWidth="10"
+								   Sigma="1"
+								   Threshold="15"
+								   SelectionMode="First"
+								   Transition="Negative"
+								   />
+			</EdgeSearchingDefinition.LineExtractor>
+			
+		</EdgeSearchingDefinition>
+		
+		
+		<EdgeSearchingDefinition Name="B1"
+								 StartX="1635"
+								 StartY="11505"
+								 EndX="2635"
+								 EndY="11505"
+								 ROIWidth="400"
+								 Domain_SaveCacheImageEnabled="false"
+								 ImageFilter_SaveCacheImageEnabled="false"
+								 >
+			
+			<EdgeSearchingDefinition.ImageFilter>
+				<CompositeFilter>
+					<GrayClosingRectFilter MaskWidth="51" MaskHeight="1"/>
+				</CompositeFilter>
+			</EdgeSearchingDefinition.ImageFilter>
+			<EdgeSearchingDefinition.LineExtractor>
+				<RakeLineExtractor Name=""
+								   SaveCacheImageEnabled="false"
+								   RegionsCount="40"
+								   RegionHeight="500"
+								   RegionWidth="10"
+								   Sigma="1"
+								   Threshold="15"
+								   SelectionMode="First"
+								   Transition="Negative"
+								   />
+			</EdgeSearchingDefinition.LineExtractor>
+			
+		</EdgeSearchingDefinition>
+		
+		
+		<EdgeSearchingDefinition Name="T2"
+								 StartX="4660"
+								 StartY="520"
+								 EndX="3700"
+								 EndY="520"
+								 ROIWidth="400"
+								 Domain_SaveCacheImageEnabled="false"
+								 ImageFilter_SaveCacheImageEnabled="false"
+								 >
+			
+			<EdgeSearchingDefinition.ImageFilter>
+				<CompositeFilter>
+					<GrayClosingRectFilter MaskWidth="101" MaskHeight="1"/>
+				</CompositeFilter>
+			</EdgeSearchingDefinition.ImageFilter>
+			<EdgeSearchingDefinition.LineExtractor>
+				<RakeLineExtractor Name=""
+								   SaveCacheImageEnabled="false"
+								   RegionsCount="50"
+								   RegionHeight="500"
+								   RegionWidth="10"
+								   Sigma="1"
+								   Threshold="15"
+								   SelectionMode="First"
+								   Transition="Negative"
+								   />
+			</EdgeSearchingDefinition.LineExtractor>
+			
+		</EdgeSearchingDefinition>
+		
+		
+		<EdgeSearchingDefinition Name="B2"
+								 StartX="3700"
+								 StartY="11505"
+								 EndX="4660"
+								 EndY="11505"
+								 ROIWidth="400"
+								 Domain_SaveCacheImageEnabled="false"
+								 ImageFilter_SaveCacheImageEnabled="false"
+								 >
+			
+			<EdgeSearchingDefinition.ImageFilter>
+				<CompositeFilter>
+					<GrayClosingRectFilter MaskWidth="51" MaskHeight="1"/>
+				</CompositeFilter>
+			</EdgeSearchingDefinition.ImageFilter>
+			<EdgeSearchingDefinition.LineExtractor>
+				<RakeLineExtractor Name=""
+								   SaveCacheImageEnabled="false"
+								   RegionsCount="50"
+								   RegionHeight="500"
+								   RegionWidth="10"
+								   Sigma="1"
+								   Threshold="15"
+								   SelectionMode="First"
+								   Transition="Negative"
+								   />
+			</EdgeSearchingDefinition.LineExtractor>
+			
+		</EdgeSearchingDefinition>
+		
+		
+		<EdgeSearchingDefinition Name="L1"
+								 StartX="525"
+								 StartY="4100"
+								 EndX="525"
+								 EndY="5600"
+								 ROIWidth="320"
+								 Domain_SaveCacheImageEnabled="false"
+								 ImageFilter_SaveCacheImageEnabled="false"
+								 >
+			
+			<EdgeSearchingDefinition.ImageFilter>
+				<CompositeFilter>
+					<GrayClosingRectFilter MaskWidth="1" MaskHeight="201"/>
+				</CompositeFilter>
+			</EdgeSearchingDefinition.ImageFilter>
+			<EdgeSearchingDefinition.LineExtractor>
+				<RakeLineExtractor Name=""
+								   SaveCacheImageEnabled="false"
+								   RegionsCount="50"
+								   RegionHeight="640"
+								   RegionWidth="20"
+								   Sigma="1"
+								   Threshold="25"
+								   SelectionMode="First"
+								   Transition="Positive"
+								   />
+			</EdgeSearchingDefinition.LineExtractor>
+			
+		</EdgeSearchingDefinition>
+		
+		
+		<EdgeSearchingDefinition Name="R1"
+								 StartX="5755"
+								 StartY="5600"
+								 EndX="5755"
+								 EndY="4100"
+								 ROIWidth="320"
+								 Domain_SaveCacheImageEnabled="false"
+								 ImageFilter_SaveCacheImageEnabled="false"
+								 >
+			
+			<EdgeSearchingDefinition.ImageFilter>
+				<CompositeFilter>
+					<GrayClosingRectFilter MaskWidth="1" MaskHeight="201"/>
+				</CompositeFilter>
+			</EdgeSearchingDefinition.ImageFilter>
+			<EdgeSearchingDefinition.LineExtractor>
+				<RakeLineExtractor Name=""
+								   SaveCacheImageEnabled="false"
+								   RegionsCount="50"
+								   RegionHeight="640"
+								   RegionWidth="20"
+								   Sigma="1"
+								   Threshold="25"
+								   SelectionMode="First"
+								   Transition="Positive"
+								   />
+			</EdgeSearchingDefinition.LineExtractor>
+			
+		</EdgeSearchingDefinition>
+		
+		
+		<EdgeSearchingDefinition Name="L2"
+								 StartX="525"
+								 StartY="7100"
+								 EndX="525"
+								 EndY="9100"
+								 ROIWidth="320"
+								 Domain_SaveCacheImageEnabled="false"
+								 ImageFilter_SaveCacheImageEnabled="false"
+								 >
+			
+			<EdgeSearchingDefinition.ImageFilter>
+				<CompositeFilter>
+					<GrayClosingRectFilter MaskWidth="1" MaskHeight="201"/>
+				</CompositeFilter>
+			</EdgeSearchingDefinition.ImageFilter>
+			<EdgeSearchingDefinition.LineExtractor>
+				<RakeLineExtractor Name=""
+								   SaveCacheImageEnabled="false"
+								   RegionsCount="100"
+								   RegionHeight="640"
+								   RegionWidth="20"
+								   Sigma="1"
+								   Threshold="25"
+								   SelectionMode="First"
+								   Transition="Positive"
+								   />
+			</EdgeSearchingDefinition.LineExtractor>
+			
+		</EdgeSearchingDefinition>
+		
+		
+		<EdgeSearchingDefinition Name="R2"
+								 StartX="5755"
+								 StartY="9100"
+								 EndX="5755"
+								 EndY="7100"
+								 ROIWidth="320"
+								 Domain_SaveCacheImageEnabled="false"
+								 ImageFilter_SaveCacheImageEnabled="false"
+								 >
+			
+			<EdgeSearchingDefinition.ImageFilter>
+				<CompositeFilter>
+					<GrayClosingRectFilter MaskWidth="1" MaskHeight="201"/>
+				</CompositeFilter>
+			</EdgeSearchingDefinition.ImageFilter>
+			<EdgeSearchingDefinition.LineExtractor>
+				<RakeLineExtractor Name=""
+								   SaveCacheImageEnabled="false"
+								   RegionsCount="100"
+								   RegionHeight="640"
+								   RegionWidth="20"
+								   Sigma="1"
+								   Threshold="25"
+								   SelectionMode="First"
+								   Transition="Positive"
+								   />
+			</EdgeSearchingDefinition.LineExtractor>
+			
+		</EdgeSearchingDefinition>
+		
+		
+		
+	</InspectionSchema.CoordinateEdges>
+	
+	
+</InspectionSchema>

@@ -1,0 +1,66 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                         xmlns:hdc="http://schemas.hdcrd.com/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ParameterEntriesGroupStyle.xaml"></ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+    <DataTemplate x:Key="AlarmParameterEntryDataTemplate">
+        <Border BorderBrush="Gray"
+                BorderThickness="0,0,0,2">
+            <DockPanel TextElement.FontSize="{DynamicResource {x:Static hdc:HdcFonts.FontSizeMediumKey}}"
+                       Margin="8,0">
+                <Border Width="{DynamicResource {x:Static hdc:HdcLayout.ButtonSideLengthSmallM1Key}}"
+                        Height="{DynamicResource {x:Static hdc:HdcLayout.ButtonSideLengthSmallM1Key}}"
+                        Margin="8,0"
+                        Padding="2"
+                        VerticalAlignment="Center"
+                        DockPanel.Dock="Left">
+                    <Ellipse x:Name="AlarmIcon"
+                             Fill="DarkGray"
+                             Stroke="Gray"
+                             StrokeThickness="2"></Ellipse>
+                </Border>
+                <Border Height="{DynamicResource {x:Static hdc:HdcLayout.ButtonSideLengthSmallM1Key}}"
+                        Padding="{DynamicResource {x:Static hdc:HdcLayout.MarginKey}}"
+                        Width="400"
+                        DockPanel.Dock="Left"
+                        BorderBrush="Gray"
+                        BorderThickness="2,0,0,0"
+                        Margin="8,0">
+                    <TextBlock Text="{Binding Description}"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               TextWrapping="Wrap">
+                    </TextBlock>
+                </Border>
+                <!--                <Border Height="{DynamicResource {x:Static hdc:HdcLayout.ButtonSideLengthSmallM2Key}}"-->
+                <!--                        Padding="{DynamicResource {x:Static hdc:HdcLayout.MarginKey}}"-->
+                <!--                        BorderBrush="Gray"-->
+                <!--                        BorderThickness="2,0,0,0"-->
+                <!--                        Margin="8,0">-->
+                <!--                    <TextBlock Text="{Binding Comment}"-->
+                <!--                               VerticalAlignment="Center"-->
+                <!--                               HorizontalAlignment="Left"-->
+                <!--                               TextWrapping="Wrap">-->
+                <!--                    </TextBlock>-->
+                <!--                </Border>-->
+
+            </DockPanel>
+
+        </Border>
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding Value}"
+                         Value="0">
+                <Setter TargetName="AlarmIcon"
+                        Property="Fill"
+                        Value="DarkGray"></Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Value}"
+                         Value="1">
+                <Setter TargetName="AlarmIcon"
+                        Property="Fill"
+                        Value="Red"></Setter>
+            </DataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+</ResourceDictionary>

@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{377D4571-0138-495B-95E2-A613E01DDED7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Hdc.Measuring.QueueScheduling</RootNamespace>
+    <AssemblyName>Hdc.Measuring.QueueScheduling</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EasyNetQ, Version=0.59.0.434, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\EasyNetQ.0.59.0.434\lib\net45\EasyNetQ.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RabbitMQ.Client, Version=3.6.2.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\RabbitMQ.Client.3.6.2\lib\net45\RabbitMQ.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Windows.Threading, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\sln\packages\Rx-XAML.2.2.5\lib\net45\System.Reactive.Windows.Threading.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FilterWorkpieceInPositionMqEventController.cs" />
+    <Compile Include="MultipleQueue\MultipleQueueSchedulingInitializer.cs" />
+    <Compile Include="MultipleQueue\SynchronizeStationCompletedCommandController.cs" />
+    <Compile Include="MultipleQueue\SynchronizeStationCompletedEventController.cs" />
+    <Compile Include="MultipleQueue\SynchronizeSensorInPositonCommandController.cs" />
+    <Compile Include="MultipleQueue\StationWorkInPieceInfo.cs" />
+    <Compile Include="MultipleQueue\SynchronizeWorkpieceInPositionCommandController.cs" />
+    <Compile Include="MultipleQueue\WriteOpcStationResultProcessor.cs" />
+    <Compile Include="QueueSchedulingInitializer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueueSchedulingSensorInPositionEventController.cs" />
+    <Compile Include="QueueSchedulingSensorInPositonCommandController.cs" />
+    <Compile Include="QueueSchedulingStationCompletedCommandController.cs" />
+    <Compile Include="QueueSchedulingStationCompletedEventController.cs" />
+    <Compile Include="QueueSchedulingWorkpieceInPositionCommandController.cs" />
+    <Compile Include="QueueTaskSchema.cs" />
+    <Compile Include="QueueTaskSchemas.cs" />
+    <Compile Include="MultipleQueue\SynchronizeSensorInPositionEventController.cs" />
+    <Compile Include="MultipleQueue\SynchronizeWorkpieceInPositionMqEventController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hdc.Measuring.EasyNetQ\Hdc.Measuring.EasyNetQ.csproj">
+      <Project>{fe0a7396-a691-42ac-9532-2b00b4ed9657}</Project>
+      <Name>Hdc.Measuring.EasyNetQ</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Hdc.Measuring.Opc\Hdc.Measuring.Opc.csproj">
+      <Project>{1adf139e-6f4a-4543-8b23-5807b0babc31}</Project>
+      <Name>Hdc.Measuring.Opc</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Hdc.Measuring\Hdc.Measuring.csproj">
+      <Project>{42e6ec06-576c-4d5d-b05c-c15d6dbfe716}</Project>
+      <Name>Hdc.Measuring</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Hdc.Mercury.Communication.OPC.Xi\Hdc.Mercury.Communication.OPC.Xi.csproj">
+      <Project>{d93ee329-68d8-48fe-873e-e632b12d5b03}</Project>
+      <Name>Hdc.Mercury.Communication.OPC.Xi</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Hdc.Mercury\Hdc.Mercury.csproj">
+      <Project>{d72f14a9-4848-4405-aa6e-99ebf8213609}</Project>
+      <Name>Hdc.Mercury</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hdc.Toolkit\Hdc.Toolkit.csproj">
+      <Project>{2aeabe20-5e8f-4310-a228-66bd3d434683}</Project>
+      <Name>Hdc.Toolkit</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Vins.ML.Toolkit\Vins.ML.Toolkit.csproj">
+      <Project>{4a2116e5-103d-4c41-98eb-ad84cf34d482}</Project>
+      <Name>Vins.ML.Toolkit</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

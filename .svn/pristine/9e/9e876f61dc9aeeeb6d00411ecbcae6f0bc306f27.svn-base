@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hdevelop file_version="1.1" halcon_version="12.0.1">
+<procedure name="scale_image_range">
+<interface>
+<io>
+<par name="Image" base_type="iconic" dimension="0"/>
+</io>
+<oo>
+<par name="ImageScaled" base_type="iconic" dimension="0"/>
+</oo>
+<ic>
+<par name="Min" base_type="ctrl" dimension="0"/>
+<par name="Max" base_type="ctrl" dimension="0"/>
+</ic>
+</interface>
+<body>
+<c>* Convenience procedure to scale the gray values of the</c>
+<c>* input image Image from the interval [Min,Max]</c>
+<c>* to the interval [0,255] (default).</c>
+<c>* Gray values &lt; 0 or &gt; 255 (after scaling) are clipped.</c>
+<c>* </c>
+<c>* If the image shall be scaled to an interval different from [0,255],</c>
+<c>* this can be achieved by passing tuples with 2 values [From, To]</c>
+<c>* as Min and Max.</c>
+<c>* Example:</c>
+<c>* scale_image_range(Image:ImageScaled:[100,50],[200,250])</c>
+<c>* maps the gray values of Image from the interval [100,200] to [50,250].</c>
+<c>* All other gray values will be clipped.</c>
+<c>* </c>
+<c>* input parameters:</c>
+<c>* Image: the input image</c>
+<c>* Min: the minimum gray value which will be mapped to 0</c>
+<c>*      If a tuple with two values is given, the first value will</c>
+<c>*      be mapped to the second value.</c>
+<c>* Max: The maximum gray value which will be mapped to 255</c>
+<c>*      If a tuple with two values is given, the first value will</c>
+<c>*      be mapped to the second value.</c>
+<c>* </c>
+<c>* output parameter:</c>
+<c>* ImageScale: the resulting scaled image</c>
+<c>* </c>
+<l>if (|Min| == 2)</l>
+<l>    LowerLimit := Min[1]</l>
+<l>    Min := Min[0]</l>
+<l>else</l>
+<l>    LowerLimit := 0.0</l>
+<l>endif</l>
+<l>if (|Max| == 2)</l>
+<l>    UpperLimit := Max[1]</l>
+<l>    Max := Max[0]</l>
+<l>else</l>
+<l>    UpperLimit := 255.0</l>
+<l>endif</l>
+<c>* </c>
+<c>* Calculate scaling parameters</c>
+<l>Mult := real(UpperLimit - LowerLimit) / (Max - Min)</l>
+<l>Add := -Mult * Min + LowerLimit</l>
+<c>* </c>
+<c>* Scale image</c>
+<l>scale_image (Image, Image, Mult, Add)</l>
+<c>* </c>
+<c>* Clip gray values if necessary</c>
+<c>* This must be done for each channel separately</c>
+<l>count_channels (Image, Channels)</l>
+<l>for Index := 1 to Channels by 1</l>
+<l>    access_channel (Image, SelectedChannel, Index)</l>
+<l>    min_max_gray (SelectedChannel, SelectedChannel, 0, MinGray, MaxGray, Range)</l>
+<l>    threshold (SelectedChannel, LowerRegion, min([MinGray,LowerLimit]), LowerLimit)</l>
+<l>    threshold (SelectedChannel, UpperRegion, UpperLimit, max([UpperLimit,MaxGray]))</l>
+<l>    paint_region (LowerRegion, SelectedChannel, SelectedChannel, LowerLimit, 'fill')</l>
+<l>    paint_region (UpperRegion, SelectedChannel, SelectedChannel, UpperLimit, 'fill')</l>
+<l>    if (Index == 1)</l>
+<l>        copy_obj (SelectedChannel, ImageScaled, 1, 1)</l>
+<l>    else</l>
+<l>        append_channel (ImageScaled, SelectedChannel, ImageScaled)</l>
+<l>    endif</l>
+<l>endfor</l>
+<l>return ()</l>
+</body>
+<docu id="scale_image_range">
+<abstract lang="en_US">Convenience procedure to scale the gray values of the input image Image from the interval [Min,Max] to the interval [0,255] (default).
+Gray values &lt; 0 or &gt; 255 (after scaling) are clipped.
+If the image shall be scaled to an interval different from [0,255], this can be achieved by passing tuples with 2 values [From, To] as Min and Max.
+Example:
+scale_image_range (Image, ImageScaled, [100,50], [200,250])
+maps the gray values of Image from the interval [100,200] to [50,250].
+All other gray values will be clipped.
+</abstract>
+<alternatives>
+<item>scale_image</item>
+<item>scale_image_max</item>
+</alternatives>
+<chapters>
+<item>Filters</item>
+<item>Arithmetic</item>
+</chapters>
+<chapters lang="de_DE">
+<item>Filter</item>
+<item>Arithmetik</item>
+</chapters>
+<chapters lang="en_US">
+<item>Filters</item>
+<item>Arithmetic</item>
+</chapters>
+<example lang="en_US">read_image (Image, 'fabrik')
+scale_image_range (Image, ImageScaled, [100,50], [200,250])</example>
+<keywords lang="de_DE">
+<item>Grauwerte skalieren</item>
+</keywords>
+<keywords lang="en_US">
+<item>scale gray values</item>
+</keywords>
+<library lang="de_DE">MVTec Standard Procedures</library>
+<library lang="en_US">MVTec Standard Procedures</library>
+<see_also>
+<item>scale_image</item>
+<item>scale_image_max</item>
+</see_also>
+<short>Scale the gray values of an image from the interval [Min,Max] to [0,255]</short>
+<short lang="de_DE">Scale the gray values of an image from the interval [Min,Max] to [0,255]</short>
+<short lang="en_US">Scale the gray values of an image from the interval [Min,Max] to [0,255]</short>
+<parameters>
+<parameter id="Image">
+<description lang="en_US">The input image to be scaled</description>
+<multichannel>optional</multichannel>
+<multivalue>optional</multivalue>
+<sem_type>image</sem_type>
+<type_list>
+<item>byte</item>
+<item>int1</item>
+<item>int2</item>
+<item>uint2</item>
+<item>int4</item>
+<item>int8</item>
+<item>real</item>
+<item>cyclic</item>
+<item>direction</item>
+<item>complex</item>
+</type_list>
+</parameter>
+<parameter id="ImageScaled">
+<description lang="en_US">The scaled output image</description>
+<multichannel>optional</multichannel>
+<multivalue>optional</multivalue>
+<sem_type>image</sem_type>
+<type_list>
+<item>byte</item>
+<item>int1</item>
+<item>int2</item>
+<item>uint2</item>
+<item>int4</item>
+<item>int8</item>
+<item>real</item>
+<item>cyclic</item>
+<item>direction</item>
+<item>complex</item>
+</type_list>
+</parameter>
+<parameter id="Max">
+<default_type>integer</default_type>
+<default_value>200</default_value>
+<description lang="en_US">The maximum gray value which will be mapped to 255. If a tuple with two values is given, the first value will be mapped to the second value.</description>
+<mixed_type>optional</mixed_type>
+<multivalue>optional</multivalue>
+<sem_type>number</sem_type>
+<type_list>
+<item>integer</item>
+<item>real</item>
+</type_list>
+</parameter>
+<parameter id="Min">
+<default_type>integer</default_type>
+<default_value>100</default_value>
+<description lang="en_US">The minimum gray value which will be mapped to 0. If a tuple with two values is given, the first value will be mapped to the second value.</description>
+<mixed_type>optional</mixed_type>
+<multivalue>true</multivalue>
+<sem_type>number</sem_type>
+<type_list>
+<item>integer</item>
+<item>real</item>
+</type_list>
+</parameter>
+</parameters>
+</docu>
+</procedure>
+</hdevelop>

@@ -1,0 +1,21 @@
+﻿using System;
+
+namespace Hdc.Mv.Inspection.Halcon.BatchInspector
+{
+    public class BatchInspectorConfig
+    {
+        public DirectoryViewModelCollection Directories { get; set; }
+
+        [Obsolete]
+        public string InspectionSchemaFileName { get; set; }
+
+        public string InspectionSchemaDirName { get; set; }
+
+        public string InspectionReportFileName { get; set; }
+
+        public BatchInspectorConfig()
+        {
+            Directories = new DirectoryViewModelCollection();
+        }
+    }
+}

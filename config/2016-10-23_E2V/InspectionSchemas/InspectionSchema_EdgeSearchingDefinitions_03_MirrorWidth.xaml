@@ -1,0 +1,157 @@
+﻿<InspectionSchema xmlns="http://schemas.hdcrd.com/mv"
+                  Disabled="false">
+	<InspectionSchema.EdgeSearchingDefinitions>
+		
+		
+		
+		<EdgeSearchingDefinition Name="IL1"
+								 StartX="0"
+								 StartY="0"
+								 EndX="0"
+								 EndY="0"
+								 ROIWidth="50"
+								 Domain_SaveCacheImageEnabled="false"
+								 RegionExtractor_SaveCacheImageEnabled="false"
+								 ImageFilter_Disabled="false"
+								 ImageFilter_SaveCacheImageEnabled="false"
+								 CropDomainEnabled="true"
+								 >
+			
+			<EdgeSearchingDefinition.RelativeLine>
+				<Line X1="-2525"
+				      Y1="-4820"
+				      X2="-2525"
+				      Y2="-4960" />
+			</EdgeSearchingDefinition.RelativeLine>
+      		
+			<EdgeSearchingDefinition.ImageFilter>
+				<CompositeFilter>
+					<!--<AnisotropicDiffusionImageFilter Mode="Weickert"/>-->
+					<MeanFilter MaskWidth="1" MaskHeight="21"/>
+					<RegionToBinFilter>
+						<RegionToBinFilter.RegionExtractor>
+							<StructuredRegionExtractor>
+								<StructuredRegionExtractor.RegionExtractor>
+									<DynThresholdCroppedRegionExtractor Offset="7" LightDark="Dark">
+										<MeanFilter MaskWidth="10" MaskHeight="1"/>
+									</DynThresholdCroppedRegionExtractor>
+								</StructuredRegionExtractor.RegionExtractor>
+								<StructuredRegionExtractor.RegionProcessor>
+									<CompositeRegionProcessor>
+										<ClosingCircleRegionProcessor Radius="2.5"/>
+										<ConnectionRegionProcessor/>
+										<SelectShapeRegionProcessor Operation="And">
+											<SelectShapeEntry Feature="Height" Min="100" Max="9999"/>
+										</SelectShapeRegionProcessor>
+										<SkeletonRegionProcessor/>
+									</CompositeRegionProcessor>
+								</StructuredRegionExtractor.RegionProcessor>
+							</StructuredRegionExtractor>
+						</RegionToBinFilter.RegionExtractor>
+					</RegionToBinFilter>
+				</CompositeFilter>
+			</EdgeSearchingDefinition.ImageFilter>
+			
+			<EdgeSearchingDefinition.LineExtractor>
+				<RakeLineExtractor Name=""
+				                   SaveCacheImageEnabled="false"
+				                   RegionsCount="10"
+				                   RegionHeight="60"
+				                   RegionWidth="10"
+				                   Sigma="1"
+				                   Threshold="15"
+				                   SelectionMode="First"
+				                   Transition="Positive"
+				                   />
+			</EdgeSearchingDefinition.LineExtractor>
+			
+		</EdgeSearchingDefinition>
+		
+		
+		<EdgeSearchingDefinition Name="IR1"
+								 StartX="0"
+								 StartY="0"
+								 EndX="0"
+								 EndY="0"
+								 ROIWidth="50"
+								 Domain_SaveCacheImageEnabled="false"
+								 RegionExtractor_SaveCacheImageEnabled="false"
+								 ImageFilter_Disabled="false"
+								 ImageFilter_SaveCacheImageEnabled="false"
+								 CropDomainEnabled="true"
+								 >
+			
+			<EdgeSearchingDefinition.RelativeLine>
+				<Line X1="2545"
+				      Y1="-4960"
+				      X2="2545"
+				      Y2="-4820" />
+			</EdgeSearchingDefinition.RelativeLine>
+      		
+			<EdgeSearchingDefinition.ImageFilter>
+				<CompositeFilter>
+					<!--<AnisotropicDiffusionImageFilter Mode="Weickert"/>-->
+					<MeanFilter MaskWidth="1" MaskHeight="21"/>
+					<RegionToBinFilter>
+						<RegionToBinFilter.RegionExtractor>
+							<StructuredRegionExtractor>
+								<StructuredRegionExtractor.RegionExtractor>
+									<DynThresholdCroppedRegionExtractor Offset="7" LightDark="Dark">
+										<MeanFilter MaskWidth="10" MaskHeight="1"/>
+									</DynThresholdCroppedRegionExtractor>
+								</StructuredRegionExtractor.RegionExtractor>
+								<StructuredRegionExtractor.RegionProcessor>
+									<CompositeRegionProcessor>
+										<ClosingCircleRegionProcessor Radius="2.5"/>
+										<ConnectionRegionProcessor/>
+										<SelectShapeRegionProcessor Operation="And">
+											<SelectShapeEntry Feature="Height" Min="100" Max="9999"/>
+										</SelectShapeRegionProcessor>
+										<SkeletonRegionProcessor/>
+									</CompositeRegionProcessor>
+								</StructuredRegionExtractor.RegionProcessor>
+							</StructuredRegionExtractor>
+						</RegionToBinFilter.RegionExtractor>
+					</RegionToBinFilter>
+				</CompositeFilter>
+			</EdgeSearchingDefinition.ImageFilter>
+			
+			<EdgeSearchingDefinition.LineExtractor>
+				<RakeLineExtractor Name=""
+				                   SaveCacheImageEnabled="false"
+				                   RegionsCount="10"
+				                   RegionHeight="60"
+				                   RegionWidth="10"
+				                   Sigma="1"
+				                   Threshold="15"
+				                   SelectionMode="First"
+				                   Transition="Negative"
+				                   />
+			</EdgeSearchingDefinition.LineExtractor>
+			
+		</EdgeSearchingDefinition>
+		
+		
+		
+	</InspectionSchema.EdgeSearchingDefinitions>
+
+
+
+	<InspectionSchema.DistanceBetweenIntersectionPointsDefinitions>
+		
+    	
+    	<DistanceBetweenLinesDefinition Name="InnerLeftRight-Distance-01"
+		                                DisplayName="贴片槽长度"
+		                                GroupName="贴片槽长度"
+		                                Comment=""
+		                                
+		                                Line1Name="IL1"
+		                                Line2Name="IR1"
+		                                ExpectValue="66.95"
+		                                PositiveTolerance="0.04"
+		                                NegativeTolerance="-0.02"/>
+    	
+    	
+	</InspectionSchema.DistanceBetweenIntersectionPointsDefinitions>
+
+</InspectionSchema>

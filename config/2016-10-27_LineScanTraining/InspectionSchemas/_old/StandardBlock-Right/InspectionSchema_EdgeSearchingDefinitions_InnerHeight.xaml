@@ -1,0 +1,212 @@
+﻿<InspectionSchema xmlns="http://schemas.hdcrd.com/mv"
+                  Disabled="false">
+	<InspectionSchema.EdgeSearchingDefinitions>
+		
+		
+		
+		<EdgeSearchingDefinition Name="IT1"
+								 StartX="0"
+								 StartY="0"
+								 EndX="0"
+								 EndY="0"
+								 ROIWidth="146"
+								 Domain_SaveCacheImageEnabled="false"
+								 RegionExtractor_SaveCacheImageEnabled="false"
+								 ImageFilter_Disabled="false"
+								 ImageFilter_SaveCacheImageEnabled="false"
+								 CropDomainEnabled="true"
+								 >
+			
+			<EdgeSearchingDefinition.RelativeLine>
+				<Line X1="50"
+				      Y1="-6267"
+				      X2="-50"
+				      Y2="-6267" />
+			</EdgeSearchingDefinition.RelativeLine>
+      		
+			<EdgeSearchingDefinition.ImageFilter>
+				<CompositeFilter>
+					<AnisotropicDiffusionImageFilter Mode="PeronaMalik" Contrast="5" Theta="1" Iterations="10"/>
+					<GrayClosingRectFilter MaskWidth="51" MaskHeight="1"/>
+				</CompositeFilter>
+			</EdgeSearchingDefinition.ImageFilter>
+			
+			<EdgeSearchingDefinition.LineExtractor>
+				<RakeLineExtractor Name=""
+				                   SaveCacheImageEnabled="false"
+				                   RegionsCount="10"
+				                   RegionHeight="120"
+				                   RegionWidth="10"
+				                   Sigma="1"
+				                   Threshold="20"
+				                   SelectionMode="First"
+				                   Transition="Negative"
+				                   />
+			</EdgeSearchingDefinition.LineExtractor>
+			
+		</EdgeSearchingDefinition>
+		
+		
+		<EdgeSearchingDefinition Name="IB1"
+								 StartX="0"
+								 StartY="0"
+								 EndX="0"
+								 EndY="0"
+								 ROIWidth="146"
+								 Domain_SaveCacheImageEnabled="false"
+								 RegionExtractor_SaveCacheImageEnabled="false"
+								 ImageFilter_Disabled="false"
+								 ImageFilter_SaveCacheImageEnabled="false"
+								 CropDomainEnabled="true"
+								 >
+			
+			<EdgeSearchingDefinition.RelativeLine>
+				<Line X1="-50"
+				      Y1="6267"
+				      X2="50"
+				      Y2="6267" />
+			</EdgeSearchingDefinition.RelativeLine>
+      		
+			<EdgeSearchingDefinition.ImageFilter>
+				<CompositeFilter>
+					<AnisotropicDiffusionImageFilter Mode="PeronaMalik" Contrast="5" Theta="1" Iterations="10"/>
+					<GrayClosingRectFilter MaskWidth="51" MaskHeight="1"/>
+				</CompositeFilter>
+			</EdgeSearchingDefinition.ImageFilter>
+			
+			<EdgeSearchingDefinition.LineExtractor>
+				<RakeLineExtractor Name=""
+				                   SaveCacheImageEnabled="false"
+				                   RegionsCount="10"
+				                   RegionHeight="120"
+				                   RegionWidth="10"
+				                   Sigma="1"
+				                   Threshold="20"
+				                   SelectionMode="First"
+				                   Transition="Negative"
+				                   />
+			</EdgeSearchingDefinition.LineExtractor>
+			
+		</EdgeSearchingDefinition>
+		
+		<!--
+		<EdgeSearchingDefinition Name="IT2"
+								 StartX="0"
+								 StartY="0"
+								 EndX="0"
+								 EndY="0"
+								 ROIWidth="146"
+								 Domain_SaveCacheImageEnabled="false"
+								 RegionExtractor_SaveCacheImageEnabled="false"
+								 ImageFilter_Disabled="false"
+								 ImageFilter_SaveCacheImageEnabled="false"
+								 CropDomainEnabled="true"
+								 >
+			
+			<EdgeSearchingDefinition.RelativeLine>
+				<Line X1="2239"
+				      Y1="-5965"
+				      X2="1939"
+				      Y2="-5965" />
+			</EdgeSearchingDefinition.RelativeLine>
+      		
+			<EdgeSearchingDefinition.ImageFilter>
+				<CompositeFilter>
+					<AnisotropicDiffusionImageFilter Mode="PeronaMalik" Contrast="5" Theta="1" Iterations="10"/>
+					<GrayClosingRectFilter MaskWidth="51" MaskHeight="1"/>
+				</CompositeFilter>
+			</EdgeSearchingDefinition.ImageFilter>
+			
+			<EdgeSearchingDefinition.LineExtractor>
+				<RakeLineExtractor Name=""
+				                   SaveCacheImageEnabled="false"
+				                   RegionsCount="10"
+				                   RegionHeight="120"
+				                   RegionWidth="10"
+				                   Sigma="1"
+				                   Threshold="30"
+				                   SelectionMode="First"
+				                   Transition="Negative"
+				                   />
+			</EdgeSearchingDefinition.LineExtractor>
+			
+		</EdgeSearchingDefinition>
+		
+		
+		<EdgeSearchingDefinition Name="IB2"
+								 StartX="0"
+								 StartY="0"
+								 EndX="0"
+								 EndY="0"
+								 ROIWidth="146"
+								 Domain_SaveCacheImageEnabled="false"
+								 RegionExtractor_SaveCacheImageEnabled="false"
+								 ImageFilter_Disabled="false"
+								 ImageFilter_SaveCacheImageEnabled="false"
+								 CropDomainEnabled="true"
+								 >
+			
+			<EdgeSearchingDefinition.RelativeLine>
+				<Line X1="1939"
+				      Y1="5965"
+				      X2="2239"
+				      Y2="5965" />
+			</EdgeSearchingDefinition.RelativeLine>
+      		
+			<EdgeSearchingDefinition.ImageFilter>
+				<CompositeFilter>
+					<AnisotropicDiffusionImageFilter Mode="PeronaMalik" Contrast="5" Theta="1" Iterations="10"/>
+					<GrayClosingRectFilter MaskWidth="51" MaskHeight="1"/>
+				</CompositeFilter>
+			</EdgeSearchingDefinition.ImageFilter>
+			
+			<EdgeSearchingDefinition.LineExtractor>
+				<RakeLineExtractor Name=""
+				                   SaveCacheImageEnabled="false"
+				                   RegionsCount="10"
+				                   RegionHeight="120"
+				                   RegionWidth="10"
+				                   Sigma="1"
+				                   Threshold="30"
+				                   SelectionMode="First"
+				                   Transition="Negative"
+				                   />
+			</EdgeSearchingDefinition.LineExtractor>
+			
+		</EdgeSearchingDefinition>
+		-->
+		
+		
+	</InspectionSchema.EdgeSearchingDefinitions>
+	
+	
+	
+	<InspectionSchema.DistanceBetweenIntersectionPointsDefinitions>
+		
+		
+		<DistanceBetweenLinesDefinition Name="InnerTopBottom-Distance-01"
+		                                DisplayName="内长1"
+		                                GroupName="内长"
+		                                Comment=""
+		                                
+		                                Line1Name="IT1"
+		                                Line2Name="IB1"
+		                                ExpectValue="150.00"
+		                                PositiveTolerance="0.0"
+		                                NegativeTolerance="-0.0"/>
+		<!--
+		<DistanceBetweenLinesDefinition Name="InnerTopBottom-Distance-02"
+		                                DisplayName="内长2"
+		                                GroupName="内长"
+		                                Comment=""
+		                                
+		                                Line1Name="IT2"
+		                                Line2Name="IB2"
+		                                ExpectValue="142.76"
+		                                PositiveTolerance="0.05"
+		                                NegativeTolerance="-0.10"/>
+    	-->
+    	
+	</InspectionSchema.DistanceBetweenIntersectionPointsDefinitions>
+
+</InspectionSchema>

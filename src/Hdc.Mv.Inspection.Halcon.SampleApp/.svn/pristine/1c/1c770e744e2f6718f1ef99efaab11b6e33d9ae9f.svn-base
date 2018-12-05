@@ -1,0 +1,639 @@
+﻿<Window x:Class="Hdc.Mv.Inspection.Halcon.SampleApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:hdc="http://schemas.hdcrd.com/xaml"
+        xmlns:sampleApp="clr-namespace:Hdc.Mv.Inspection.Halcon.SampleApp"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        Title="HalconSampleApp"
+        Height="600"
+        Width="800"
+        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen"
+        x:Name="Root">
+    <Window.Resources>
+        <sampleApp:InvertConverter x:Key="InvertConverter"></sampleApp:InvertConverter>
+    </Window.Resources>
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Right"
+                   Width="540">
+            <StackPanel Orientation="Vertical"
+                        DockPanel.Dock="Top"
+                        Margin="4">
+                <StackPanel Orientation="Horizontal" Visibility="Collapsed">
+                    <TextBlock Text="InspectionSchemaDir: "
+                               VerticalAlignment="Center"
+                               Margin="4"></TextBlock>
+                    <TextBlock x:Name="InspectionSchemaDirTextBlock"
+                               Width="150"
+                               VerticalAlignment="Center"
+                               Margin="4"></TextBlock>
+                    <Button Click="SwitchForwadAndBackwardButton_OnClick"
+                            x:Name="SwitchForwadAndBackwardButton"
+                            Margin="4"
+                            Padding="2">Switch</Button>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  Margin="4"
+                                Width="70"
+                                Height="auto"
+                                VerticalAlignment="Center"
+                                TextAlignment="Right">Root Schema:</TextBlock>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileCommand}"
+                            Margin="4"
+                            Width="120"
+                            Height="40"
+                            Click="OpenFileCommandButton_OnClick"
+                            x:Name="OpenFileCommandButton">Open File</Button>
+                    <Button Margin="4" Width="120" Height="40"
+                    	Click="TrainButton_OnClick" Content="TrainingForC#"/>
+                    <!--                    <Button Margin="4"-->
+                    <!--                            Width="120"-->
+                    <!--                            Height="40"-->
+                    <!--                            Click="ShowAllDefectsButton_OnClick"-->
+                    <!--                            x:Name="ShowAllDefectsButton">Show All Defects</Button>-->
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  Margin="4"
+                                Width="70"
+                                Height="auto"
+                                VerticalAlignment="Center"
+                                TextAlignment="Right">Schema 0:</TextBlock>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileUseSeparateSchema00Command}"
+                            Margin="4"
+                            Width="40"
+                            Height="40"
+                            Click="OpenFileUseSeparateSchema00CommandButton_OnClick"
+                            x:Name="OpenFileUseSeparateSchema00CommandButton">00</Button>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileUseSeparateSchema01Command}"
+                            Margin="4"
+                            Width="40"
+                            Height="40"
+                            Click="OpenFileUseSeparateSchema01CommandButton_OnClick"
+                            x:Name="OpenFileUseSeparateSchema01CommandButton">01</Button>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileUseSeparateSchema02Command}"
+                            Margin="4"
+                            Width="40"
+                            Height="40"
+                            Click="OpenFileUseSeparateSchema02CommandButton_OnClick"
+                            x:Name="OpenFileUseSeparateSchema02CommandButton">02</Button>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileUseSeparateSchema03Command}"
+                            Margin="4"
+                            Width="40"
+                            Height="40"
+                            Click="OpenFileUseSeparateSchema03CommandButton_OnClick"
+                            x:Name="OpenFileUseSeparateSchema03CommandButton">03</Button>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileUseSeparateSchema04Command}"
+                            Margin="4"
+                            Width="40"
+                            Height="40"
+                            Click="OpenFileUseSeparateSchema04CommandButton_OnClick"
+                            x:Name="OpenFileUseSeparateSchema04CommandButton">04</Button>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileUseSeparateSchema05Command}"
+                            Margin="4"
+                            Width="40"
+                            Height="40"
+                            Click="OpenFileUseSeparateSchema05CommandButton_OnClick"
+                            x:Name="OpenFileUseSeparateSchema05CommandButton">05</Button>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileUseSeparateSchema06Command}"
+                            Margin="4"
+                            Width="40"
+                            Height="40"
+                            Click="OpenFileUseSeparateSchema06CommandButton_OnClick"
+                            x:Name="OpenFileUseSeparateSchema06CommandButton">06</Button>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileUseSeparateSchema07Command}"
+                            Margin="4"
+                            Width="40"
+                            Height="40"
+                            Click="OpenFileUseSeparateSchema07CommandButton_OnClick"
+                            x:Name="OpenFileUseSeparateSchema07CommandButton">07</Button>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileUseSeparateSchema08Command}"
+                            Margin="4"
+                            Width="40"
+                            Height="40"
+                            Click="OpenFileUseSeparateSchema08CommandButton_OnClick"
+                            x:Name="OpenFileUseSeparateSchema08CommandButton">08</Button>
+                </StackPanel>
+
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  Margin="4"
+                                Width="70"
+                                Height="auto"
+                                VerticalAlignment="Center"
+                                TextAlignment="Right">Schema 1:</TextBlock>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileUseSeparateSchema100Command}"
+                            Margin="4"
+                            Width="40"
+                            Height="40"
+                            Click="OpenFileUseSeparateSchema100CommandButton_OnClick"
+                            x:Name="OpenFileUseSeparateSchema100CommandButton">00-B</Button>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileUseSeparateSchema101Command}"
+                            Margin="4"
+                            Width="40"
+                            Height="40"
+                            Click="OpenFileUseSeparateSchema101CommandButton_OnClick"
+                            x:Name="OpenFileUseSeparateSchema101CommandButton">01-B</Button>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileUseSeparateSchema102Command}"
+                            Margin="4"
+                            Width="40"
+                            Height="40"
+                            Click="OpenFileUseSeparateSchema102CommandButton_OnClick"
+                            x:Name="OpenFileUseSeparateSchema102CommandButton">02-B</Button>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileUseSeparateSchema103Command}"
+                            Margin="4"
+                            Width="40"
+                            Height="40"
+                            Click="OpenFileUseSeparateSchema103CommandButton_OnClick"
+                            x:Name="OpenFileUseSeparateSchema103CommandButton">03-B</Button>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileUseSeparateSchema104Command}"
+                            Margin="4"
+                            Width="40"
+                            Height="40"
+                            Click="OpenFileUseSeparateSchema104CommandButton_OnClick"
+                            x:Name="OpenFileUseSeparateSchema104CommandButton">04-B</Button>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileUseSeparateSchema105Command}"
+                            Margin="4"
+                            Width="40"
+                            Height="40"
+                            Click="OpenFileUseSeparateSchema105CommandButton_OnClick"
+                            x:Name="OpenFileUseSeparateSchema105CommandButton">05-B</Button>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileUseSeparateSchema106Command}"
+                            Margin="4"
+                            Width="40"
+                            Height="40"
+                            Click="OpenFileUseSeparateSchema106CommandButton_OnClick"
+                            x:Name="OpenFileUseSeparateSchema106CommandButton">06-B</Button>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileUseSeparateSchema107Command}"
+                            Margin="4"
+                            Width="40"
+                            Height="40"
+                            Click="OpenFileUseSeparateSchema107CommandButton_OnClick"
+                            x:Name="OpenFileUseSeparateSchema107CommandButton">07-B</Button>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileUseSeparateSchema108Command}"
+                            Margin="4"
+                            Width="40"
+                            Height="40"
+                            Click="OpenFileUseSeparateSchema108CommandButton_OnClick"
+                            x:Name="OpenFileUseSeparateSchema108CommandButton">08-B</Button>
+                </StackPanel>
+
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  Margin="4"
+                                Width="70"
+                                Height="auto"
+                                VerticalAlignment="Center"
+                                TextAlignment="Right">Schema 2:</TextBlock>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileUseSeparateSchema200Command}"
+                            Margin="4"
+                            Width="40"
+                            Height="40"
+                            Click="OpenFileUseSeparateSchema200CommandButton_OnClick"
+                            x:Name="OpenFileUseSeparateSchema200CommandButton">00-C</Button>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileUseSeparateSchema201Command}"
+                            Margin="4"
+                            Width="40"
+                            Height="40"
+                            Click="OpenFileUseSeparateSchema201CommandButton_OnClick"
+                            x:Name="OpenFileUseSeparateSchema201CommandButton">01-C</Button>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileUseSeparateSchema202Command}"
+                            Margin="4"
+                            Width="40"
+                            Height="40"
+                            Click="OpenFileUseSeparateSchema202CommandButton_OnClick"
+                            x:Name="OpenFileUseSeparateSchema202CommandButton">02-C</Button>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileUseSeparateSchema203Command}"
+                            Margin="4"
+                            Width="40"
+                            Height="40"
+                            Click="OpenFileUseSeparateSchema203CommandButton_OnClick"
+                            x:Name="OpenFileUseSeparateSchema203CommandButton">03-C</Button>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileUseSeparateSchema204Command}"
+                            Margin="4"
+                            Width="40"
+                            Height="40"
+                            Click="OpenFileUseSeparateSchema204CommandButton_OnClick"
+                            x:Name="OpenFileUseSeparateSchema204CommandButton">04-C</Button>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileUseSeparateSchema205Command}"
+                            Margin="4"
+                            Width="40"
+                            Height="40"
+                            Click="OpenFileUseSeparateSchema205CommandButton_OnClick"
+                            x:Name="OpenFileUseSeparateSchema205CommandButton">05-C</Button>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileUseSeparateSchema206Command}"
+                            Margin="4"
+                            Width="40"
+                            Height="40"
+                            Click="OpenFileUseSeparateSchema206CommandButton_OnClick"
+                            x:Name="OpenFileUseSeparateSchema206CommandButton">06-C</Button>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileUseSeparateSchema207Command}"
+                            Margin="4"
+                            Width="40"
+                            Height="40"
+                            Click="OpenFileUseSeparateSchema207CommandButton_OnClick"
+                            x:Name="OpenFileUseSeparateSchema207CommandButton">07-C</Button>
+                    <Button Command="{Binding ElementName=Root, Path=OpenFileUseSeparateSchema208Command}"
+                            Margin="4"
+                            Width="40"
+                            Height="40"
+                            Click="OpenFileUseSeparateSchema208CommandButton_OnClick"
+                            x:Name="OpenFileUseSeparateSchema208CommandButton">08-C</Button>
+                </StackPanel>
+            </StackPanel>
+            <UniformGrid Rows="3">
+                <DockPanel DockPanel.Dock="Top">
+                    <StackPanel>
+                        <StackPanel Visibility="Collapsed">
+                            <ScrollBar Orientation="Horizontal"
+                                       Minimum="0"
+                                       Maximum="8192"
+                                       SmallChange="10"
+                                       LargeChange="100"
+                                       Value="{Binding ElementName=IndicatorViewer, Path=X, Converter={StaticResource InvertConverter}}"></ScrollBar>
+                            <ScrollBar Orientation="Horizontal"
+                                       Minimum="0"
+                                       Maximum="12500"
+                                       SmallChange="10"
+                                       LargeChange="100"
+                                       Value="{Binding ElementName=IndicatorViewer, Path=Y, Converter={StaticResource InvertConverter}}"></ScrollBar>
+                        </StackPanel>
+                        <Grid Margin="4"
+                              Background="Silver">
+                            <StackPanel Margin="4">
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="2">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Scale:"
+                                                   TextAlignment="Right"
+                                                   Width="60"
+                                                   Height="20"></TextBlock>
+                                        <TextBlock Text="{Binding Scale, ElementName=IndicatorViewer}"
+                                                   Width="60"
+                                                   Height="20"></TextBlock>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="60"
+                                                   Height="20"
+                                                   Text="OffsetX"
+                                                   TextAlignment="Right"></TextBlock>
+                                        <TextBox Width="60"
+                                                 Height="20"
+                                                 Text="{Binding X, ElementName=IndicatorViewer}"
+                                                 x:Name="OffsetX"></TextBox>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Width="60"
+                                                   Height="20"
+                                                   Text="OffsetY"
+                                                   TextAlignment="Right"></TextBlock>
+                                        <TextBox Width="60"
+                                                 Height="20"
+                                                 Text="{Binding Y, ElementName=IndicatorViewer}"
+                                                 x:Name="OffsetY"></TextBox>
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <UniformGrid Rows="4"
+                                             Columns="4"
+                                             Margin="2">
+                                    <Button Width="80"
+                                            Height="40"
+                                            Margin="2"
+                                            x:Name="RefreshButton"
+                                            Click="RefreshButton_OnClick">Refresh</Button>
+                                    <Button Width="80"
+                                            Height="40"
+                                            Margin="2"
+                                            x:Name="SaveImageButton"
+                                            Click="SaveImageButton_OnClick">Save Image</Button>
+                                    <Button Width="80"
+                                            Height="40"
+                                            Margin="2"
+                                            x:Name="ExportReportButton"
+                                            Click="ExportReportButton_OnClick">Export Report</Button>
+
+                                    <Button Width="80"
+                                            Height="40"
+                                            Margin="2"
+                                            x:Name="ZoomFitButton"
+                                            Click="ZoomFitButton_OnClick">Zoom Fit</Button>
+                                    <Button Width="80"
+                                            Height="40"
+                                            Margin="2"
+                                            x:Name="ZoomActualButton"
+                                            Click="ZoomActualButton_OnClick">Zoom Actual</Button>
+                                    <Button Width="80"
+                                            Height="40"
+                                            Margin="2"
+                                            x:Name="ZoomQuarterButton"
+                                            Click="ZoomQuarterButton_OnClick">Zoom Quarter</Button>
+                                    <Button Width="80"
+                                            Height="40"
+                                            Margin="2"
+                                            x:Name="ZoomHalfButton"
+                                            Click="ZoomHalfButton_OnClick">Zoom Half</Button>
+                                    <Button Width="80"
+                                            Height="40"
+                                            Margin="2"
+                                            x:Name="ZoomInButton"
+                                            Click="ZoomInButton_OnClick">Zoom +</Button>
+                                    <Button Width="80"
+                                            Height="40"
+                                            Margin="2"
+                                            x:Name="ZoomOutButton"
+                                            Click="ZoomOutButton_OnClick">Zoom -</Button>
+                                    <Button Width="80"
+                                            Height="40"
+                                            Margin="2"
+                                            x:Name="ZoomActualToCenterButton"
+                                            Click="ZoomActualToCenterButton_OnClick">Zoom Actual Center</Button>
+                                    <Button Width="80"
+                                            Height="40"
+                                            Margin="2"
+                                            x:Name="ClearWindowButton"
+                                            Click="ClearWindowButton_OnClick">ClearWindow</Button>
+                                    <!--                                    <Button Width="80"-->
+                                    <!--                                            Height="40"-->
+                                    <!--                                            Margin="2"-->
+                                    <!--                                            x:Name="TestButton"-->
+                                    <!--                                            Click="TestButton_OnClick">Test</Button>-->
+                                    <!--                                    <Button Width="80"-->
+                                    <!--                                            Height="40"-->
+                                    <!--                                            Margin="2"-->
+                                    <!--                                            x:Name="Test2Button"-->
+                                    <!--                                            Click="Test2Button_OnClick">Test2</Button>-->
+                                </UniformGrid>
+
+
+                                <!--                                <StackPanel Orientation="Horizontal">-->
+                                <!--                                    <TextBlock Text="Text1Name"-->
+                                <!--                                               Width="120"></TextBlock>-->
+                                <!--                                    <TextBox Text="{Binding Text1Name}"></TextBox>-->
+                                <!--                                </StackPanel>-->
+                                <!--                                <StackPanel Orientation="Horizontal">-->
+                                <!--                                    <TextBlock Text="Text1Content"-->
+                                <!--                                               Width="120"></TextBlock>-->
+                                <!--                                    <TextBox Text="{Binding Text1Content}"></TextBox>-->
+                                <!--                                </StackPanel>-->
+                                <!---->
+<!--                                <StackPanel Orientation="Horizontal">-->
+                                <!--                                    <TextBlock Text="Text2Name"-->
+                                <!--                                               Width="120"></TextBlock>-->
+                                <!--                                    <TextBox Text="{Binding Text2Name}"></TextBox>-->
+                                <!--                                </StackPanel>-->
+                                <!--                                <StackPanel Orientation="Horizontal">-->
+                                <!--                                    <TextBlock Text="Text2Content"-->
+                                <!--                                               Width="120"></TextBlock>-->
+                                <!--                                    <TextBox Text="{Binding Text2Content}"></TextBox>-->
+                                <!--                                </StackPanel>-->
+
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </DockPanel>
+                <DockPanel DockPanel.Dock="Top"
+                           Margin="4">
+                    <TextBlock FontSize="20"
+                               Margin="2"
+                               DockPanel.Dock="Top">Measurement List</TextBlock>
+                    <DataGrid ItemsSource="{Binding MeasurementInfos}"
+                              DockPanel.Dock="Bottom"
+                              SelectedItem="{Binding SelectedDefectInfo}"
+                              x:Name="MeasurementListView"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="分组"
+                                                Binding="{Binding GroupName, Mode=OneWay}"
+                                                Width="60" />
+                            <DataGridTextColumn Header="名称"
+                                                Binding="{Binding DisplayName}"
+                                                Width="100" />
+                            <DataGridTextColumn Header="距离"
+                                                Binding="{Binding ValueDisplayValue}"
+                                                Width="60" />
+                            <DataGridTextColumn Header="偏差"
+                                                Binding="{Binding DiffValueDisplayValue}"
+                                                Width="60" />
+                            <DataGridTextColumn Header="目标"
+                                                Binding="{Binding ExpectValueDisplayValue}"
+                                                Width="60" />
+                            <DataGridTextColumn Header="X坐标"
+                                                Binding="{Binding StartPointXDisplayValue}"
+                                                Width="60" />
+                            <DataGridTextColumn Header="Y坐标"
+                                                Binding="{Binding StartPointYDisplayValue}"
+                                                Width="60" />
+                            <DataGridTextColumn Header="X偏差"
+                                                Binding="{Binding EndPointXDisplayValue}"
+                                                Width="60" />
+                            <DataGridTextColumn Header="Y偏差"
+                                                Binding="{Binding EndPointYDisplayValue}"
+                                                Width="60" />
+                        </DataGrid.Columns>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding SelectMeasurementInfoCommand}"
+                                                       CommandParameter="{Binding SelectedItem, ElementName=MeasurementInfosView}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </DataGrid>
+                </DockPanel>
+
+                <DockPanel DockPanel.Dock="Top"
+                           Margin="4">
+                    <TextBlock FontSize="20"
+                               Margin="2"
+                               DockPanel.Dock="Top">Defects List</TextBlock>
+                    <DataGrid ItemsSource="{Binding DefectResults}"
+                              DockPanel.Dock="Bottom"
+                              SelectedItem="{Binding SelectedDefectInfo}"
+                              x:Name="DefectsListView"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Index}"
+                                                Header="NO"
+                                                Width="30"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Location}"
+                                                Header="Location"
+                                                Width="30"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding X}"
+                                                Header="X"
+                                                Width="50"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Y}"
+                                                Header="Y"
+                                                Width="50"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Width}"
+                                                Header="W"
+                                                Width="50"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Height}"
+                                                Header="H"
+                                                Width="50"></DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding defectArea}"
+                                                Header="Area"
+                                                Width="50"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding SelectDefectInfoCommand}"
+                                                       CommandParameter="{Binding SelectedItem, ElementName=DefectsListView}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </DataGrid>
+                </DockPanel>
+            </UniformGrid>
+        </DockPanel>
+        <Grid Background="Silver">
+            <hdc:HalconViewer  x:Name="HalconViewer">
+                <hdc:RegionHalconViewerSeries ItemsSource="{Binding SurfaceDefects}"
+                                              RegionPath="Region"
+                                              ColorName="red"
+                                              LineWidth="2" />
+                <hdc:RegionHalconViewerSeries ItemsSource="{Binding HighlightDefects}"
+                                              RegionPath="Region"
+                                              ColorName="green"
+                                              LineWidth="2" />
+                <hdc:RoiRectangleHalconViewerSeries ItemsSource="{Binding RoiRectangleViewModels_CoordinateEdges}"
+                                                    StartXPath="StartX"
+                                                    StartYPath="StartY"
+                                                    EndXPath="EndX"
+                                                    EndYPath="EndY"
+                                                    HalfWidthPath="HalfWidth"
+                                                    ColorName="green"
+                                                    LineWidth="2" />
+                <hdc:RoiRectangleHalconViewerSeries ItemsSource="{Binding RoiRectangleViewModels_DataCodeSearching}"
+                                                    StartXPath="StartX"
+                                                    StartYPath="StartY"
+                                                    EndXPath="EndX"
+                                                    EndYPath="EndY"
+                                                    HalfWidthPath="HalfWidth"
+                                                    ColorName="green"
+                                                    LineWidth="2" />
+                <hdc:LineHalconViewerSeries ItemsSource="{Binding LineIndicators_CoordinateEdges}"
+                                            StartPointXPath="StartPointX"
+                                            StartPointYPath="StartPointY"
+                                            EndPointXPath="EndPointX"
+                                            EndPointYPath="EndPointY"
+                                            ColorName="red"
+                                            LineWidth="2" />
+                <hdc:LineHalconViewerSeries ItemsSource="{Binding LineIndicators_Edges}"
+                                            StartPointXPath="StartPointX"
+                                            StartPointYPath="StartPointY"
+                                            EndPointXPath="EndPointX"
+                                            EndPointYPath="EndPointY"
+                                            ColorName="red"
+                                            LineWidth="2" />
+                <hdc:LineHalconViewerSeries ItemsSource="{Binding LineIndicators_EdgesDistances}"
+                                            StartPointXPath="StartPointX"
+                                            StartPointYPath="StartPointY"
+                                            EndPointXPath="EndPointX"
+                                            EndPointYPath="EndPointY"
+                                            ColorName="red"
+                                            LineWidth="2" />
+                <hdc:CircleHalconViewerSeries ItemsSource="{Binding DefinitionsCircleIndicators}"
+                                              CenterXPath="CenterX"
+                                              CenterYPath="CenterY"
+                                              RadiusPath="Radius"
+                                              ColorName="green"
+                                              LineWidth="4" />
+                <hdc:CircleHalconViewerSeries ItemsSource="{Binding ResultsCircleIndicators}"
+                                              CenterXPath="CenterX"
+                                              CenterYPath="CenterY"
+                                              RadiusPath="Radius"
+                                              ColorName="red"
+                                              LineWidth="4" />
+                <hdc:RegionHalconViewerSeries ItemsSource="{Binding Regions}"
+                                              RegionPath="Region"
+                                              ColorName="red"
+                                              LineWidth="4"
+                                              RegionFillMode="Margin" />
+                <hdc:XldHalconViewerSeries ItemsSource="{Binding XldIndicators}"
+                                           XldPath="Xld"
+                                           ColorName="red"
+                                           LineWidth="4"
+                                           RegionFillMode="Margin" />
+                <hdc:LineHalconViewerSeries ItemsSource="{Binding LineIndicators_ReferenceLines}"
+                                            StartPointXPath="StartPointX"
+                                            StartPointYPath="StartPointY"
+                                            EndPointXPath="EndPointX"
+                                            EndPointYPath="EndPointY"
+                                            ColorName="green"
+                                            LineWidth="2" />
+                <!--                <hdc:LineHalconViewerSeries ItemsSource="{Binding LineIndicators_ReferenceLines}"-->
+                <!--                                            StartPointXPath="StartPointX"-->
+                <!--                                            StartPointYPath="StartPointY"-->
+                <!--                                            EndPointXPath="EndPointX"-->
+                <!--                                            EndPointYPath="EndPointY"-->
+                <!--                                            ColorName="green"-->
+                <!--                                            LineWidth="2" />-->
+                <hdc:LineHalconViewerSeries ItemsSource="{Binding LineIndicators_PointOfXldAndRadialLines}"
+                                            StartPointXPath="StartPointX"
+                                            StartPointYPath="StartPointY"
+                                            EndPointXPath="EndPointX"
+                                            EndPointYPath="EndPointY"
+                                            ColorName="blue"
+                                            LineWidth="2" />
+                <hdc:LineHalconViewerSeries ItemsSource="{Binding LineIndicators_DistanceBetweenPointsOfXldAndRadialLines}"
+                                            StartPointXPath="StartPointX"
+                                            StartPointYPath="StartPointY"
+                                            EndPointXPath="EndPointX"
+                                            EndPointYPath="EndPointY"
+                                            ColorName="red"
+                                            LineWidth="2" />
+                <hdc:LineHalconViewerSeries ItemsSource="{Binding LineIndicators_CircleDiameter}"
+                                            StartPointXPath="StartPointX"
+                                            StartPointYPath="StartPointY"
+                                            EndPointXPath="EndPointX"
+                                            EndPointYPath="EndPointY"
+                                            ColorName="red"
+                                            LineWidth="2" />
+                <hdc:LineHalconViewerSeries ItemsSource="{Binding LineIndicators_RegionTargetResults}"
+                                            StartPointXPath="StartPointX"
+                                            StartPointYPath="StartPointY"
+                                            EndPointXPath="EndPointX"
+                                            EndPointYPath="EndPointY"
+                                            ColorName="red"
+                                            LineWidth="2" />
+                <hdc:LineHalconViewerSeries ItemsSource="{Binding LineIndicators_DistanceBetweenLinesResults}"
+                                            StartPointXPath="StartPointX"
+                                            StartPointYPath="StartPointY"
+                                            EndPointXPath="EndPointX"
+                                            EndPointYPath="EndPointY"
+                                            ColorName="red"
+                                            LineWidth="2" />
+                <hdc:LineHalconViewerSeries ItemsSource="{Binding LineIndicators_CoordinateExtractors_IntersectionCoordinateExtactors}"
+                                            StartPointXPath="StartPointX"
+                                            StartPointYPath="StartPointY"
+                                            EndPointXPath="EndPointX"
+                                            EndPointYPath="EndPointY"
+                                            ColorName="red"
+                                            LineWidth="2" />
+                <hdc:RoiRectangleHalconViewerSeries ItemsSource="{Binding RoiRectangleViewModels_CoordinateExtractors_IntersectionCoordinateExtactors}"
+                                                    StartXPath="StartX"
+                                                    StartYPath="StartY"
+                                                    EndXPath="EndX"
+                                                    EndYPath="EndY"
+                                                    HalfWidthPath="HalfWidth"
+                                                    ColorName="green"
+                                                    LineWidth="2" />
+                <hdc:CircleHalconViewerSeries ItemsSource="{Binding ReferencePointUsingCircleIndicators}"
+                                              CenterXPath="CenterX"
+                                              CenterYPath="CenterY"
+                                              RadiusPath="Radius"
+                                              ColorName="blue"
+                                              LineWidth="4" />
+
+                <hdc:LineHalconViewerSeries ItemsSource="{Binding LineIndicators_DistanceBetweenTwoPointsResults}"
+                                            StartPointXPath="StartPointX"
+                                            StartPointYPath="StartPointY"
+                                            EndPointXPath="EndPointX"
+                                            EndPointYPath="EndPointY"
+                                            ColorName="red"
+                                            LineWidth="4" />
+            </hdc:HalconViewer>
+        </Grid>
+    </DockPanel>
+</Window>
